@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function(){
+            $(".txt1").parents()
+            .css({
+                "border":"2px dashed #00f" // 해당 요소의 상위 요소 모두
+            });
+
+            $(".txt2").parents("div")
+            .css({
+                "border":"2px solid #f00" // 해당 요소의 상위 요소 중 선택한 요소만
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1 class="title">인접 관계 선택자</h1>
+    <section>
+        <div>
+            <p class="txt1">내용</p>
+        </div>
+    </section>
+    <section>
+        <div>   
+            <p class="txt2">내용</p>
+        </div>
+    </section>
+</body>
+</html>
