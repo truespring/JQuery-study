@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function(){
+            var arr1 = [{
+                "area" : "서울",
+                "name" : "무대리"
+            }, {
+                "area" : "부산",
+                "name" : "홍과장"
+            }, {
+                "area" : "전주",
+                "name" : "김사장"
+            }, {
+                "area" : "서울",
+                "name" : "구사원"
+            }]
+
+            // 배열에 저장된 데이터 수만큼 메서드를 반복 실행
+            // 메서드에서 반환된 데이터는 새 배열에 저장되고 그 배열 객체를 반환
+            var arr2 = $.map(arr1, function(a, b) {
+                if(a.area == "서울") {
+                    return a;
+                }
+            });
+            console.log(arr2);
+            console.log("===first End===");
+
+            // 배열에 저장된 데이터 수만큼 메서드를 반복 실행
+            // 인덱스 오름차순으로 배열의 데이터를 호출
+            // 메서드의 반환값이 true면 데이터가 새 배열에 저장되고 배열을 반환
+            var arr3 = $.grep(arr1, function(a, b) {
+                if(a.area == "서울") {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            console.log(arr3);
+            console.log("===2nd End===");
+        });
+    </script>
+</head>
+<body>
+    <!-- <h1>탐색 선택자</h1>
+    <ul id="menu1">
+        <li>내용1-1</li>
+        <li>내용1-2</li>
+        <li>내용1-3</li>
+        <li>내용1-4</li>
+    </ul>
+    <ul id="menu2">
+        <li>내용2-1</li>
+        <li>내용2-2</li>
+        <li>내용2-3</li>
+    </ul> -->
+</body>
+</html>
