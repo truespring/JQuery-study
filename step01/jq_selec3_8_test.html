@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤바 위치 메서드</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function() {
+            // 스크롤바가 수직(top) 또는 수평(left)으로 이동한 위칫값을 반환함
+            var topNum = $("h1").offset().top;
+            $(window).scrollTop(topNum);
+
+            // 입력한 수치만큼 수직또는 수평(scrollLeft)으로 스크롤바를 이동시킴
+            var sct = $(window).scrollTop();
+            console.log(sct);
+        });
+    </script>
+    <style>
+        * {     margin: 0;      padding: 0; }
+        body {  line-height: 1; }
+        #wrap { height: 5000px; padding-top: 2000px;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>위치 메서드</h1>
+    </div>
+</body>
+</html>
