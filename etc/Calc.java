@@ -21,6 +21,7 @@ public class Calc {
 	static double E20 = 286.5988;
 	static double E21 = 146.6331;
 	static double E22 = 424.5715;
+	static double E23 = 0.980007993083333;
 	static double E24 = 60.0041;
 	static double E26 = 0.1012;
 	static double E27 = 92.8093;
@@ -30,41 +31,60 @@ public class Calc {
 	static double E31 = 0.2503;
 	static double E32 = 0.0072;
 	static double E33 = 0.022;
-	static double E36 = 49515.4786;
-	static double E37 = 54861.2712;
-	static double E50 = 2.87;
-	static double E53 = E4 - E7;
-	static double E134 = 15.4076 * Math.pow((E24 / 60), 2) - 31.3277 * (E24 / 60) + 16.9201;
+//	static double E36 = 49515.4786;
+//	static double E37 = 54861.2712;
+//	static double E41 = 7.64;
+//	static double E43 = 4.59; // TODO 변수로 받아야 할 값 index
+//	static double E44 = 7.91; // TODO 변수로 받아야 할 값 index
+//	static double E45 = 0.1; // TODO 변수로 받아야 할 값 index
+//	static double E46 = -0.01; // TODO 변수로 받아야 할 값 index
+//	static double E48 = 29.471615; // TODO 변수로 받아야 할 값
+//	static double E50 = 2.87;
+//	static double E53 = E4 - E7;
+//	static double E98 = 4;
+//	static double E99 = 3;
+//	static double E100 = 1.6;
+//	static double E101 = 0.5;
+//	static double E102 = 0; // 소수자리 늘려도 0
+//	static double E103 = 0; // 소수자리 늘려도 0
+//	static double E107 = 29000; // index
+//	static double E108 = 30000; // index
+//	static double E109 = 0.9784; // index
+//	static double E110 = 0.9782; // index
+//	static double E150 = 29000; // index
+//	static double E151 = 30000; // index
+//	static double E152 = 1.013; // index
+//	static double E153 = 1.013; // index
 
 	// 10ST
-	static double F23 = 3522.2;
+	static double F19 = 146.63;
 	static double F24 = 86.0846;
-	static double F26 = 3167.4;
+//	static double F23 = 3522.2;
+//	static double F26 = 3167.4;
+//	static double F29 = 3644.0491;
+//	static double F32 = 2979.6;
+//	static double F35 = 129.196;
 	static double F27 = 86.0846;
-	static double F29 = 3644.0491;
 	static double F30 = 97.369;
-	static double F32 = 2979.6;
-	static double F33 = 8.4;
-	static double F35 = 129.196;
+	static double F33 = 8.383;
 	static double F37 = 29.5316;
 
 	// 10Cond
 	static double G6 = 23.2147;
 	static double G7 = 30.4578;
+	static double G11 = 85.9877;
+	static double G16 = 71.1273;
+	static double G19 = 8.4902;
 	static double G20 = 106.3315;
 	static double G21 = 0.0039;
 	static double G22 = 146.217;
-	static double G25 = 31.326;
-	static double G27 = 131.2018;
-	static double G31 = 3523.1795;
-	static double G32 = 85.9877;
-	static double G34 = 3167.9279;
-	static double G35 = 85.9877;
-	static double G37 = 3637.3086;
-	static double G38 = 71.1273;
-	static double G40 = 2978.4236;
-	static double G41 = 8.4902;
-	static double G43 = 131.2018;
+//	static double G25 = 31.326;
+//	static double G27 = 131.2018;
+//	static double G31 = 3523.1795;
+//	static double G34 = 3167.9279;
+//	static double G37 = 3637.3086;
+//	static double G40 = 2978.4236;
+//	static double G43 = 131.2018;
 	static double G45 = 106.3276;
 
 	// 11HRSG
@@ -81,7 +101,7 @@ public class Calc {
 	static double H29 = -0.027022355;
 	static double H30 = 0.00001289036;
 	static double H31 = -0.0000000024780681;
-	static double H32 = 0;
+	static double H32 = 0; // 소수자리 늘려도 값이 없음
 	static double H33 = 6.5459673;
 	static double H80 = E26 / 100; // H는 1이 100%이기 때문에 100으로 나눠줌
 	static double H81 = E27 / 100;
@@ -91,11 +111,9 @@ public class Calc {
 	static double H85 = E31 / 100;
 	static double H86 = E32 / 100;
 	static double H87 = E33 / 100;
-	static double H78 = getE49() * 2.20462;
-	static double H92 = 17.4084;
-	static double H94 = H78 / H92;
 	static double F94_H = 6564.7026; // 다른 열의 값을 참고함
-	static double H96 = 0.02834964176;
+	static double H96 = 0.02834964176; // TODO 11HRSG는 나중에
+	static double H133 = 0;
 	static double H229 = -2.4896;
 	static double H230 = -2.1977;
 	static double H231 = -2.0137;
@@ -117,69 +135,109 @@ public class Calc {
 
 	public static void main(String[] args) {
 		// 1CC
+		double E36 = 49515.4786;
+		double E37 = 54861.2712;
+		double E41 = 7.64;
+		double E43 = 4.59; // TODO index
+		double E44 = 7.91; // TODO index
+		double E45 = 0.1; // TODO index
+		double E46 = -0.01; // TODO index
+		double E48 = 29.471615; // TODO 변수로 받아야 할 값
+		double E50 = 2.87;
+		double E98 = 4;
+		double E99 = 3;
+		double E100 = 1.6;
+		double E101 = 0.5;
+		double E102 = 0; // 소수자리 늘려도 0
+		double E103 = 0; // 소수자리 늘려도 0
+		double E107 = 29000; // TODO index
+		double E108 = 30000; // TODO index
+		double E109 = 0.9784; // TODO index
+		double E110 = 0.9782; // TODO index
+		double E150 = 29000; // TODO index
+		double E151 = 30000; // TODO index
+		double E152 = 1.013; // TODO index
+		double E153 = 1.013; // TODO index
 		Calc calc = new Calc();
-		calc.get1CCgrossPower();
-		calc.get1CCnetPower();
-		calc.get1CCgrossEfficiency();
-		calc.get1CCnetEfficiency();
-		calc.get1CCgt11GrossPower();
-		calc.get1CCgt11DesignedPower();
-		calc.get1CCgt11GrossEfficiency();
-		calc.get1CCgt11DesignedEfficiency();
-		calc.get1CCgt11ComprEfficiencyPolytropic();
-		calc.get1CCgt11PressrurueRatio();
-		Calc.getE105();
+		System.out.println("Gross Power : " + getRound(calc.get1CCgrossPower(E3, E4, E5, E6, E7, E14, E18, E20, E21, E23, E24, E27, E28, E29, E30, E31, E32, E33, E36))); // 1
+		System.out.println("Net Power : " + getRound(calc.get1CCnetPower(E3, E4, E5, E6, E7, E14, E18, E20, E21, E22, E23, E24, E27, E28, E29, E30, E31, E32, E33, E36))); // 2
+		System.out.println("Gross Efficiency : " + getRound(calc.get1CCgrossEfficiency(E3, E4, E5, E6, E7, E14, E16, E18, E20, E21, E23, E24, E37, E41, E43, E44, E45, E46, E48))); // 3
+		System.out.println("Net Efficiency : " + getRound(calc.get1CCnetEfficiency(E3, E4, E5, E6, E7, E14, E16, E18, E20, E21, E22, E23, E24, E37, E41, E43, E44, E45, E46, E48))); // 4
+		System.out.println("11GT Gross Power : " + getRound(calc.get1CCgt11GrossPower(E3, E4, E5, E6, E7, E12, E13, E20, E24, E27, E28, E29, E30, E31, E32, E33, E36, E98, E99, E100, E101, E102, E103, E107, E108, E109, E110))); // 5
+		System.out.println("11GT Designed Power : " + getRound(calc.get1CCgt11DesignedPower(E13, E107, E108, E109, E110))); // 6
+		System.out.println("11GT Gross Efficiency : " + getRound(calc.get1CCgt11GrossEfficiency(E3, E4, E5, E6, E7, E13, E16, E19, E20, E24, E27, E28, E29, E30, E31, E32, E33, E36, E41, E43, E44, E45, E46, E48, E50, E98, E99, E100, E101, E102, E103, E150, E151, E152, E153))); // 7
+		System.out.println("11GT Designed Efficiency : " + getRound(calc.get1CCgt11DesignedEfficiency(E13, E150, E151, E152, E153))); // 8
+		System.out.println("11GT Compr. Efficiency(Polytropic) : " + getRound(calc.get1CCgt11ComprEfficiencyPolytropic(E6, E7, E8, E9))); // 9
+		System.out.println("11GT Pressrurue Ratio : " + getRound(calc.get1CCgt11PressrurueRatio(E7, E9))); // 10
 		System.out.println();
-
+		
 		// 10ST
-		calc.get10STst10PowerOutput();
-		calc.get10STst10EnergyIn();
-		calc.get10STst10Efficiency();
+		double F23 = 3522.2031;
+		double F26 = 3167.3549;
+		double F29 = 3644.0491;
+		double F32 = 2979.5902;
+		double F35 = 129.196;
+		System.out.println("10ST Power output : " + getRound(calc.get10STst10PowerOutput(F19)));
+		System.out.println("10ST Energy In : " + getRound(calc.get10STst10EnergyIn(F23, F24, F26, F27, F29, F30, F32, F33, F35, F37)));
+		System.out.println("10ST Efficiency : " + getRound(calc.get10STst10Efficiency(F19, F23, F24, F26, F27, F29, F30, F32, F33, F35, F37)));
 		System.out.println();
 
+		double G25 = 31.326;
+		double G27 = 131.2018;
+		double G31 = 3523.1795;
+		double G34 = 3167.9279;
+		double G37 = 3637.3086;
+		double G40 = 2978.4236;
+		double G43 = 131.2018;
 		// 10Cond
-		calc.get10Condcond10P();
-		calc.get10Condcond10SatT();
-		calc.get10CondtTD();
-		calc.get10CondiTD();
-		calc.get10CondcWTRise();
-		calc.get10CondsTUEEP();
-		calc.get10CondcondensateWaterH();
-		calc.get10CondcondensateWaterF();
-		calc.get10CondcondenserHeatLoad();
-		calc.get10Condcond10Cleanliness();
+		System.out.println("10Cond. P : " + calc.get10Condcond10P());
+		System.out.println("10Cond. Sat. T : " + getRound(calc.get10Condcond10SatT()));
+		System.out.println("TTD : " + getRound(calc.get10CondtTD(G7, G25)));
+		System.out.println("ITD : " + getRound(calc.get10CondiTD(G6, G25)));
+		System.out.println("CW T Rise : " + getRound(calc.get10CondcWTRise(G6, G7)));
+		System.out.println("ST UEEP : " + getRound(calc.get10CondsTUEEP(G11, G16, G19, G20, G22, G31, G34, G37, G40, G43, G45)));
+		System.out.println("Condensate Water H : " + getRound(calc.get10CondcondensateWaterH(G27)));
+		System.out.println("Condensate Water F : " + getRound(calc.get10CondcondensateWaterF(G20)));
+		System.out.println("Condenser Heat Load : " + getRound(calc.get10CondcondenserHeatLoad(G11, G16, G19, G20, G21, G22, G27, G31, G34, G37, G40, G43, G45)));
+		System.out.println("10Cond. Cleanliness : " + getRound(calc.get10Condcond10Cleanliness(G6, G7, G11, G16, G19, G20, G21, G22, G25, G27, G31, G34, G37, G40, G43, G45)));
 		System.out.println();
 
-		// 11HRSG
-		calc.get11HRSGenergyIn();
-		calc.get11HRSGenergyOut();
-		calc.get11HRSGenergyGain();
-		calc.get11HRSGefficiency();
+		// 11HRSG TODO 나중에
+//		calc.get11HRSGenergyIn(E41, E43, E44, E45, E46, E48);
+//		calc.get11HRSGenergyOut(E41, E43, E44, E45, E46, E48);
+//		calc.get11HRSGenergyGain();
+//		calc.get11HRSGefficiency(E41, E43, E44, E45, E46, E48);
 	}
 
 	// 1CC start
-	public void get1CCgrossPower() {
+	// 1CC 1번
+	public double get1CCgrossPower(double E3, double E4, double E5, double E6, double E7, double E14, double E18, double E20, double E21, double E23, double E24, double E27, double E28, double E29, double E30, double E31, double E32, double E33, double E36) {
 		/*
 		 * E20 = Elec.11GT Gross Power 
 		 * E21 = Elec.10ST Gross Power 
 		 * E155 = P Correction_Additive Correction 
 		 * E157 = P Correction_Power Correction Product
 		 */
-		double grossPower = (E20 + E21 + getE155() / 1000) * getE157(); // 1CC 1번
-		System.out.printf("Gross Power : %.4f\n", grossPower); // 1번
+		double grossPower = (E20 + E21 + getE155(E20, E21, E23) / 1000) * getE157(E3, E4, E5, E6, E7, E14, E18, E24, E27, E28, E29, E30, E31, E32, E33, E36);
+//		System.out.printf("Gross Power : %.4f\n", grossPower); // 1번
+		return grossPower;
 	}
 
-	public void get1CCnetPower() {
+	// 1CC 2번
+	public double get1CCnetPower(double E3, double E4, double E5, double E6, double E7, double E14, double E18, double E20, double E21, double E22, double E23, double E24, double E27, double E28, double E29, double E30, double E31, double E32, double E33, double E36) {
 		/*
 		 * E22 = Elec.Net Power 
 		 * E155 = P Correction_Additive Correction 
 		 * E157 = P Correction_Power Correction Product
 		 */
-		double netPower = (E22 + getE155() / 1000) * getE157(); // 1CC 2번
-		System.out.printf("Net Power : %.4f\n", netPower); // 2번
+		double netPower = (E22 + getE155(E20, E21, E23) / 1000) * getE157(E3, E4, E5, E6, E7, E14, E18, E24, E27, E28, E29, E30, E31, E32, E33, E36);
+//		System.out.printf("Net Power : %.4f\n", netPower); // 2번
+		return netPower;
 	}
 
-	public void get1CCgrossEfficiency() {
+	// 1CC 3번
+	public double get1CCgrossEfficiency(double E3, double E4, double E5, double E6, double E7, double E14, double E16, double E18, double E20, double E21, double E23, double E24, double E37, double E41, double E43, double E44, double E45, double E46, double E48) {
+		double E53 = E4 - E7;
 		/*
 		 * E20 = Elec.11GT Gross Power 
 		 * E21 = Elec.10ST Gross Power 
@@ -188,11 +246,14 @@ public class Calc {
 		 * E155 = P Correction_Additive Correction 
 		 * E172 = Combined Cycle_HR Correction Product
 		 */
-		double grossEfficiency = (E20 + E21 + getE155() / 1000) / (getE49() / 3600 * E37 / 1000) * getE172(); // 1CC 3번
-		System.out.printf("Gross Efficiency : %.4f\n", grossEfficiency); // 3번
+		double grossEfficiency = (E20 + E21 + getE155(E20, E21, E23) / 1000) / (getE49(E16, E41, E43, E44, E45, E46, E48) / 3600 * E37 / 1000) * getE172(E3, E4, E5, E6, E7, E14, E18, E24); 
+//		System.out.printf("Gross Efficiency : %.4f\n", grossEfficiency * 100); // 3번
+		return grossEfficiency * 100;
 	}
 
-	public void get1CCnetEfficiency() {
+	// 1CC 4번
+	public double get1CCnetEfficiency(double E3, double E4, double E5, double E6, double E7, double E14, double E16, double E18, double E20, double E21, double E22, double E23, double E24, double E37, double E41, double E43, double E44, double E45, double E46, double E48) {
+		double E53 = E4 - E7;
 		/*
 		 * E22 = Elec.Net Power 
 		 * E37 = HHV 
@@ -200,12 +261,15 @@ public class Calc {
 		 * E155 = P Correction_Additive Correction 
 		 * E172 = Combined Cycle_HR Correction Product
 		 */
-		double netEfficiency = (E22 + getE155() / 1000) / (getE49() / 3600 * E37 / 1000) * getE172(); // 1CC 4번
-		System.out.printf("Net Efficiency : %.4f\n", netEfficiency); // 4번
+		double netEfficiency = (E22 + getE155(E20, E21, E23) / 1000) / (getE49(E16, E41, E43, E44, E45, E46, E48) / 3600 * E37 / 1000) * getE172(E3, E4, E5, E6, E7, E14, E18, E24); 
+//		System.out.printf("Net Efficiency : %.4f\n", netEfficiency * 100); // 4번
+		return netEfficiency * 100;
 	}
 
-	public void get1CCgt11GrossPower() {
+	// 1CC 5번
+	public double get1CCgt11GrossPower(double E3, double E4, double E5, double E6, double E7, double E12, double E13, double E20, double E24, double E27, double E28, double E29, double E30, double E31, double E32, double E33, double E36, double E98, double E99, double E100, double E101, double E102, double E103, double E107, double E108, double E109, double E110) {
 		double E56 = -0.00809296 * Math.pow((0.001 * E4), 2) + 1.02802 * (0.001 * E4) - 0.0330795;
+		double E53 = E4 - E7;
 		double E57 = -0.00129716 * (E53) + 1.01038;
 		double E58 = 0;
 		if (E6 < 15) {
@@ -222,16 +286,11 @@ public class Calc {
 		relTest.add(45);
 		double E61 = getIndex(relTest, getMatch(E60, relTest, 1));
 		double E62 = getIndex(relTest, getMatch(E60, relTest, 1) + 1);
-		double E65 = -0.000000935858 * Math.pow((0.01 * E5), 3) - 0.0000141332 * Math.pow((0.01 * E5), 2)
-				+ 0.00381307 * (0.01 * E5) + 0.997717;
-		double E66 = -0.0000553283 * Math.pow((0.01 * E5), 3) - 0.000688925 * Math.pow((0.01 * E5), 2)
-				+ 0.00787826 * (0.01 * E5) + 0.995533;
-		double E67 = -0.0000548537 * Math.pow((0.01 * E5), 3) - 0.000691077 * Math.pow((0.01 * E5), 2)
-				+ 0.00786734 * (0.01 * E5) + 0.99554;
-		double E68 = 0.0000468319 * Math.pow((0.01 * E5), 3) - 0.00547762 * Math.pow((0.01 * E5), 2)
-				+ 0.00715796 * (0.01 * E5) + 0.997667;
-		double E69 = 0.0055358 * Math.pow((0.01 * E5), 3) - 0.0286947 * Math.pow((0.01 * E5), 2)
-				- 0.00528963 * (0.01 * E5) + 1.01231;
+		double E65 = -0.000000935858 * Math.pow((0.01 * E5), 3) - 0.0000141332 * Math.pow((0.01 * E5), 2) + 0.00381307 * (0.01 * E5) + 0.997717;
+		double E66 = -0.0000553283 * Math.pow((0.01 * E5), 3) - 0.000688925 * Math.pow((0.01 * E5), 2) + 0.00787826 * (0.01 * E5) + 0.995533;
+		double E67 = -0.0000548537 * Math.pow((0.01 * E5), 3) - 0.000691077 * Math.pow((0.01 * E5), 2) + 0.00786734 * (0.01 * E5) + 0.99554;
+		double E68 = 0.0000468319 * Math.pow((0.01 * E5), 3) - 0.00547762 * Math.pow((0.01 * E5), 2) + 0.00715796 * (0.01 * E5) + 0.997667;
+		double E69 = 0.0055358 * Math.pow((0.01 * E5), 3) - 0.0286947 * Math.pow((0.01 * E5), 2) - 0.00528963 * (0.01 * E5) + 1.01231;
 		List<Number> e5Arr = new ArrayList<Number>();
 		e5Arr.add(E65);
 		e5Arr.add(E66);
@@ -250,16 +309,11 @@ public class Calc {
 		speedTest.add(46);
 		double E72 = getIndex(speedTest, getMatch(E71, speedTest, 1));
 		double E73 = getIndex(speedTest, getMatch(E71, speedTest, 1) + 1);
-		double E76 = 174.706 * Math.pow((E24 / 60), 3) - 538.226 * Math.pow((E24 / 60), 2) + 551.577 * (E24 / 60)
-				- 187.057;
-		double E77 = -112.386 * Math.pow((E24 / 60), 3) + 301.717 * Math.pow((E24 / 60), 2) - 265.928 * (E24 / 60)
-				+ 77.597;
-		double E78 = 225.864 * Math.pow((E24 / 60), 3) - 710.323 * Math.pow((E24 / 60), 2) + 744.364 * (E24 / 60)
-				- 258.905;
-		double E79 = -19.4615 * Math.pow((E24 / 60), 3) + 21.6669 * Math.pow((E24 / 60), 2) + 17.2299 * (E24 / 60)
-				- 18.4353;
-		double E80 = -527.474 * Math.pow((E24 / 60), 3) + 1545.48 * Math.pow((E24 / 60), 2) - 1503.97 * (E24 / 60)
-				+ 486.964;
+		double E76 = 174.706 * Math.pow((E24 / 60), 3) - 538.226 * Math.pow((E24 / 60), 2) + 551.577 * (E24 / 60) - 187.057;
+		double E77 = -112.386 * Math.pow((E24 / 60), 3) + 301.717 * Math.pow((E24 / 60), 2) - 265.928 * (E24 / 60) + 77.597;
+		double E78 = 225.864 * Math.pow((E24 / 60), 3) - 710.323 * Math.pow((E24 / 60), 2) + 744.364 * (E24 / 60) - 258.905;
+		double E79 = -19.4615 * Math.pow((E24 / 60), 3) + 21.6669 * Math.pow((E24 / 60), 2) + 17.2299 * (E24 / 60) - 18.4353;
+		double E80 = -527.474 * Math.pow((E24 / 60), 3) + 1545.48 * Math.pow((E24 / 60), 2) - 1503.97 * (E24 / 60) + 486.964;
 		List<Number> e24Arr = new ArrayList<Number>();
 		e24Arr.add(E76);
 		e24Arr.add(E77);
@@ -269,7 +323,7 @@ public class Calc {
 		double E74 = getIndex(e24Arr, getMatch(E60, speedTest, 1));
 		double E75 = getIndex(e24Arr, getMatch(E60, speedTest, 1) + 1);
 		double E70 = E74 + (E71 - E72) * (E75 - E74) / (E73 - E72);
-		double E82 = getE35();
+		double E82 = getE35(E27, E28, E29, E30, E31, E32, E33);
 		List<Number> gasTest = new ArrayList<Number>();
 		gasTest.add(2.979);
 		gasTest.add(3.155);
@@ -279,7 +333,7 @@ public class Calc {
 		double E84 = getIndex(gasTest, getMatch(E82, gasTest, 1) + 1);
 		double E87 = 0.0000311312 * Math.pow((E36 / 1000), 2) - 0.00391754 * (E36 / 1000) + 1.12045;
 		double E88 = 0.0000309164 * Math.pow((E36 / 1000), 2) - 0.00389258 * (E36 / 1000) + 1.11677;
-		double E89 = 0.0000314845 * Math.pow((E36 / 1000), 2) - 0.00393467 * (E36 / 1000) + +1.11524;
+		double E89 = 0.0000314845 * Math.pow((E36 / 1000), 2) - 0.00393467 * (E36 / 1000) + 1.11524;
 		double E90 = 0.0000318051 * Math.pow((E36 / 1000), 2) - 0.00395701 * (E36 / 1000) + 1.11333;
 		List<Number> e36Arr = new ArrayList<Number>();
 		e36Arr.add(E87);
@@ -290,7 +344,7 @@ public class Calc {
 		double E86 = getIndex(e36Arr, getMatch(E82, gasTest, 1) + 1);
 		double E81 = E85 + (E82 - E83) * (E86 - E85) / (E84 - E83);
 
-		double E91 = -0.00000275451 * Math.pow(getE92(), 2) + 0.00196996 * getE92() + 1;
+		double E91 = -0.00000275451 * Math.pow(getE92(E3, E98, E99, E100, E101, E102, E103), 2) + 0.00196996 * getE92(E3, E98, E99, E100, E101, E102, E103) + 1;
 		double E104 = -0.000000706787 * Math.pow(E12, 2) - 0.000211037 * (E12) + 1.01134;
 		List<Double> e55Arr = new ArrayList<Double>();
 		e55Arr.add(E56);
@@ -301,35 +355,42 @@ public class Calc {
 		e55Arr.add(E81);
 		e55Arr.add(E91);
 		e55Arr.add(E104);
-		e55Arr.add(getE105());
+		e55Arr.add(getE105(E13, E107, E108, E109, E110));
 		double E55 = getProduct(e55Arr) / 0.9972;
 		/*
 		 * E20 = Elec.11GT Gross Power 
 		 * E55 = P Correction_11GT Power Correction Product
 		 * E105 = P Correction_11GT Equivalent Box Hours
 		 */
-		double gt11GrossPower = E20 / E55 * getE105(); // 1CC 5번 index
-		System.out.printf("11GT Gross Power : %.4f\n", gt11GrossPower); // 5번
+		double gt11GrossPower = E20 / E55 * getE105(E13, E107, E108, E109, E110);
+//		System.out.printf("11GT Gross Power : %.4f\n", gt11GrossPower); // 5번
+		return gt11GrossPower;
 	}
 
-	public void get1CCgt11DesignedPower() {
+	// 1CC 6번
+	public double get1CCgt11DesignedPower(double E13, double E107, double E108, double E109, double E110) {
 		double T192 = 292.012;
 		/*
 		 * E105 = P Correction_11GT Equivalent Box Hours
 		 */
-		double gt11DesignedPower = T192 * getE105();// 1CC 6번 index
-		System.out.printf("11GT Designed Power : %.4f\n", gt11DesignedPower); // 6번
+		double gt11DesignedPower = T192 * getE105(E13, E107, E108, E109, E110);
+//		System.out.printf("11GT Designed Power : %.4f\n", gt11DesignedPower); // 6번
+		return gt11DesignedPower;
 	}
 
-	public void get1CCgt11GrossEfficiency() {
+	// 1CC 7번
+	public double get1CCgt11GrossEfficiency(double E3, double E4, double E5, double E6, double E7, double E13, double E16, double E19, double E20, double E24, double E27, double E28, double E29, 
+			double E30, double E31, double E32, double E33, double E36, double E41, double E43, double E44, double E45, double E46, double E48, double E50,
+			double E98, double E99, double E100, double E101, double E102, double E103, double E150, double E151, double E152, double E153) {
 		double E51 = E50 * (E19 - 15);
-		double E52 = getE49() * (E36 + E51) / 3600;
+		double E52 = getE49(E16, E41, E43, E44, E45, E46, E48) * (E36 + E51) / 3600;
 		double E112 = 0;
 		if (E6 < 15) {
 			E112 = 0.00000998827 * Math.pow(E6, 2) - 0.0000390012 * (E6) + 0.998338;
 		} else {
 			E112 = 0.0000816215 * Math.pow(E6, 2) - 0.00254304 * (E6) + 1.01978;
 		}
+		double E53 = E4 - E7;
 		double E113 = 0.000303968 * E53 + 0.997568;
 		double E115 = E3;
 		List<Number> rel_HRArr = new ArrayList<Number>();
@@ -365,6 +426,7 @@ public class Calc {
 		double E131 = 8.56974 * Math.pow((E24 / 60), 2) - 16.772 * (E24 / 60) + 9.20226;
 		double E132 = 14.2284 * Math.pow((E24 / 60), 2) - 28.4244 * (E24 / 60) + 15.196;
 		double E133 = 13.0933 * Math.pow((E24 / 60), 2) - 26.4545 * (E24 / 60) + 14.3612;
+		double E134 = 15.4076 * Math.pow((E24 / 60), 2) - 31.3277 * (E24 / 60) + 16.9201;
 		double E135 = 24.1123 * Math.pow((E24 / 60), 2) - 49.827 * (E24 / 60) + 26.7147;
 		List<Number> e126Arr = new ArrayList<Number>();
 		e126Arr.add(E131);
@@ -376,7 +438,7 @@ public class Calc {
 		double E130 = getIndex(e126Arr, getMatch(E126, speed_HRArr, 1) + 1);
 		double E125 = E129 + (E126 - E127) * (E130 - E129) / (E128 - E127);
 		double E114 = E118 + (E115 - E116) * (E119 - E118) / (E117 - E116);
-		double E137 = getE35();
+		double E137 = getE35(E27, E28, E29, E30, E31, E32, E33);
 		List<Number> gas_HRTest = new ArrayList<Number>();
 		gas_HRTest.add(2.979);
 		gas_HRTest.add(3.155);
@@ -396,7 +458,7 @@ public class Calc {
 		double E140 = getIndex(e137Arr, getMatch(E137, gas_HRTest, 1));
 		double E141 = getIndex(e137Arr, getMatch(E137, gas_HRTest, 1) + 1);
 		double E136 = E140 + (E137 - E138) * (E141 - E140) / (E139 - E138);
-		double E146 = 0.00000203144 * Math.pow(getE92(), 2) - 0.0000754444 * getE92() + 1;
+		double E146 = 0.00000203144 * Math.pow(getE92(E3, E98, E99, E100, E101, E102, E103), 2) - 0.0000754444 * getE92(E3, E98, E99, E100, E101, E102, E103) + 1;
 		List<Double> e111Arr = new ArrayList<Double>();
 		e111Arr.add(E112);
 		e111Arr.add(E113);
@@ -404,7 +466,7 @@ public class Calc {
 		e111Arr.add(E125);
 		e111Arr.add(E136);
 		e111Arr.add(E146);
-		e111Arr.add(getE148());
+		e111Arr.add(getE148(E13, E150, E151, E152, E153));
 		double E111 = getProduct(e111Arr) / 1.0007;
 		/*
 		 * E20 = Elec.11GT Gross Power 
@@ -412,20 +474,24 @@ public class Calc {
 		 * E111 = HR Correction_11GT HR Correction Product 
 		 * E148 = HR Correction_11GT Equivalent Box Hours
 		 */
-		double gt11GrossEfficiency = (E20 * 1000) / E52 * (E111 / getE148()); // 1CC 7번
-		System.out.printf("11GT Gross Power : %.4f\n", gt11GrossEfficiency); // 7번
+		double gt11GrossEfficiency = (E20 * 1000) / E52 * (E111 / getE148(E13, E150, E151, E152, E153));
+//		System.out.printf("11GT Gross Efficiency : %.4f\n", gt11GrossEfficiency * 100); // 7번
+		return gt11GrossEfficiency * 100;
 	}
 
-	public void get1CCgt11DesignedEfficiency() {
+	// 1CC 8번
+	public double get1CCgt11DesignedEfficiency(double E13, double E150, double E151, double E152, double E153) {
 		double T194 = 0.3957;
 		/*
 		 * E148 = HR Correction_11GT Equivalent Box Hours
 		 */
-		double gt11DesignedEfficiency = T194 / getE148(); // 1CC 8번
-		System.out.printf("11GT Designed Efficiency : %.4f\n", gt11DesignedEfficiency); // 8번
+		double gt11DesignedEfficiency = T194 / getE148(E13, E150, E151, E152, E153);
+//		System.out.printf("11GT Designed Efficiency : %.4f\n", gt11DesignedEfficiency * 100); // 8번
+		return gt11DesignedEfficiency * 100;
 	}
 
-	public void get1CCgt11ComprEfficiencyPolytropic() {
+	// 1CC 9번
+	public double get1CCgt11ComprEfficiencyPolytropic(double E6, double E7, double E8, double E9) {
 		/*
 		 * E6 = GT_11Comp. Tin 
 		 * E7 = GT_11Comp. Pin 
@@ -433,28 +499,37 @@ public class Calc {
 		 * E9 = GT_11Comp. Pout
 		 */
 		double gt11ComprEfficiencyPolytropic = (0.4 / 1.4) * Math.log(E9 / (E7 / 1000))
-				/ Math.log((E8 + 273.15) / (E6 + 273.15)); // 1CC 9번
-		System.out.printf("11GT Compr. Efficiency Polytropic : %.4f\n", gt11ComprEfficiencyPolytropic); // 9번
+				/ Math.log((E8 + 273.15) / (E6 + 273.15));
+//		System.out.printf("11GT Compr. Efficiency(Polytropic) : %.4f\n", gt11ComprEfficiencyPolytropic * 100); // 9번
+		return gt11ComprEfficiencyPolytropic * 100;
 	}
 
-	public void get1CCgt11PressrurueRatio() {
+	// 1CC 10번
+	public double get1CCgt11PressrurueRatio(double E7, double E9) {
 		/*
 		 * E7 = GT_11Comp. Pin 
 		 * E9 = GT_11Comp. Pout
 		 */
-		double gt11PressrurueRatio = E9 * 1000 / E7; // 1CC 10번
-		System.out.printf("11GT Pressrurue Ratio : %.4f\n", gt11PressrurueRatio); // 10번
+		double gt11PressrurueRatio = E9 * 1000 / E7;
+//		System.out.printf("11GT Pressrurue Ratio : %.4f\n", gt11PressrurueRatio); // 10번
+		return gt11PressrurueRatio;
 	}
+	// 1CC end
+	
+	// 10ST start
+	// 10ST 1번
 	// 1CC end
 
 	// 10ST start
-	public double get10STst10PowerOutput() {
-		double st10PowerOutput = 146.63;
-		System.out.printf("10ST Power output : %.4f\n", st10PowerOutput); // 1번
+	// 10ST 1번
+	public double get10STst10PowerOutput(double F19) {
+		double st10PowerOutput = F19;
+//		System.out.printf("10ST Power output : %.4f\n", st10PowerOutput); // 1번
 		return st10PowerOutput;
 	}
-
-	public double get10STst10EnergyIn() {
+	
+	// 10ST 2번
+	public double get10STst10EnergyIn(double F23, double F24, double F26, double F27, double F29, double F30, double F32, double F33, double F35, double F37) {
 		double F22 = (F23 * F24) / 1000;
 		double F25 = -F26 / 1000 * F27;
 		double F28 = (F29 * F30) / 1000;
@@ -468,89 +543,114 @@ public class Calc {
 		 * F34 = Energy out to Condensor Pre Heater
 		 */
 		double st10EnergyIn = (F22 + F28 + F31) + (F25 + F34);
-		System.out.printf("10ST Energy In : %.4f\n", st10EnergyIn); // 2번
+//		System.out.printf("10ST Energy In : %.4f\n", st10EnergyIn); // 2번
 		return st10EnergyIn;
 	}
 
-	public void get10STst10Efficiency() {
-		double st10Efficiency = get10STst10PowerOutput() / get10STst10EnergyIn();
-		System.out.printf("10ST Efficiency : %.4f\n", st10Efficiency); // 3번
+	// 10ST 3번
+	public double get10STst10Efficiency(double F19, double F23, double F24, double F26, double F27, double F29, double F30, double F32, double F33, double F35, double F37) {
+		double st10Efficiency = get10STst10PowerOutput(F19) / get10STst10EnergyIn(F23, F24, F26, F27, F29, F30, F32, F33, F35, F37);
+//		System.out.printf("10ST Power output : %.4f\n", get10STst10PowerOutput(F19)); // 1번
+//		System.out.printf("10ST Energy In : %.4f\n", get10STst10EnergyIn(F23, F24, F26, F27, F29, F30, F32, F33, F35, F37)); // 2번
+//		System.out.printf("10ST Efficiency : %.4f\n", st10Efficiency * 100); // 3번
+		return st10Efficiency * 100;
 	}
 	// 10ST end
 
 	// 10Cond start
-	public void get10Condcond10P() {
+	// 10Cond 1번
+	public double get10Condcond10P() {
 		double cond10P = 0.04576; // 1번
-		System.out.printf("10Cond. P : %.4f\n", cond10P); // 1번
+//		System.out.printf("10Cond. P : %.4f\n", cond10P); // 1번
+		return cond10P;
 	}
 
-	public void get10Condcond10SatT() {
+	// 10Cond 2번
+	public double get10Condcond10SatT() {
 		double cond10SatT = 31.33;// TODO 다른 엑셀에서 가져오는 값 10Cond 2번
-		System.out.printf("10Cond. Sat. T : %.4f\n", cond10SatT); // 2번
+//		System.out.printf("10Cond. Sat. T : %.4f\n", cond10SatT); // 2번
+		return cond10SatT;
 	}
 
-	public void get10CondtTD() {
+	// 10Cond 3번
+	public double get10CondtTD(double G7, double G25) {
 		/*
 		 * G7 = Cond_Cond Out CW T 
 		 * G25 = Condenser Hotwell T
 		 */
 		double tTD = G25 - G7; // 3번
-		System.out.printf("TTD : %.4f\n", tTD); // 3번
+//		System.out.printf("TTD : %.4f\n", tTD); // 3번
+		return tTD;
 	}
 
-	public void get10CondiTD() {
+	// 10Cond 4번
+	public double get10CondiTD(double G6, double G25) {
 		/*
 		 * G6 = Cond_Cond In CW T 
 		 * G25 = Condenser Hotwell T
 		 */
 		double iTD = G25 - G6; // 4번
-		System.out.printf("ITD : %.4f\n", iTD); // 4번
+//		System.out.printf("ITD : %.4f\n", iTD); // 4번
+		return iTD;
 	}
 
-	public void get10CondcWTRise() {
+	// 10Cond 5번
+	public double get10CondcWTRise(double G6, double G7) {
 		/*
 		 * G6 = Cond_Cond In CW T 
 		 * G7 = Cond_Cond Out CW T
 		 */
 		double cWTRise = G7 - G6; // 5번
-		System.out.printf("CW T Rise : %.4f\n", cWTRise); // 5번
+//		System.out.printf("CW T Rise : %.4f\n", cWTRise); // 5번
+		return cWTRise;
 	}
 
-	public void get10CondsTUEEP() {
+	// 10Cond 6번
+	public double get10CondsTUEEP(double G11, double G16, double G19, double G20, double G22, double G31, double G34, double G37, double G40, double G43, double G45) {
 		/*
 		 * G20 = ST_After CEP water F 
 		 * G26 = ST Energy in - ST Energy out
 		 */
-		double sTUEEP = getG26() / G20 * 1000; // 6번
-		System.out.printf("ST UEEP : %.4f\n", sTUEEP); // 6번
+		double sTUEEP = getG26(G11, G16, G19, G22, G31, G34, G37, G40, G43, G45) / G20 * 1000; // 6번
+//		System.out.printf("ST UEEP : %.4f\n", sTUEEP); // 6번
+		return sTUEEP;
 	}
 
-	public void get10CondcondensateWaterH() {
-		double condensateWaterH = 131.2018; // 7번
-		System.out.printf("Condensate Water H : %.4f\n", condensateWaterH); // 7번
+	// 10Cond 7번
+	public double get10CondcondensateWaterH(double G27) {
+		double condensateWaterH = G27; // 7번
+//		System.out.printf("Condensate Water H : %.4f\n", condensateWaterH); // 7번
+		return condensateWaterH;
 	}
 
-	public void get10CondcondensateWaterF() {
+	// 10Cond 8번
+	public double get10CondcondensateWaterF(double G20) {
 		/*
 		 * G20 = ST_After CEP water F
 		 */
 		double condensateWaterF = G20 / 3.6; // 8번
-		System.out.printf("Condensate Water F : %.4f\n", condensateWaterF); // 8번
+//		System.out.printf("Condensate Water F : %.4f\n", condensateWaterF); // 8번
+		return condensateWaterF;
 	}
 
-	public void get10CondcondenserHeatLoad() {
+	// 10Cond 9번
+	public double get10CondcondenserHeatLoad(double G11, double G16, double G19, double G20, double G21, 
+			double G22, double G27,double G31, double G34, double G37, double G40, double G43, double G45) {
 		/*
 		 * G20 = ST_After CEP water F 
 		 * G21 = ST_Condenser make up water F 
 		 * G27 = Condensate water H 
 		 * G28 = ST UEEP
 		 */
-		double condenserHeatLoad = (getG28() - G27) * (G20 - G21) / 1000; // 9번
-		System.out.printf("Condenser Heat Load : %.4f\n", condenserHeatLoad); // 9번
+		double condenserHeatLoad = (getG28(G11, G16, G19, G20, G22, G31, G34, G37, G40, G43, G45) - G27) * (G20 - G21) / 1000; // 9번
+//		System.out.printf("Condenser Heat Load : %.4f\n", condenserHeatLoad); // 9번
+		return condenserHeatLoad;
 	}
 
-	public void get10Condcond10Cleanliness() {
-		double G29 = (getG28() - G27) * (G20 - G21) / 1000;
+	// 10Cond 10번
+	public double get10Condcond10Cleanliness(double G6, double G7, double G11, double G16, double G19, double G20, double G21, double G22, double G25, 
+			double G27, double G31, double G34, double G37, double G40, double G43, double G45) {
+		double G29 = (getG28(G11, G16, G19, G20, G22, G31, G34, G37, G40, G43, G45) - G27) * (G20 - G21) / 1000;
 		double G47 = G25 - G6;
 		double G48 = G25 - G7;
 		double G52 = G6 * 9 / 5 + 32;
@@ -592,28 +692,45 @@ public class Calc {
 		 * G51 = CW inlet T factor
 		 */
 		double cond10Cleanliness = 1000000 * G29 / (T50 * G51 * T67 * Math.sqrt(T68) * T46 * G49); // 10번
-		System.out.printf("10Cond. Cleanliness : %.4f\n", cond10Cleanliness); // 10번
+//		System.out.printf("10Cond. Cleanliness : %.4f\n", cond10Cleanliness * 100); // 10번
+		return cond10Cleanliness * 100;
 	}
 	// 10Cond end
 
 	// 11HRSG start
-	public double get11HRSGenergyIn() {
-		double H266 = getH262() * getH238() + getH183() * getH256();
+	// 11HRSG 1번
+	public double get11HRSGenergyIn(double E4, double E5, double E16, double E20, double E41, double E43, double E44, double E45, double E46, double E48, 
+			double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33, double H80, double H81, double H82, double H83, double H84,
+			double H85, double H86, double H87, double H96, double H133, double H229, double H230, double H231, double H232, 
+			double H233, double H239, double H240, double H241, double H242, double H243, double H246, double H247, double H248, 
+			double H257, double H258, double H259, double H260, double H261, double F94_H) {
+		double H266 = getH262(E4, E5, E16, E20, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84,
+				 H85, H86, H87, H96, H133, H229, H230, H231, H232, H233, H239, H240, H241, H242, H243, H246, H247, H248, H257, H258, H259, H260, H261, F94_H) 
+				* getH238(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H239, H240, H241, H242, H243) 
+				+ getH183(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H133) 
+				* getH256(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84, H85, H86, H87, H96, H133, H257, H258, H259, H260, H261, F94_H);
 		/*
 		 * H266 = ASME PTC 4.4 HRSG Performance 2. GT exhaust mass flow and energy - 11GT exhaust energy
 		 */
 		double energyIn = H266 * 1.0548 / 1000 / 3600;
-		System.out.printf("ASME PTC 4.4 HRSG Performance 6. HRSG efficiency - 11HRSG energy in : %.4f\n", energyIn); // 1번
+//		System.out.printf("ASME PTC 4.4 HRSG Performance 6. HRSG efficiency - 11HRSG energy in : %.4f\n", energyIn); // 1번
 		return energyIn;
 	}
 
-	public double get11HRSGenergyOut() {
+	// 11HRSG 2번
+	public double get11HRSGenergyOut(double E4, double E5, double E16, double E20, double E41, double E43, double E44, double E45, double E46, double E48, 
+			double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33, double H80, double H81, double H82, double H83, double H84,
+			double H85, double H86, double H87, double H96, double H133, double H229, double H230, double H231, double H232, 
+			double H233, double H239, double H240, double H241, double H242, double H243, double H246, double H247, double H248, 
+			double H257, double H258, double H259, double H260, double H261, double F94_H) {
 		List<Double> gt11GasArr = new ArrayList<Double>();
-		gt11GasArr.add(getH204());
-		gt11GasArr.add(getH205());
-		gt11GasArr.add(getH206());
-		gt11GasArr.add(getH207());
-		gt11GasArr.add(getH208());
+		gt11GasArr.add(getH204(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H96, H133, F94_H));
+		gt11GasArr.add(getH205(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84, H85, H86, H87, H133, F94_H));
+		gt11GasArr.add(getH206(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84, H85, H86, H87, H133, F94_H));
+		gt11GasArr.add(getH207(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84, H85, H86, H87, H133, F94_H));
+		gt11GasArr.add(getH208(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84, H85, H86, H87, H133, F94_H));
 		List<Number> airArr = new ArrayList<Number>();
 		airArr.add(26.9927);
 		airArr.add(23.965);
@@ -622,11 +739,11 @@ public class Calc {
 		airArr.add(48.6042);
 		double H272 = getSumArr(gt11GasArr, airArr);
 		List<Double> massAirArr = new ArrayList<Double>();
-		massAirArr.add(getH69());
-		massAirArr.add(getH70());
-		massAirArr.add(getH71());
-		massAirArr.add(getH72());
-		massAirArr.add(getH73());
+		massAirArr.add(getH69(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
+		massAirArr.add(getH70(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
+		massAirArr.add(getH71(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
+		massAirArr.add(getH72(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
+		massAirArr.add(getH73(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
 		List<Number> balanceAirArr = new ArrayList<Number>();
 		balanceAirArr.add(26.9927);
 		balanceAirArr.add(23.965);
@@ -634,15 +751,18 @@ public class Calc {
 		balanceAirArr.add(13.4997);
 		balanceAirArr.add(48.6042);
 		double H278 = getSumArr(massAirArr, balanceAirArr);
-		double H284 = getH183() * H272 + getH262() * H278;
+		double H284 = getH183(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H133) 
+				* H272 + getH262(E4, E5, E16, E20, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84,
+					 H85, H86, H87, H96, H133, H229, H230, H231, H232, H233, H239, H240, H241, H242, H243, H246, H247, H248, H257, H258, H259, H260, H261, F94_H) * H278;
 		/*
 		 * H284 = ASME PTC 4.4 HRSG Performance 3. HRSG stack energy  - 11HRSG stack energy
 		 */
 		double energyOut = H284 * 1054.8 / 1000000 / 3600;
-		System.out.printf("ASME PTC 4.4 HRSG Performance 6. HRSG efficiency - 11HRSG energy out : %.4f\n", energyOut); // 2번
+//		System.out.printf("ASME PTC 4.4 HRSG Performance 6. HRSG efficiency - 11HRSG energy out : %.4f\n", energyOut); // 2번
 		return energyOut;
 	}
 
+	// 11HRSG 3번
 	public double get11HRSGenergyGain() {
 		double H289 = 103.1737;
 		double H292 = 138.0052;
@@ -673,40 +793,47 @@ public class Calc {
 		 * H326 = ASME PTC 4.4 HRSG Performance 5. Working fluid energy out (c) 11HRSG LP steam energy out
 		 */
 		double energyGain = H316 + H321 + H326 - (H301 + H310);
-		System.out.printf("ASME PTC 4.4 HRSG Performance 6. HRSG efficiency - 11HRSG working fluid energy gain : %.4f\n", energyGain); // 3번
+//		System.out.printf("ASME PTC 4.4 HRSG Performance 6. HRSG efficiency - 11HRSG working fluid energy gain : %.4f\n", energyGain); // 3번
 		return energyGain;
 	}
 
-	public double get11HRSGefficiency() {
+	// 11HRSG 4번
+	public double get11HRSGefficiency(double E4, double E5, double E16, double E20, double E41, double E43, double E44, double E45, double E46, double E48, 
+			double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33, double H80, double H81, double H82, double H83, double H84,
+			double H85, double H86, double H87, double H96, double H133, double H229, double H230, double H231, double H232, 
+			double H233, double H239, double H240, double H241, double H242, double H243, double H246, double H247, double H248, 
+			double H257, double H258, double H259, double H260, double H261, double F94_H) {
 		Calc calc = new Calc();
-		double efficiency = calc.get11HRSGenergyGain() / (calc.get11HRSGenergyIn() - calc.get11HRSGenergyOut());
-		System.out.printf("ASME PTC 4.4 HRSG Performance 6. HRSG efficiency (a) 11HRSG efficiency : %.4f\n", efficiency); // 4번
+		double efficiency = calc.get11HRSGenergyGain() / (calc.get11HRSGenergyIn(E4, E5, E16, E20, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84,
+				 H85, H86, H87, H96, H133, H229, H230, H231, H232, H233, H239, H240, H241, H242, H243, H246, H247, H248, H257, H258, H259, H260, H261, F94_H) 
+				- calc.get11HRSGenergyOut(E4, E5, E16, E20, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84,
+						 H85, H86, H87, H96, H133, H229, H230, H231, H232, H233, H239, H240, H241, H242, H243, H246, H247, H248, H257, H258, H259, H260, H261, F94_H));
+		System.out.printf("ASME PTC 4.4 HRSG Performance 6. HRSG efficiency - 11HRSG energy in : %.4f\n", calc.get11HRSGenergyIn(E4, E5, E16, E20, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84,
+				 H85, H86, H87, H96, H133, H229, H230, H231, H232, H233, H239, H240, H241, H242, H243, H246, H247, H248, H257, H258, H259, H260, H261, F94_H)); // 1번
+		System.out.printf("ASME PTC 4.4 HRSG Performance 6. HRSG efficiency - 11HRSG energy out : %.4f\n", calc.get11HRSGenergyOut(E4, E5, E16, E20, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84,
+				 H85, H86, H87, H96, H133, H229, H230, H231, H232, H233, H239, H240, H241, H242, H243, H246, H247, H248, H257, H258, H259, H260, H261, F94_H)); // 2번
+		System.out.printf("ASME PTC 4.4 HRSG Performance 6. HRSG efficiency - 11HRSG working fluid energy gain : %.4f\n", calc.get11HRSGenergyGain()); // 3번
+		System.out.printf("ASME PTC 4.4 HRSG Performance 6. HRSG efficiency (a) 11HRSG efficiency : %.4f\n", efficiency * 100); // 4번
 		return efficiency;
 	}
 	// 11HRSG end
 
-	public static double getE35() {
+	public static double getE35(double E27, double E28, double E29, double E30, double E31, double E32, double E33) {
 		double E35 = ((E27 * 1 + E28 * 2 + E29 * 3 + E30 * 4 + E31 * 4 + E32 * 5 + E33 * 5) * 12.011)
 				/ ((E27 * 4 + E28 * 6 + E29 * 8 + E30 * 10 + E31 * 10 + E32 * 12 + E33 * 12) * 1.00794);
 		return E35;
 	}
 
-	public static double getE49() {
-		// TODO index있음 getE49
-		double E41 = 7.64;
-		double E43 = 4.59; // index
-		double E44 = 7.91; // index
-		double E45 = 0.1; // index
-		double E46 = -0.01; // index
+	public static double getE49(double E16, double E41, double E43, double E44, double E45, double E46, double E48) {
 		double E42 = E45 + (E41 - E43) * (E46 - E45) / (E44 - E43);
 		double E47 = E16 / (1 + E42 / 100);
-		double E48 = 29.471615;
 		double E49 = E47 * E48;
 
 		return E49;
 	}
 
-	public static double getE92() {
+	public static double getE92(double E3, double E98, double E99, double E100, double E101, double E102, double E103) {
 		double E93 = E3;
 		List<Number> otcArr = new ArrayList<Number>();
 		otcArr.add(-20);
@@ -714,52 +841,37 @@ public class Calc {
 		otcArr.add(0);
 		otcArr.add(10);
 		otcArr.add(15);
-		otcArr.add(40);
+		otcArr.add(40); // 고정값
 		double E94 = getIndex(otcArr, getMatch(E93, otcArr, 1));
 		double E95 = getIndex(otcArr, getMatch(E93, otcArr, 1) + 1);
-		double E98 = 4;
-		double E99 = 3;
-		double E100 = 1.6;
-		double E101 = 0.5;
-		double E102 = 0;
-		double E103 = 0;
 		List<Number> e93Arr = new ArrayList<Number>();
 		e93Arr.add(E98);
 		e93Arr.add(E99);
 		e93Arr.add(E100);
 		e93Arr.add(E101);
 		e93Arr.add(E102);
-		e93Arr.add(E103);
+		e93Arr.add(E103); // 고정값으로 보임
 		double E96 = getIndex(e93Arr, getMatch(E93, otcArr, 1));
 		double E97 = getIndex(e93Arr, getMatch(E93, otcArr, 1) + 1);
 		double E92 = E96 + (E93 - E94) * (E97 - E96) / (E95 - E94);
 		return E92;
 	}
 
-	public static double getE105() {
+	public static double getE105(double E13, double E107, double E108, double E109, double E110) {
 		// TODO index있음 getE105
 		double E106 = E13;
-		double E107 = 29000; // index
-		double E108 = 30000; // index
-		double E109 = 0.9784; // index
-		double E110 = 0.9782; // index
 		double E105 = E109 + (E106 - E107) * (E110 - E109) / (E108 - E107);
 		return E105;
 	}
 
-	public static double getE148() {
+	public static double getE148(double E13, double E150, double E151, double E152, double E153) {
 		// TODO index있음 getE148
 		double E149 = E13;
-		double E150 = 29000; // index
-		double E151 = 30000; // index
-		double E152 = 1.013; // index
-		double E153 = 1.013; // index
 		double E148 = E152 + (E149 - E150) * (E153 - E152) / (E151 - E150);
 		return E148;
 	}
 
-	public static double getE155() {
-		double E23 = 0.980007993083333;
+	public static double getE155(double E20, double E21, double E23) {
 		double E155 = -(2071.25714 + 1.32386288 * (E20 + E21) + 0.000778400374 * Math.pow((E20 + E21), 2)
 				+ 0.0000065121077 * Math.pow((E20 + E21), 3))
 				+ (2071.24286 + 1.3193055 * (E20 + E21) + 0.000224179308 * Math.pow((E20 + E21), 2)
@@ -773,17 +885,10 @@ public class Calc {
 		return E155;
 	}
 
-	public static double getE157() {
+	public static double getE157(double E3, double E4, double E5, double E6, double E7, double E14, double E18, double E24, double E27, double E28, double E29, double E30, double E31, double E32, double E33, double E36) {
 		List<Double> list = new ArrayList<Double>();
 		double E53 = E4 - E7;
 		double E158 = 0;
-		double E161 = E5 - 60;
-		double E162 = 19.4;
-		double E165 = E36 - 49307.9;
-		double E166 = 3.12;
-		double E168 = E24 / 60;
-		double E169 = 19.4;
-
 		if (E3 > -5) {
 			E158 = 0.0000000000227947 * Math.pow(E3, 6) - 0.000000000904288 * Math.pow(E3, 5)
 					+ 0.0000000116046 * Math.pow(E3, 4) + 0.00000153038 * Math.pow(E3, 3)
@@ -791,6 +896,13 @@ public class Calc {
 		} else {
 			E158 = 0.00006077479 * Math.pow(E3, 2) + 0.0005937187 * (E3) + 0.9617201;
 		}
+		
+		double E161 = E5 - 60;
+		double E162 = E6;
+		double E165 = E36 - 49307.9; // TODO 변수로 받아야 할 값
+		double E166 = getE35(E27, E28, E29, E30, E31, E32, E33);
+		double E168 = E24 / 60;
+		double E169 = E6;
 		double E159 = 0.000001208792 * Math.pow(E4 - 1013, 2) - 0.0009982435 * (E4 - 1013) + 1;
 		double E160 = 1 - 0.00003899067 * E161 + 0.000000399928 * Math.pow(E161, 2) - 1.734723E-17 * E162
 				- 1.084202E-18 * Math.pow(E162, 2) - 0.000000734811 * E161 * E162 + 0.00000006844623 * E161 * (2 * E162)
@@ -823,7 +935,8 @@ public class Calc {
 		return E157;
 	}
 
-	public static double getE172() {
+	public static double getE172(double E3, double E4, double E5, double E6, double E7, double E14, double E18, double E24) {
+		double E53 = E4 - E7;
 		List<Double> list = new ArrayList<Double>();
 		double E173 = 0;
 
@@ -868,22 +981,27 @@ public class Calc {
 		return E172;
 	}
 
-	public static double getG26() {
+	public static double getG26(double G11, double G16, double G19, double G22, double G31, double G34, double G37, double G40, double G43, double G45) {
+		double G32 = G11;
 		double G30 = (G31 * G32) / 1000;
+		double G35 = G11;
 		double G33 = -G34 / 1000 * (G35);
+		double G38 = G16;
 		double G36 = (G37 * G38) / 1000;
+		double G41 = G19;
 		double G39 = G40 / 1000 * (G41);
 		double G42 = -G43 * G45 / 1000;
 		double G26 = (G30 + G36 + G39) + (G33 + G42) - G22;
 		return G26;
 	}
 
-	public static double getG28() {
-		double G28 = getG26() / G20 * 1000;
+	public static double getG28(double G11, double G16, double G19, double G20, double G22, double G31, double G34, double G37, double G40, double G43, double G45) {
+		double G28 = getG26(G11, G16, G19, G22, G31, G34, G37, G40, G43, G45) / G20 * 1000;
 		return G28;
 	}
 
-	public static double getH35() {
+	public static double getH35(double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
 		double H15 = E5;
 		double H17 = 0;
 		if (H14 < 32) {
@@ -901,70 +1019,89 @@ public class Calc {
 		return H35;
 	}
 
-	public static double getH37() {
+	public static double getH37(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
 		double H13 = E4 * 0.0145038;
-		double H37 = (H13 - getH35()) / H13;
+		double H37 = (H13 - getH35(E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33)) / H13;
 		return H37;
 	}
 
-	public static double getH39() {
-		double H39 = (1 / getH37() - 1) * 18.01528 / 28.9651159;
+	public static double getH39(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
+		double H39 = (1 / getH37(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) - 1) * 18.01528 / 28.9651159;
 		return H39;
 	}
 
-	public static double getH41() {
-		double H41 = getH37() * 0.78084 * 100;
+	public static double getH41(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
+		double H41 = getH37(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * 0.78084 * 100;
 		return H41;
 	}
 
-	public static double getH42() {
-		double H42 = getH37() * 0.209476 * 100;
+	public static double getH42(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
+		double H42 = getH37(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * 0.209476 * 100;
 		return H42;
 	}
 
-	public static double getH43() {
-		double H43 = getH37() * 0.009365 * 100;
+	public static double getH43(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
+		double H43 = getH37(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * 0.009365 * 100;
 		return H43;
 	}
 
-	public static double getH44() {
-		double H44 = getH37() * 0.000319 * 100;
+	public static double getH44(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
+		double H44 = getH37(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * 0.000319 * 100;
 		return H44;
 	}
 
-	public static double getH45() {
-		double H45 = (1 - getH37()) * 100;
+	public static double getH45(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
+		double H45 = (1 - getH37(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33)) * 100;
 		return H45;
 	}
+	
 
-	public static double getH47() {
-		double H47 = getH41() * (14.0067 * 2) + getH42() * (15.9994 * 2) + getH43() * 39.948
-				+ getH44() * (12.0107 + 15.9994 * 2) + getH45() * (1.00794 * 2 + 15.9994);
+	public static double getH47(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
+		double H47 = getH41(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * (14.0067 * 2) + getH42(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * (15.9994 * 2) + getH43(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * 39.948
+				+ getH44(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * (12.0107 + 15.9994 * 2) + getH45(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * (1.00794 * 2 + 15.9994);
 		return H47;
 	}
+	
 
-	public static double getH69() {
-		double H69 = getH41() * (14.0067 * 2) / getH47();
+	public static double getH69(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
+		double H69 = getH41(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * (14.0067 * 2) / getH47(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33);
 		return H69;
 	}
+	
 
-	public static double getH70() {
-		double H70 = getH42() * (15.9994 * 2) / getH47();
+	public static double getH70(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
+		double H70 = getH42(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * (15.9994 * 2) / getH47(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33);
 		return H70;
 	}
+	
 
-	public static double getH71() {
-		double H71 = getH44() * (12.0107 + 15.9994 * 2) / getH47();
+	public static double getH71(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
+		double H71 = getH44(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * (12.0107 + 15.9994 * 2) / getH47(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33);
 		return H71;
 	}
+	
 
-	public static double getH72() {
-		double H72 = getH43() * 39.948 / getH47();
+	public static double getH72(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
+		double H72 = getH43(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * 39.948 / getH47(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33);
 		return H72;
 	}
+	
 
-	public static double getH73() {
-		double H73 = getH45() * (1.00794 * 2 + 15.9994) / getH47();
+	public static double getH73(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
+		double H73 = getH45(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * (1.00794 * 2 + 15.9994) / getH47(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33);
 		return H73;
 	}
 
@@ -975,94 +1112,115 @@ public class Calc {
 		return H121;
 	}
 
-	public static double getH125() {
-		double H125 = getH121() * (1 + getH39());
+	public static double getH125(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
+		double H125 = getH121() * (1 + getH39(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
 		return H125;
 	}
+	
 
-	public static double getH131() {
-		double H125 = getH121() * (1 + getH39());
+	public static double getH131(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33) {
+		double H125 = getH121() * (1 + getH39(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
 		double H131 = H125;
 		return H131;
 	}
 
-	public static double getH133() {
-		double H133 = 0;
-		return H133;
-	}
-
-	public static double getH135() {
-		double H135 = getE49() * 2.20462;
+	public static double getH135(double E16, double E41, double E43, double E44, double E45, double E46, double E48) {
+		double H135 = getE49(E16, E41, E43, E44, E45, E46, E48) * 2.20462;
 		return H135;
 	}
 
-	public static double getH183() {
-		double H183 = getH131() + getH133() + getH135();
+	public static double getH183(double E4, double E5, double E16, double E41, double E43, double E44, double E45, double E46, double E48, 
+			double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33, double H133) {
+		double H183 = getH131(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) + H133 + getH135(E16, E41, E43, E44, E45, E46, E48);
 		return H183;
 	}
+	
 
-	public static double getH204() {
-		double H54 = getH125() * getH41() / getH47();
+	public static double getH204(double E4, double E5, double E16, double E41, double E43, double E44, double E45, double E46, double E48, 
+			double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33, double H96, double H133, double F94_H) {
+		double H54 = getH125(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * getH41(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) / getH47(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33);
 		double H153 = H54;
 		double H105 = F94_H * H96 * 1;
 		double H155 = H105;
 		double H151 = H153 + H155;
-		double H189 = H151 * (14.0067 * 2) / getH183();
+		double H189 = H151 * (14.0067 * 2) / getH183(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H133);
 		double H204 = H189;
 		return H204;
 	}
 
-	public static double getH205() {
-		double H55 = getH125() * getH42() / getH47();
+	public static double getH205(double E4, double E5, double E16, double E41, double E43, double E44, double E45, double E46, double E48,
+			double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, 
+			double H28, double H29, double H30, double H31, double H32, double H33, double H80, double H81, double H82,
+			double H83, double H84, double H85, double H86, double H87, double H133, double F94_H) {
+		double H55 = getH125(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * getH42(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) / getH47(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33);
 		double H161 = H55;
 		double H106 = -F94_H * (H80 * 0 + H81 * 2 + H82 * 3.5 + H83 * 5 + H85 * 6.5 + H84 * 6.5 + H87 * 8 + H86 * 8);
 		double H163 = H106;
 		double H159 = H161 + H163;
-		double H191 = H159 * (15.9994 * 2) / getH183();
+		double H191 = H159 * (15.9994 * 2) / getH183(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H133);
 		double H205 = H191;
 		return H205;
 	}
 
-	public static double getH206() {
-		double H57 = getH125() * getH44() / getH47();
+	public static double getH206(double E4, double E5, double E16, double E41, double E43, double E44, double E45, double E46, double E48,
+			double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, 
+			double H28, double H29, double H30, double H31, double H32, double H33, double H80, double H81, double H82,
+			double H83, double H84, double H85, double H86, double H87, double H133, double F94_H) {
+		double H57 = getH125(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * getH44(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) / getH47(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33);
+		double H78 = getE49(E16, E41, E43, E44, E45, E46, E48) * 2.20462;
+		double H92 = 17.4084;
+		double H94 = H78 / H92;
 		double H107 = H94 * (H80 * 0 + H81 * 1 + H82 * 2 + H83 * 3 + H85 * 4 + H84 * 4 + H87 * 5 + H86 * 5);
 		double H169 = H57;
 		double H171 = H107;
 		double H167 = H169 + H171;
-		double H193 = H167 * (12.0107 + 15.9994 * 2) / getH183();
+		double H193 = H167 * (12.0107 + 15.9994 * 2) / getH183(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H133);
 		double H206 = H193;
 		return H206;
 	}
 
-	public static double getH207() {
-		double H56 = getH125() * getH43() / getH47();
+	public static double getH207(double E4, double E5, double E16, double E41, double E43, double E44, double E45, double E46, double E48,
+			double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, 
+			double H28, double H29, double H30, double H31, double H32, double H33, double H80, double H81, double H82,
+			double H83, double H84, double H85, double H86, double H87, double H133, double F94_H) {
+		double H56 = getH125(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * getH43(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) / getH47(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33);
 		double H177 = H56;
-		double H179 = 0;
+		double H179 = 0; // 엑셀에 값이 없음
 		double H175 = H177 + H179;
-		double H195 = H175 * (39.948) / getH183();
+		double H195 = H175 * (39.948) / getH183(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H133);
 		double H207 = H195;
 		return H207;
 	}
 
-	public static double getH208() {
-		double H58 = getH125() * getH45() / getH47();
+	public static double getH208(double E4, double E5, double E16, double E41, double E43, double E44, double E45, double E46, double E48,
+			double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, 
+			double H28, double H29, double H30, double H31, double H32, double H33, double H80, double H81, double H82,
+			double H83, double H84, double H85, double H86, double H87, double H133, double F94_H) {
+		double H58 = getH125(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * getH45(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) / getH47(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33);
 		double H144 = H58;
+		double H78 = getE49(E16, E41, E43, E44, E45, E46, E48) * 2.20462;
+		double H92 = 17.4084;
+		double H94 = H78 / H92;
 		double H108 = H94 * (H80 * 0 + H81 * 2 + H82 * 3 + H83 * 4 + H85 * 5 + H84 * 5 + H87 * 6 + H86 * 6);
-		double H133 = 0;
 		double H146 = H108 + H133 / 18.01528;
 		double H142 = H144 + H146;
-		double H197 = H142 * (1.00794 * 2 + 15.9994) / getH183();
+		double H197 = H142 * (1.00794 * 2 + 15.9994) / getH183(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H133);
 		double H208 = H197;
 		return H208;
 	}
 
-	public static double getH238() {
+	public static double getH238(double E4, double E5, double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33, double H239, double H240, double H241, double H242, double H243) {
 		List<Double> gt11Arr = new ArrayList<Double>();
-		gt11Arr.add(getH69());
-		gt11Arr.add(getH70());
-		gt11Arr.add(getH71());
-		gt11Arr.add(getH72());
-		gt11Arr.add(getH73());
+		gt11Arr.add(getH69(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
+		gt11Arr.add(getH70(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
+		gt11Arr.add(getH71(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
+		gt11Arr.add(getH72(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
+		gt11Arr.add(getH73(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
 		List<Number> airArr = new ArrayList<Number>();
 		airArr.add(H239);
 		airArr.add(H240);
@@ -1073,13 +1231,17 @@ public class Calc {
 		return H238;
 	}
 
-	public static double getH256() {
+	public static double getH256(double E4, double E5, double E16, double E41, double E43, double E44, double E45, double E46, double E48,
+			double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, 
+			double H28, double H29, double H30, double H31, double H32, double H33, double H80, double H81, double H82,
+			double H83, double H84, double H85, double H86, double H87, double H96, double H133, 
+			double H257, double H258, double H259, double H260, double H261, double F94_H) {
 		List<Double> gt11Arr = new ArrayList<Double>();
-		gt11Arr.add(getH204());
-		gt11Arr.add(getH205());
-		gt11Arr.add(getH206());
-		gt11Arr.add(getH207());
-		gt11Arr.add(getH208());
+		gt11Arr.add(getH204(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H96, H133, F94_H));
+		gt11Arr.add(getH205(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84, H85, H86, H87, H133, F94_H));
+		gt11Arr.add(getH206(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84, H85, H86, H87, H133, F94_H));
+		gt11Arr.add(getH207(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84, H85, H86, H87, H133, F94_H));
+		gt11Arr.add(getH208(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84, H85, H86, H87, H133, F94_H));
 		List<Number> airArr = new ArrayList<Number>();
 		airArr.add(H257);
 		airArr.add(H258);
@@ -1090,14 +1252,19 @@ public class Calc {
 		return H256;
 	}
 
-	public static double getH262() {
+	public static double getH262(double E4, double E5, double E16, double E20, double E41, double E43, double E44, double E45, double E46, double E48, 
+			double H14, double H20, double H21, double H22, double H23, double H24, double H25, double H26, double H27, double H28, 
+			double H29, double H30, double H31, double H32, double H33, double H80, double H81, double H82, double H83, double H84,
+			double H85, double H86, double H87, double H96, double H133, double H229, double H230, double H231, double H232, 
+			double H233, double H239, double H240, double H241, double H242, double H243, double H246, double H247, double H248, 
+			double H257, double H258, double H259, double H260, double H261, double F94_H) {
 		double H226 = E20 * 3412141.16;
 		List<Double> gt11Arr = new ArrayList<Double>();
-		gt11Arr.add(getH69());
-		gt11Arr.add(getH70());
-		gt11Arr.add(getH71());
-		gt11Arr.add(getH72());
-		gt11Arr.add(getH73());
+		gt11Arr.add(getH69(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
+		gt11Arr.add(getH70(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
+		gt11Arr.add(getH71(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
+		gt11Arr.add(getH72(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
+		gt11Arr.add(getH73(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33));
 		List<Number> airArr = new ArrayList<Number>();
 		airArr.add(H229);
 		airArr.add(H230);
@@ -1106,14 +1273,18 @@ public class Calc {
 		airArr.add(H233);
 		double H228 = getSumArr(gt11Arr, airArr);
 		double H249 = H246 + H247 - H248;
-		double H250 = H249 * getH135();
+		double H250 = H249 * getH135(E16, E41, E43, E44, E45, E46, E48);
 		double H252 = H226 * 0.027;
-		double H262 = (H226 + H252 + getH131() * getH256() + getH135() * getH256() - (getH131() * H228 + H250))
-				/ (H228 - getH238());
+		double H262 = (H226 + H252 + getH131(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) 
+		* getH256(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84, H85, H86, H87, H96, H133, H257, H258, H259, H260, H261, F94_H)
+		+ getH135(E16, E41, E43, E44, E45, E46, E48)
+		* getH256(E4, E5, E16, E41, E43, E44, E45, E46, E48, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H80, H81, H82, H83, H84, H85, H86, H87, H96, H133, H257, H258, H259, H260, H261, F94_H)
+		- (getH131(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33) * H228 + H250))
+				/ (H228 - getH238(E4, E5, H14, H20, H21, H22, H23, H24, H25, H26, H27, H28, H29, H30, H31, H32, H33, H239, H240, H241, H242, H243));
 		return H262;
 	}
 
-	// {sum(arr : arr)}
+	// {sum(arr_1 : arr_2)} 두 배열에서 각 인덱스에 해당하는 값을 곱한 뒤 전부 더함
 	public static double getSumArr(List arr_1, List arr_2) {
 		double temp = 0;
 		for (int i = 0; i < arr_1.size(); i++) {
@@ -1122,7 +1293,7 @@ public class Calc {
 		return temp;
 	}
 
-	// product(arr)
+	// product(arr) arr의 각 값들을 전부 곱함
 	public static double getProduct(List<Double> list) {
 		double temp = 1;
 		for (int i = 0; i < list.size(); i++) {
@@ -1131,42 +1302,51 @@ public class Calc {
 		return temp;
 	}
 
-	// index(arr, row_num)
+	// index(arr, row_num) arr에서 해당 index(row_num)의 값을 찾음
 	public static double getIndex(List<Number> arr, int rowNum) {
 		return Double.parseDouble(arr.get(rowNum - 1).toString());
 	}
 
-	// match(lookup_value, lookup_arr, match_type(-1, 0, 1))
+	// match(lookup_value, lookup_arr, match_type(-1, 0, 1)) 찾을 값(lookup_value)이 lookup_arr의 몇 번째 index인지 찾음
 	public static int getMatch(double lookUpValue, List<Number> arr, int matchType) {
-		int temp = 0;
+		int idx = 0;
 		if (matchType == 1) { // 오름차순 정렬
 			for (int i = 0; i < arr.size(); i++) {
 				if (Double.parseDouble(arr.get(i).toString()) > lookUpValue) {
-					temp = i;
+					idx = i;
 					break;
 				}
 			}
 		} else if (matchType == 0) { // 정렬 상관없음
 			for (int i = 0; i < arr.size(); i++) {
 				if (Double.parseDouble(arr.get(i).toString()) == lookUpValue) {
-					temp = i + 1;
+					idx = i + 1;
 					break;
 				}
 			}
 		} else { // 내림차순 정렬
 			for (int i = 0; i < arr.size(); i++) {
 				if (Double.parseDouble(arr.get(i).toString()) < lookUpValue) {
-					temp = i;
+					idx = i;
 					break;
 				}
 			}
 		}
-		return temp;
+		return idx;
 	}
 
-	// match(lookup_value, lookup_arr)
+	// match(lookup_value, lookup_arr) match_type를 입력하지 않으면 기본값은 1임
 	public static int getMatch(double lookUpValue, List<Number> arr) {
 		// match_type가 없으면 1
 		return getMatch(lookUpValue, arr, 1);
 	}
+	
+	//
+	public static double getRound(double value) {
+		String num = String.format("%.2f", value);
+		return Double.parseDouble(num);
+	}
+//	public static double getRound(double value) {
+//		return Math.round(value * 100) / 100;
+//	}
 }
