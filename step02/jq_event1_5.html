@@ -7,13 +7,18 @@
     <script src="js/jquery_1.js"></script>
     <script>
         $(function() {
+            // 클릭 이벤트인 링크 이동을 차단
             $(".btn1").on("click", function(e) {
                 e.preventDefault();
                 $(".txt1").css({"background-color":"#ff0"});
             });
+
+            // 방해 없음
             $(".btn2").on("click", function() {
                 $(".txt2").css({"background-color":"#0ff"});
             });
+
+            // 한 번 클릭 차단
             $(".btn3").on("dblclick", function() {
                 $(".txt3").css({"background-color":"#0f0"});
             });
