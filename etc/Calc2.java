@@ -160,16 +160,16 @@ public class Calc2 {
 		double E152 = 1.013; // TODO index
 		double E153 = 1.013; // TODO index
 		Calc2 calc = new Calc2();
-		System.out.println("Gross Power : " + (calc.grossPower(E3, E4, E5, E6, E7, E14, E18, E20, E21, E23, E24, E27, E28, E29, E30, E31, E32, E33, E36))); // 1
-		System.out.println("Net Power : " + (calc.netPower(E3, E4, E5, E6, E7, E14, E18, E20, E21, E22, E23, E24, E27, E28, E29, E30, E31, E32, E33, E36))); // 2
-		System.out.println("Gross Efficiency : " + (calc.grossEfficiency(E3, E4, E5, E6, E7, E14, E16, E18, E20, E21, E23, E24, E37, E41, E48))); // 3
-		System.out.println("Net Efficiency : " + (calc.netEfficiency(E3, E4, E5, E6, E7, E14, E16, E18, E20, E21, E22, E23, E24, E37, E41, E48))); // 4
-		System.out.println("11GT Gross Power : " + (calc.gtGrossPower(E3, E4, E5, E6, E7, E12, E13, E20, E24, E27, E28, E29, E30, E31, E32, E33, E36))); // 5
-		System.out.println("11GT Designed Power : " + (calc.gtDesignedPower(E13))); // 6
-		System.out.println("11GT Gross Efficiency : " + (calc.gtGrossEfficiency(E3, E4, E5, E6, E7, E13, E16, E19, E20, E24, E27, E28, E29, E30, E31, E32, E33, E36, E41, E48, E50))); // 7
-		System.out.println("11GT Designed Efficiency : " + (calc.gtDesignedEfficiency(E13))); // 8
-		System.out.println("11GT Compr. Efficiency(Polytropic) : " + (calc.gtComprEfficiencyPolytropic(E6, E7, E8, E9))); // 9
-		System.out.println("11GT Pressrurue Ratio : " + (calc.gtPressrurueRatio(E7, E9))); // 10
+//		System.out.println("Gross Power : " + (calc.grossPower(-8.485968, 1022.316, 43.40639, -7.724998, 1006.308, 0.02689452, 34.99349, 312.6481, 106.1173, 1, 60.0243, 92.96777, 4.843701, 1.413752, 0.3417591, 0.3044243, 0.004515381, 0.01714556, 49526.0))); // 1
+//		System.out.println("Net Power : " + (calc.netPower(E3, E4, E5, E6, E7, E14, E18, E20, E21, E22, E23, E24, E27, E28, E29, E30, E31, E32, E33, E36))); // 2
+//		System.out.println("Gross Efficiency : " + (calc.grossEfficiency(E3, E4, E5, E6, E7, E14, E16, E18, E20, E21, E23, E24, E37, E41, E48))); // 3
+//		System.out.println("Net Efficiency : " + (calc.netEfficiency(E3, E4, E5, E6, E7, E14, E16, E18, E20, E21, E22, E23, E24, E37, E41, E48))); // 4
+//		System.out.println("11GT Gross Power : " + (calc.gtGrossPower(-9.46253, 1022.382, 32.01316, -8.374996, 1006.453, 438.2943, 30662.05, 313.9733, 59.99111, 93.02291, 4.802974, 1.407514, 0.3394698, 0.3019198, 0.004579946, 0.01696417, 49526.0))); // 5
+//		System.out.println("11GT Designed Power : " + (calc.gtDesignedPower(E13))); // 6
+//		System.out.println("11GT Gross Efficiency : " + (calc.gtGrossEfficiency(19.6, 1011.2, 27.8, 20.3, 995.9, 29047.6, 1756.8, 214.1, 285.4, 60.0, 92.7128, 5.5314, 1.1029, 0.2694, 0.2635, 0.0039, 0.0129, 49526, 7.6277, 29.4488, 2.8751))); // 7
+//		System.out.println("11GT Designed Efficiency : " + (calc.gtDesignedEfficiency(E13))); // 8
+//		System.out.println("11GT Compr. Efficiency(Polytropic) : " + (calc.gtComprEfficiencyPolytropic(E6, E7, E8, E9))); // 9
+//		System.out.println("11GT Pressrurue Ratio : " + (calc.gtPressrurueRatio(E7, E9))); // 10
 		System.out.println();
 		
 		// 10ST
@@ -178,8 +178,8 @@ public class Calc2 {
 		double F29 = 3644.0491;
 		double F32 = 2979.5902;
 		double F35 = 129.196;
-		System.out.println("10ST Power output : " + (calc.stPowerOutput(F19)));
-		System.out.println("10ST Energy In : " + (calc.stEnergyIn(F23, F24, F26, F27, F29, F30, F32, F33, F35, F37)));
+//		System.out.println("10ST Power output : " + (calc.stPowerOutput(F19)));
+//		System.out.println("10ST Energy In : " + (calc.stEnergyIn(F23, F24, F26, F27, F29, F30, F32, F33, F35, F37)));
 		System.out.println("10ST Efficiency : " + (calc.st10Efficiency(F19, F23, F24, F26, F27, F29, F30, F32, F33, F35, F37)));
 		System.out.println();
 
@@ -191,16 +191,16 @@ public class Calc2 {
 		double G40 = 2978.4236;
 		double G43 = 131.2018;
 		// 10Cond
-		System.out.println("10Cond. P : " + calc.cond10P(G8));
-		System.out.println("10Cond. Sat. T : " + (calc.cond10SatT(30.85)));
-		System.out.println("TTD : " + (calc.tTD(G7, G25)));
-		System.out.println("ITD : " + (calc.iTD(G6, G25)));
-		System.out.println("CW T Rise : " + (calc.cwTRise(G6, G7)));
-		System.out.println("ST UEEP : " + (calc.stUEEP(G11, G16, G19, G20, G22, G31, G34, G37, G40, G43, G45)));
-		System.out.println("Condensate Water H : " + (calc.condensateWaterH(G27)));
-		System.out.println("Condensate Water F : " + (calc.condensateWaterF(G20)));
-		System.out.println("Condenser Heat Load : " + (calc.condenserHeatLoad(G11, G16, G19, G20, G21, G22, G27, G31, G34, G37, G40, G43, G45)));
-		System.out.println("10Cond. Cleanliness : " + (calc.cond10Cleanliness(G6, G7, G11, G16, G19, G20, G21, G22, G25, G27, G31, G34, G37, G40, G43, G45)));
+//		System.out.println("10Cond. P : " + calc.cond10P(G8));
+//		System.out.println("10Cond. Sat. T : " + (calc.cond10SatT(30.85)));
+//		System.out.println("TTD : " + (calc.tTD(G7, G25)));
+//		System.out.println("ITD : " + (calc.iTD(G6, G25)));
+//		System.out.println("CW T Rise : " + (calc.cwTRise(G6, G7)));
+//		System.out.println("ST UEEP : " + (calc.stUEEP(G11, G16, G19, G20, G22, G31, G34, G37, G40, G43, G45)));
+//		System.out.println("Condensate Water H : " + (calc.condensateWaterH(G27)));
+//		System.out.println("Condensate Water F : " + (calc.condensateWaterF(G20)));
+//		System.out.println("Condenser Heat Load : " + (calc.condenserHeatLoad(G11, G16, G19, G20, G21, G22, G27, G31, G34, G37, G40, G43, G45)));
+//		System.out.println("10Cond. Cleanliness : " + (calc.cond10Cleanliness(G6, G7, G11, G16, G19, G20, G21, G22, G25, G27, G31, G34, G37, G40, G43, G45)));
 		System.out.println();
 
 		// 11HRSG TODO 나중에
@@ -276,7 +276,7 @@ public class Calc2 {
         } else {
             gtCompInletT = -0.000000899352 * Math.pow(compTin, 3) + 0.00000117656 * Math.pow(compTin, 2) - 0.00445136 * (compTin) + 1.06954;
         }
-        double E60 = ambientT;
+        double E60 = Math.abs(ambientT);
         List<Number> pHumTestArr = new ArrayList<>();
         pHumTestArr.add(0);
         pHumTestArr.add(15);
@@ -299,7 +299,7 @@ public class Calc2 {
         double E63 = getIndex(pHumArr, getMatch(E60, pHumTestArr, 1));
         double E64 = getIndex(pHumArr, getMatch(E60, pHumTestArr, 1) + 1);
         double relHumidity = E63 + (E60 - E61) * (E64 - E63) / (E62 - E61);
-        double E71 = ambientT;
+        double E71 = Math.abs(ambientT);
         List<Number> pSpdTestArr = new ArrayList<>();
         pSpdTestArr.add(0);
         pSpdTestArr.add(15);
@@ -390,7 +390,7 @@ public class Calc2 {
         }
         double gtFilterDP = ambientP - compPin;
         double hrGtComprInletPLoss = 0.000303968 * gtFilterDP + 0.997568;
-        double E115 = ambientT;
+        double E115 = Math.abs(ambientT);
         List<Number> hrHumTestArr = new ArrayList<>();
         hrHumTestArr.add(0);
         hrHumTestArr.add(15);
@@ -412,7 +412,7 @@ public class Calc2 {
         hrHumArr.add(E124);
         double E118 = getIndex(hrHumArr, getMatch(E115, hrHumTestArr, 1));
         double E119 = getIndex(hrHumArr, getMatch(E115, hrHumTestArr, 1) + 1);
-        double E126 = ambientT;
+        double E126 = Math.abs(ambientT);
         List<Number> hrSpdTestArr = new ArrayList<Number>();
         hrSpdTestArr.add(0);
         hrSpdTestArr.add(15);
@@ -517,7 +517,7 @@ public class Calc2 {
     // 10ST 1번 RIMS.WR.10MAG10FP002//XQ01
     public double stPowerOutput(double stGrossPower) {
         double stPowerOutput = stGrossPower;
-//		System.out.printf("10ST Power output : %.4f\n", stPowerOutput); // 1번
+		System.out.printf("10ST Power output : %.4f\n", stPowerOutput); // 1번
         return stPowerOutput;
     };
 
@@ -536,7 +536,7 @@ public class Calc2 {
          * energyOutToCondensorPreHeater = Energy out to Condensor Pre Heater
          */
         double stEnergyIn = (energyInFromHPBoiler + energyInFromHRHBoiler + energyInFromLPBoiler) + (energyOutToCRHBoiler + energyOutToCondensorPreHeater);
-//		System.out.printf("10ST Energy In : %.4f\n", stEnergyIn); // 2번
+		System.out.printf("10ST Energy In : %.4f\n", stEnergyIn); // 2번
         return stEnergyIn;
     };
 
