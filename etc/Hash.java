@@ -16,6 +16,20 @@ public class Hash {
 		result.put("subject", subject);
 		result.put("name", name);
 		System.out.println("map : " + result);
+		Map<String, List<Number>> mapArr = new HashMap<>();
+		List<Number> numArr = new ArrayList();
+		numArr.add(1);
+		numArr.add(1);
+		numArr.add(1);
+		numArr.add(1);
+		mapArr.put(subject, numArr);;
+		numArr.add(2);
+		numArr.add(2);
+		numArr.add(2);
+		numArr.add(2);
+		mapArr.put(name, numArr);
+		System.out.println("map : " + mapArr);
+		System.out.println("chk : " + mapArr.get(name));
 		Object chk = "asd";
 		Object[] objArr = {
 				"a",
