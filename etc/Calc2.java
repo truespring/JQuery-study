@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+
+import com.doosan.test.JnaUnisteam.UniSteamCal;
+
 import java.util.function.Function;
 
 public class Calc2 {
@@ -267,7 +270,7 @@ public class Calc2 {
 		stack.add(H324);
 		stack.add(H325);
 //		System.out.println(Calc2.hrsg_efficiency.apply(stack));
-		
+
 	}
 
 	private static Function<List<Object>, Object> popStack = stack -> stack.remove(stack.size() - 1);
@@ -996,21 +999,37 @@ public class Calc2 {
 
 	// 11HRSG 3¹ø
 	private static Function<List<Object>, Double> hrsg_working_fluid_energy_gain = stack -> {
-		// TODO Å¸¿¢¼¿
 		Double hrsgLPSteamMassflow = (Double) popStack.apply(stack),
-				hrsgLPSteamEnthalpy = (Double) popStack.apply(stack),
+				hrsgLPSteamTemperature = (Double) popStack.apply(stack),
+				hrsgLPSteamPressure = (Double) popStack.apply(stack),
 				hrsgHRHSteamMassflow = (Double) popStack.apply(stack),
-				hrsgHRHSteamEnthalpy = (Double) popStack.apply(stack);
+				hrsgHRHSteamTemperature = (Double) popStack.apply(stack),
+				hrsgHRHSteamPressure = (Double) popStack.apply(stack);
 		Double hrsgHPSteamMassflow = (Double) popStack.apply(stack),
 				hrsgHPSteameEthalpy = (Double) popStack.apply(stack),
 				ipSystemToColdReheatMassflow = (Double) popStack.apply(stack),
-				ipSystemToColdReheatEnthalpy = (Double) popStack.apply(stack);
+				ipSystemToColdReheatTemperature = (Double) popStack.apply(stack),
+				ipSystemToColdReheatPressure = (Double) popStack.apply(stack);
 		Double stColdReheatMassflowTo11HRSG = (Double) popStack.apply(stack),
-				stColdReheatEnthalpy = (Double) popStack.apply(stack), fgHTREnthalpy = (Double) popStack.apply(stack),
+				stColdReheatTemperature = (Double) popStack.apply(stack),
+				stColdReheatPressure = (Double) popStack.apply(stack),
+				fgHTRTemperature = (Double) popStack.apply(stack), fgHTRPressure = (Double) popStack.apply(stack),
 				fgHTRMassflow = (Double) popStack.apply(stack);
-		Double fwEnthalpy = (Double) popStack.apply(stack), fwMassflow = (Double) popStack.apply(stack),
-				hrsgCondensateEnthalpy = (Double) popStack.apply(stack),
+		Double fwTemperature = (Double) popStack.apply(stack), fwPressure = (Double) popStack.apply(stack),
+				fwMassflow = (Double) popStack.apply(stack), hrsgCondensateTemperature = (Double) popStack.apply(stack),
+				hrsgCondensatePressure = (Double) popStack.apply(stack),
 				hrsgCondensateMassflow = (Double) popStack.apply(stack);
+
+		double hrsgCondensateEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(hrsgCondensatePressure, hrsgCondensateTemperature,
+				0);
+		double fwEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(fwPressure, fwTemperature, 0);
+		double fgHTREnthalpy = UniSteamCal.INSTANCE.STEAMPTH(fgHTRPressure, fgHTRTemperature, 0);
+		double stColdReheatEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(stColdReheatPressure, stColdReheatTemperature, 0);
+		double ipSystemToColdReheatEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(ipSystemToColdReheatPressure,
+				ipSystemToColdReheatTemperature, 0);
+		double hrsgHRHSteamEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(hrsgHRHSteamPressure, hrsgHRHSteamTemperature, 0);
+		double hrsgLPSteamEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(hrsgLPSteamPressure, hrsgLPSteamTemperature, 0);
+
 		double hrsgCondenserProheaterEnergyIn = (hrsgCondensateEnthalpy * hrsgCondensateMassflow
 				+ fwMassflow * fwEnthalpy + fgHTRMassflow * fgHTREnthalpy) / 1000;
 		double hrsgColdReheatEnergyIn = (stColdReheatEnthalpy * stColdReheatMassflowTo11HRSG
@@ -1025,37 +1044,49 @@ public class Calc2 {
 
 	// 11HRSG 4¹ø
 	private static Function<List<Object>, Double> hrsg_efficiency = stack -> {
-		// TODO Å¸¿¢¼¿
 		Double hrsgLPSteamMassflow = (Double) popStack.apply(stack),
-				hrsgLPSteamEnthalpy = (Double) popStack.apply(stack),
+				hrsgLPSteamTemperature = (Double) popStack.apply(stack),
+				hrsgLPSteamPressure = (Double) popStack.apply(stack),
 				hrsgHRHSteamMassflow = (Double) popStack.apply(stack),
-				hrsgHRHSteamEnthalpy = (Double) popStack.apply(stack);
+				hrsgHRHSteamTemperature = (Double) popStack.apply(stack),
+				hrsgHRHSteamPressure = (Double) popStack.apply(stack);
 		Double hrsgHPSteamMassflow = (Double) popStack.apply(stack),
 				hrsgHPSteameEthalpy = (Double) popStack.apply(stack),
 				ipSystemToColdReheatMassflow = (Double) popStack.apply(stack),
-				ipSystemToColdReheatEnthalpy = (Double) popStack.apply(stack);
+				ipSystemToColdReheatTemperature = (Double) popStack.apply(stack),
+				ipSystemToColdReheatPressure = (Double) popStack.apply(stack);
 		Double stColdReheatMassflowTo11HRSG = (Double) popStack.apply(stack),
-				stColdReheatEnthalpy = (Double) popStack.apply(stack), fgHTREnthalpy = (Double) popStack.apply(stack),
+				stColdReheatTemperature = (Double) popStack.apply(stack),
+				stColdReheatPressure = (Double) popStack.apply(stack),
+				fgHTRTemperature = (Double) popStack.apply(stack), fgHTRPressure = (Double) popStack.apply(stack),
 				fgHTRMassflow = (Double) popStack.apply(stack);
-		Double fwEnthalpy = (Double) popStack.apply(stack), fwMassflow = (Double) popStack.apply(stack),
-				hrsgCondensateEnthalpy = (Double) popStack.apply(stack),
+		Double fwTemperature = (Double) popStack.apply(stack), fwPressure = (Double) popStack.apply(stack),
+				fwMassflow = (Double) popStack.apply(stack), hrsgCondensateTemperature = (Double) popStack.apply(stack),
+				hrsgCondensatePressure = (Double) popStack.apply(stack),
 				hrsgCondensateMassflow = (Double) popStack.apply(stack);
 		List<Object> gainArr = new ArrayList<>();
 		gainArr.add(hrsgCondensateMassflow);
-		gainArr.add(hrsgCondensateEnthalpy);
+		gainArr.add(hrsgCondensatePressure);
+		gainArr.add(hrsgCondensateTemperature);
 		gainArr.add(fwMassflow);
-		gainArr.add(fwEnthalpy);
+		gainArr.add(fwPressure);
+		gainArr.add(fwTemperature);
 		gainArr.add(fgHTRMassflow);
-		gainArr.add(fgHTREnthalpy);
-		gainArr.add(stColdReheatEnthalpy);
+		gainArr.add(fgHTRPressure);
+		gainArr.add(fgHTRTemperature);
+		gainArr.add(stColdReheatPressure);
+		gainArr.add(stColdReheatTemperature);
 		gainArr.add(stColdReheatMassflowTo11HRSG);
-		gainArr.add(ipSystemToColdReheatEnthalpy);
+		gainArr.add(ipSystemToColdReheatPressure);
+		gainArr.add(ipSystemToColdReheatTemperature);
 		gainArr.add(ipSystemToColdReheatMassflow);
 		gainArr.add(hrsgHPSteameEthalpy);
 		gainArr.add(hrsgHPSteamMassflow);
-		gainArr.add(hrsgHRHSteamEnthalpy);
+		gainArr.add(hrsgHRHSteamPressure);
+		gainArr.add(hrsgHRHSteamTemperature);
 		gainArr.add(hrsgHRHSteamMassflow);
-		gainArr.add(hrsgLPSteamEnthalpy);
+		gainArr.add(hrsgLPSteamPressure);
+		gainArr.add(hrsgLPSteamTemperature);
 		gainArr.add(hrsgLPSteamMassflow);
 		double energyGain = hrsg_working_fluid_energy_gain.apply(gainArr);
 		Double specificEnthalpyOfFuel77degF = (Double) popStack.apply(stack),
