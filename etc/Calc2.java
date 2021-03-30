@@ -149,7 +149,6 @@ public class Calc2 {
 //		double E151 = 30000;
 //		double E152 = 1.013;
 //		double E153 = 1.013;
-		Calc2 calc = new Calc2();
 		List<Object> stack = new ArrayList<Object>();
 //		stack.add(E3);
 //		stack.add(E4);
@@ -267,16 +266,8 @@ public class Calc2 {
 		stack.add(H320);
 		stack.add(H324);
 		stack.add(H325);
-		System.out.println(calc.hrsg_efficiency.apply(stack));
-//		List<Object> stack = new ArrayList<Object>();
-//		for (int i = 0; i < 500; i++) {
-//			stack.add(Math.random());
-//		}
-//		System.out.println(gross_power.apply(stack));
-//		System.out.println(net_power.apply(stack));
-//		System.out.println(gross_efficiency.apply(stack));
-//		System.out.println(net_efficiency.apply(stack));
-//		System.out.println(gt_designed_power.apply(stack));
+//		System.out.println(Calc2.hrsg_efficiency.apply(stack));
+		
 	}
 
 	private static Function<List<Object>, Object> popStack = stack -> stack.remove(stack.size() - 1);
@@ -300,10 +291,9 @@ public class Calc2 {
 				+ pAdditiveCorrection(gtGrossPowerTag, stGrossPower, gtPowerFactor) / 1000)
 				* pPowerCorrectionProduct(ambientT, ambientP, ambientRH, compTin, compPin, stCondenserP, gasT,
 						stFrequency, methane, ethane, propane, butane, isobutane, pentane, isopentane, lhv);
-		grossPower = (303.3810 + 153.7523
-				+ pAdditiveCorrection(303.3810, 153.7523, 0.9800) / 1000)
-				* pPowerCorrectionProduct(2.5516, 1014.7758, 24.2284, 3.5646, 998.4242, 0.0398, 31.3295,
-						60.0119, 93.4041, 4.4754, 1.3459, 0.3334, 0.3009, 0.0042, 0.0152, 49518.4828);
+		grossPower = (303.3810 + 153.7523 + pAdditiveCorrection(303.3810, 153.7523, 0.9800) / 1000)
+				* pPowerCorrectionProduct(2.5516, 1014.7758, 24.2284, 3.5646, 998.4242, 0.0398, 31.3295, 60.0119,
+						93.4041, 4.4754, 1.3459, 0.3334, 0.3009, 0.0042, 0.0152, 49518.4828);
 		return changeRound(grossPower);
 	};
 
@@ -326,8 +316,8 @@ public class Calc2 {
 				* pPowerCorrectionProduct(ambientT, ambientP, ambientRH, compTin, compPin, stCondenserP, gasT,
 						stFrequency, methane, ethane, propane, butane, isobutane, pentane, isopentane, lhv);
 		netPower = (446.5763 + pAdditiveCorrection(303.3810, 153.7523, 0.9800) / 1000)
-				* pPowerCorrectionProduct(2.5516, 1014.7758, 24.2284, 3.5646, 998.4242, 0.0398, 31.3295,
-						60.0119, 93.4041, 4.4754, 1.3459, 0.3334, 0.3009, 0.0042, 0.0152, 49518.4828);
+				* pPowerCorrectionProduct(2.5516, 1014.7758, 24.2284, 3.5646, 998.4242, 0.0398, 31.3295, 60.0119,
+						93.4041, 4.4754, 1.3459, 0.3334, 0.3009, 0.0042, 0.0152, 49518.4828);
 		return changeRound(netPower);
 	};
 
@@ -347,8 +337,7 @@ public class Calc2 {
 				+ pAdditiveCorrection(gtGrossPowerTag, stGrossPower, gtPowerFactor) / 1000)
 				/ (gtMassFlow(gasFlowRate, reynoldsNumber, gtDensity) / 3600 * hhv / 1000)
 				* hrCorrectionProduct(ambientT, ambientP, ambientRH, compTin, compPin, stCondenserP, gasT, stFrequency);
-		grossEfficiency = (303.3810 + 153.7523
-				+ pAdditiveCorrection(303.3810, 153.7523, 0.9800) / 1000)
+		grossEfficiency = (303.3810 + 153.7523 + pAdditiveCorrection(303.3810, 153.7523, 0.9800) / 1000)
 				/ (gtMassFlow(1829.0849, 8.1312, 29.9507) / 3600 * 54871.3875 / 1000)
 				* hrCorrectionProduct(2.5516, 1014.7758, 24.2284, 3.5646, 998.4242, 0.0398, 31.3295, 60.0119);
 		return changeRound(grossEfficiency * 100);
@@ -931,17 +920,17 @@ public class Calc2 {
 				gtExhaustTemp = (Double) popStack.apply(stack), compTin = (Double) popStack.apply(stack),
 				ambientRH = (Double) popStack.apply(stack), ambientP = (Double) popStack.apply(stack),
 				ambientT = (Double) popStack.apply(stack);
-		double hrsgGTExhaustEnergy = hrsgMassFlowOfBalanceOfAir(ambientT, ambientP, ambientRH, compTin, gtExhaustTemp, gasFlowRate,
-				gtGrossPowerTag, nitrogen, methane, ethane, propane, butane, isobutane, pentane, isopentane,
-				reynoldsNumber, gtDensity, gtFuelNitrogenMolarFlow, gtHVnet59degF, specificEnthalpyOfFuelProcessTemperature, specificEnthalpyOfFuel77degF)
+		double hrsgGTExhaustEnergy = hrsgMassFlowOfBalanceOfAir(ambientT, ambientP, ambientRH, compTin, gtExhaustTemp,
+				gasFlowRate, gtGrossPowerTag, nitrogen, methane, ethane, propane, butane, isobutane, pentane,
+				isopentane, reynoldsNumber, gtDensity, gtFuelNitrogenMolarFlow, gtHVnet59degF,
+				specificEnthalpyOfFuelProcessTemperature, specificEnthalpyOfFuel77degF)
 				* gtHaOut(ambientT, ambientP, ambientRH, gtExhaustTemp)
 				+ gtMcombprod(ambientT, ambientP, ambientRH, gasFlowRate, nitrogen, methane, ethane, propane, butane,
 						isobutane, pentane, isopentane, reynoldsNumber, gtDensity)
-						* gtHgOut(ambientT, ambientP, ambientRH, gtExhaustTemp, gasFlowRate, nitrogen, methane, ethane, propane,
-								butane, isobutane, pentane, isopentane, reynoldsNumber, gtDensity,
+						* gtHgOut(ambientT, ambientP, ambientRH, gtExhaustTemp, gasFlowRate, nitrogen, methane, ethane,
+								propane, butane, isobutane, pentane, isopentane, reynoldsNumber, gtDensity,
 								gtFuelNitrogenMolarFlow);
 		double energyIn = hrsgGTExhaustEnergy * 1.0548 / 1000 / 3600;
-		System.out.println("energyIn : " + energyIn);
 		return changeRound(energyIn);
 	};
 
@@ -996,12 +985,12 @@ public class Calc2 {
 		double hrsgStackEnergy = gtMcombprod(ambientT, ambientP, ambientRH, gasFlowRate, nitrogen, methane, ethane,
 				propane, butane, isobutane, pentane, isopentane, reynoldsNumber, gtDensity)
 				* hrsgStackEnthalpyCombProduct
-				+ hrsgMassFlowOfBalanceOfAir(ambientT, ambientP, ambientRH, compTin, gtExhaustTemp, gasFlowRate, gtGrossPowerTag, nitrogen,
-						methane, ethane, propane, butane, isobutane, pentane, isopentane, reynoldsNumber, gtDensity,
-						gtFuelNitrogenMolarFlow, gtHVnet59degF, specificEnthalpyOfFuelProcessTemperature, specificEnthalpyOfFuel77degF)
+				+ hrsgMassFlowOfBalanceOfAir(ambientT, ambientP, ambientRH, compTin, gtExhaustTemp, gasFlowRate,
+						gtGrossPowerTag, nitrogen, methane, ethane, propane, butane, isobutane, pentane, isopentane,
+						reynoldsNumber, gtDensity, gtFuelNitrogenMolarFlow, gtHVnet59degF,
+						specificEnthalpyOfFuelProcessTemperature, specificEnthalpyOfFuel77degF)
 						* hrsgStackEnthalpyBalanceOfAir;
 		double energyOut = hrsgStackEnergy * 1054.8 / 1000000 / 3600;
-		System.out.println("energyOut : " + energyOut);
 		return changeRound(energyOut);
 	};
 
@@ -1031,7 +1020,6 @@ public class Calc2 {
 		double hrsgLPSteamEnergyOut = hrsgLPSteamEnthalpy * hrsgLPSteamMassflow / 1000;
 		double energyGain = hrsgHPSteamEnergyOut + hrsgHRHSteamEnergyOut + hrsgLPSteamEnergyOut
 				- (hrsgCondenserProheaterEnergyIn + hrsgColdReheatEnergyIn);
-		System.out.println("energyGain : " + energyGain);
 		return changeRound(energyGain);
 	};
 
@@ -1143,7 +1131,7 @@ public class Calc2 {
 		double gtMassFlow = gtCorrectedFuelFlowRate * gtDensity;
 		return gtMassFlow;
 	};
-	
+
 	private static Map<String, List<Number>> calibrationResult() {
 		Map<String, List<Number>> resultMap = new HashMap<>();
 		List<Number> qiQmaxArr = new ArrayList();
@@ -1180,7 +1168,7 @@ public class Calc2 {
 		resultMap.put("Deviation", deviationArr);
 		return resultMap;
 	}
-	
+
 	private static double pOTCTestK(double ambientT) {
 		double pOTCTestX = ambientT;
 		System.out.println("pOTCTestX : " + pOTCTestX);
@@ -1208,10 +1196,14 @@ public class Calc2 {
 	};
 
 	private static double pGTEquivalentBoxHours(double gtEBH) {
-		double pEBHTestX1 = getIndex(ltmpDegradation().get("t3_EBH"), getMatch(gtEBH, ltmpDegradation().get("t3_EBH"), 1));
-		double pEBHTestX2 = getIndex(ltmpDegradation().get("t3_EBH"), getMatch(gtEBH, ltmpDegradation().get("t3_EBH"), 1) + 1);
-		double pEBHTestY1 = getIndex(ltmpDegradation().get("t3_PDF"), getMatch(gtEBH, ltmpDegradation().get("t3_EBH"), 1));
-		double pEBHTestY2 = getIndex(ltmpDegradation().get("t3_PDF"), getMatch(gtEBH, ltmpDegradation().get("t3_EBH"), 1) + 1);
+		double pEBHTestX1 = getIndex(ltmpDegradation().get("t3_EBH"),
+				getMatch(gtEBH, ltmpDegradation().get("t3_EBH"), 1));
+		double pEBHTestX2 = getIndex(ltmpDegradation().get("t3_EBH"),
+				getMatch(gtEBH, ltmpDegradation().get("t3_EBH"), 1) + 1);
+		double pEBHTestY1 = getIndex(ltmpDegradation().get("t3_PDF"),
+				getMatch(gtEBH, ltmpDegradation().get("t3_EBH"), 1));
+		double pEBHTestY2 = getIndex(ltmpDegradation().get("t3_PDF"),
+				getMatch(gtEBH, ltmpDegradation().get("t3_EBH"), 1) + 1);
 		System.out.println("pEBHTestX1 : " + pEBHTestX1);
 		System.out.println("pEBHTestX2 : " + pEBHTestX2);
 		System.out.println("pEBHTestY1 : " + pEBHTestY1);
@@ -1223,10 +1215,14 @@ public class Calc2 {
 	};
 
 	private static double hrGTEquivalentBoxHours(double gtEBH) {
-		double hrEBHTestX1 = getIndex(ltmpDegradation().get("t4_EBH"), getMatch(gtEBH, ltmpDegradation().get("t4_EBH"), 1));
-		double hrEBHTestX2 = getIndex(ltmpDegradation().get("t3_EBH"), getMatch(gtEBH, ltmpDegradation().get("t4_EBH"), 1) + 1);
-		double hrEBHTestY1 = getIndex(ltmpDegradation().get("t4_PDF"), getMatch(gtEBH, ltmpDegradation().get("t4_EBH"), 1));
-		double hrEBHTestY2 = getIndex(ltmpDegradation().get("t4_PDF"), getMatch(gtEBH, ltmpDegradation().get("t4_EBH"), 1) + 1);
+		double hrEBHTestX1 = getIndex(ltmpDegradation().get("t4_EBH"),
+				getMatch(gtEBH, ltmpDegradation().get("t4_EBH"), 1));
+		double hrEBHTestX2 = getIndex(ltmpDegradation().get("t3_EBH"),
+				getMatch(gtEBH, ltmpDegradation().get("t4_EBH"), 1) + 1);
+		double hrEBHTestY1 = getIndex(ltmpDegradation().get("t4_PDF"),
+				getMatch(gtEBH, ltmpDegradation().get("t4_EBH"), 1));
+		double hrEBHTestY2 = getIndex(ltmpDegradation().get("t4_PDF"),
+				getMatch(gtEBH, ltmpDegradation().get("t4_EBH"), 1) + 1);
 		System.out.println("hrEBHTestX1 : " + hrEBHTestX1);
 		System.out.println("hrEBHTestX2 : " + hrEBHTestX2);
 		System.out.println("hrEBHTestY1 : " + hrEBHTestY1);
@@ -1236,7 +1232,7 @@ public class Calc2 {
 				+ (hrEBHTestX - hrEBHTestX1) * (hrEBHTestY2 - hrEBHTestY1) / (hrEBHTestX2 - hrEBHTestX1);
 		return hrGTEquivalentBoxHours;
 	};
-	
+
 	private static Map<String, List<Number>> ltmpDegradation() {
 		Map<String, List<Number>> resultMap = new HashMap<>();
 		List<Number> t3_EBH = new ArrayList();
@@ -1244,13 +1240,11 @@ public class Calc2 {
 		t3_EBH.add(200);
 		t4_EBH.add(200);
 		int i = 1000;
-		while(i <= 50000) {
+		while (i <= 50000) {
 			t3_EBH.add(i);
 			t4_EBH.add(i);
 			i += 1000;
 		}
-		System.out.println("size t3 : " + t3_EBH.size());
-		System.out.println("size t4 : " + t4_EBH.size());
 		resultMap.put("t3_EBH", t3_EBH);
 		resultMap.put("t4_EBH", t4_EBH);
 		List<Number> t3_PDF = new ArrayList();
@@ -1809,9 +1803,10 @@ public class Calc2 {
 		return gtHaOut;
 	};
 
-	private static double gtHgOut(double ambientT, double ambientP, double ambientRH, double gtExhaustTemp, double gasFlowRate,
-			double nitrogen, double methane, double ethane, double propane, double butane, double isobutane,
-			double pentane, double isopentane, double reynoldsNumber, double gtDensity, double gtFuelNitrogenMolarFlow) {
+	private static double gtHgOut(double ambientT, double ambientP, double ambientRH, double gtExhaustTemp,
+			double gasFlowRate, double nitrogen, double methane, double ethane, double propane, double butane,
+			double isobutane, double pentane, double isopentane, double reynoldsNumber, double gtDensity,
+			double gtFuelNitrogenMolarFlow) {
 		List<Double> gt11Arr = new ArrayList<>();
 		gt11Arr.add(gtNitrogen(ambientT, ambientP, ambientRH, gasFlowRate, nitrogen, methane, ethane, propane, butane,
 				isobutane, pentane, isopentane, reynoldsNumber, gtDensity, gtFuelNitrogenMolarFlow));
@@ -1839,10 +1834,10 @@ public class Calc2 {
 	};
 
 	private static double hrsgMassFlowOfBalanceOfAir(double ambientT, double ambientP, double ambientRH, double compTin,
-			double gtExhaustTemp, double gasFlowRate, double gtGrossPowerTag, double nitrogen, double methane, double ethane, 
-			double propane, double butane, double isobutane, double pentane, double isopentane, double reynoldsNumber, 
-			double gtDensity, double gtFuelNitrogenMolarFlow, double gtHVnet59degF, double specificEnthalpyOfFuelProcessTemperature, 
-			double specificEnthalpyOfFuel77degF) {
+			double gtExhaustTemp, double gasFlowRate, double gtGrossPowerTag, double nitrogen, double methane,
+			double ethane, double propane, double butane, double isobutane, double pentane, double isopentane,
+			double reynoldsNumber, double gtDensity, double gtFuelNitrogenMolarFlow, double gtHVnet59degF,
+			double specificEnthalpyOfFuelProcessTemperature, double specificEnthalpyOfFuel77degF) {
 		double gtPowerOutput = gtGrossPowerTag * 3412141.16;
 		List<Double> gt11Arr = new ArrayList<>();
 		gt11Arr.add(mFN2(ambientT, ambientP, ambientRH));
@@ -1868,33 +1863,32 @@ public class Calc2 {
 		double gtQhl = gtPowerOutput * 0.027;
 		double gtWba = (gtPowerOutput + gtQhl + step2GTMAirComb(ambientT, ambientP, ambientRH, gasFlowRate, nitrogen,
 				methane, ethane, propane, butane, isobutane, pentane, isopentane, reynoldsNumber, gtDensity)
-				* gtHgOut(ambientT, ambientP, ambientRH, gtExhaustTemp, gasFlowRate, nitrogen, methane, ethane, propane, butane,
-						isobutane, pentane, isopentane, reynoldsNumber, gtDensity, gtFuelNitrogenMolarFlow)
-				+ gtFuelGasFlow(gasFlowRate, reynoldsNumber, gtDensity) * gtHgOut(ambientT, ambientP, ambientRH, gtExhaustTemp,
-						gasFlowRate, nitrogen, methane, ethane, propane, butane, isobutane, pentane, isopentane,
-						reynoldsNumber, gtDensity, gtFuelNitrogenMolarFlow)
+				* gtHgOut(ambientT, ambientP, ambientRH, gtExhaustTemp, gasFlowRate, nitrogen, methane, ethane, propane,
+						butane, isobutane, pentane, isopentane, reynoldsNumber, gtDensity, gtFuelNitrogenMolarFlow)
+				+ gtFuelGasFlow(gasFlowRate, reynoldsNumber, gtDensity) * gtHgOut(ambientT, ambientP, ambientRH,
+						gtExhaustTemp, gasFlowRate, nitrogen, methane, ethane, propane, butane, isobutane, pentane,
+						isopentane, reynoldsNumber, gtDensity, gtFuelNitrogenMolarFlow)
 				- (step2GTMAirComb(ambientT, ambientP, ambientRH, gasFlowRate, nitrogen, methane, ethane, propane,
 						butane, isobutane, pentane, isopentane, reynoldsNumber, gtDensity) * gtHaIn + gtWgtfHVnet))
 				/ (gtHaIn - gtHaOut(ambientT, ambientP, ambientRH, gtExhaustTemp));
 		return gtWba;
 	};
-	
+
 	private static double gtHResult(double inTemp, String property) {
 		double gtTemp = inTemp * 9 / 5 + 32;
-		double temp = (gtTemp + 459.67 ) / 1.8;
-		double result = ((-getGlennCoefficient().get(property).get(0)
-				/ temp + getGlennCoefficient().get(property).get(1) 
-				* Math.log(temp) + getGlennCoefficient().get(property).get(2) 
-				* temp + getGlennCoefficient().get(property).get(3) 
-				* Math.pow(temp, 2) / 2 + getGlennCoefficient().get(property).get(4) 
-				* Math.pow(temp, 3) / 3 + getGlennCoefficient().get(property).get(5) 
-				* Math.pow(temp, 4) / 4 + getGlennCoefficient().get(property).get(6) 
-				* Math.pow(temp, 5) / 5 + getGlennCoefficient().get(property).get(7)) 
-				* 8.31451 - getGlennCoefficient().get(property).get(8)) 
+		double temp = (gtTemp + 459.67) / 1.8;
+		double result = ((-getGlennCoefficient().get(property).get(0) / temp
+				+ getGlennCoefficient().get(property).get(1) * Math.log(temp)
+				+ getGlennCoefficient().get(property).get(2) * temp
+				+ getGlennCoefficient().get(property).get(3) * Math.pow(temp, 2) / 2
+				+ getGlennCoefficient().get(property).get(4) * Math.pow(temp, 3) / 3
+				+ getGlennCoefficient().get(property).get(5) * Math.pow(temp, 4) / 4
+				+ getGlennCoefficient().get(property).get(6) * Math.pow(temp, 5) / 5
+				+ getGlennCoefficient().get(property).get(7)) * 8.31451 - getGlennCoefficient().get(property).get(8))
 				/ getGlennCoefficient().get(property).get(9) / 2.326;
 		return result;
 	}
-	
+
 	private static Map<String, List<Double>> getGlennCoefficient() {
 		Map<String, List<Double>> resultMap = new HashMap<>();
 		List<Double> n2 = new ArrayList();

@@ -41,7 +41,7 @@ public class Calc3 {
 		System.out.println("10Cond. Cleanliness : " + getRound(calc3.get10Condcond10Cleanliness(G3, G5, G7, G8, G11, G16, G19, G20, G21, G22, G25, G27, G31, G34, G37, G40, G43)));
 		System.out.println((9.951262275917571-(-4.0722200000000015))/Math.log((9.951262275917571)/(-4.0722200000000015)));
 
-		// 11HRSG TODO 나중에
+		// 11HRSG  나중에
 //		calc3.get11HRSGenergyIn(E3, E4, E5, E16, E20, E26, E27, E28, E29, E30, E31, E32, E33, E41, E48, H96, H229, H230, H231, H232, H233, H239, H240, H241, H242, H243, H246, H247, H248, H257, H258, H259, H260, H261);
 //		calc3.get11HRSGenergyOut(E3, E4, E5, E16, E20, E26, E27, E28, E29, E30, E31, E32, E33, E41, E48, H96, H229, H230, H231, H232, H233, H239, H240, H241, H242, H243, H246, H247, H248, H257, H258, H259, H260, H261);
 //		calc3.get11HRSGenergyGain(H289, H292, H293, H296, H297, H300, H304, H305, H308, H309, H314, H315, H319, H320, H324, H325);
@@ -350,7 +350,7 @@ public class Calc3 {
 
 	// 10Cond 2번
 	public double get10Condcond10SatT() {
-		double cond10SatT = 31.33;// TODO 다른 엑셀에서 가져오는 값 10Cond 2번
+		double cond10SatT = 31.33;//  다른 엑셀에서 가져오는 값 10Cond 2번
 		return cond10SatT;
 	}
 
@@ -598,7 +598,7 @@ public class Calc3 {
 	}
 
 	public static double getE105(double E13) {
-		// TODO index있음 getE105
+		//  index있음 getE105
 		double E107 = 29000;
 		double E108 = 30000;
 		double E109 = 0.9784;
@@ -609,7 +609,7 @@ public class Calc3 {
 	}
 
 	public static double getE148(double E13) {
-		// TODO index있음 getE148
+		//  index있음 getE148
 		double E150 = 29000;
 		double E151 = 30000;
 		double E152 = 1.013;
@@ -649,7 +649,7 @@ public class Calc3 {
 
 		double E161 = E5 - 60;
 		double E162 = E6;
-		double E165 = E36 - 49307.9; // TODO 변수로 받아야 할 값
+		double E165 = E36 - 49307.9; //  변수로 받아야 할 값
 		double E166 = getE35(E27, E28, E29, E30, E31, E32, E33);
 		double E168 = E24 / 60;
 		double E169 = E6;
@@ -855,7 +855,7 @@ public class Calc3 {
 	}
 
 	public static double getH121(double E16, double E26, double E27, double E28, double E29, double E30, double E31,
-			double E32, double E33, double E41, double E48) { // TODO 파람 넣어야함
+			double E32, double E33, double E41, double E48) { //  파람 넣어야함
 		double H80 = E26 / 100; // H는 1이 100%이기 때문에 100으로 나눠줌
 		double H81 = E27 / 100;
 		double H82 = E28 / 100;

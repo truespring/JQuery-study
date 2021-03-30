@@ -17,19 +17,21 @@ public class Hash {
 		result.put("name", name);
 		System.out.println("map : " + result);
 		Map<String, List<Number>> mapArr = new HashMap<>();
-		List<Number> numArr = new ArrayList();
+		List<Number> numArr = new ArrayList<Number>();
 		numArr.add(1);
 		numArr.add(1);
 		numArr.add(1);
 		numArr.add(1);
-		mapArr.put(subject, numArr);;
+		mapArr.put(subject, numArr);
 		numArr.add(2);
 		numArr.add(2);
 		numArr.add(2);
 		numArr.add(2);
 		mapArr.put(name, numArr);
 		System.out.println("map : " + mapArr);
+		System.out.println("타입확인 : " + mapArr.getClass().getName());
 		System.out.println("chk : " + mapArr.get(name));
+		System.out.println("타입확인2 : " + mapArr.get(name).getClass().getName());
 		Object chk = "asd";
 		Object[] objArr = {
 				"a",

@@ -34,11 +34,11 @@ public class Calc {
 //	static double E36 = 49515.4786;
 //	static double E37 = 54861.2712;
 //	static double E41 = 7.64;
-//	static double E43 = 4.59; // TODO 변수로 받아야 할 값 index
-//	static double E44 = 7.91; // TODO 변수로 받아야 할 값 index
-//	static double E45 = 0.1; // TODO 변수로 받아야 할 값 index
-//	static double E46 = -0.01; // TODO 변수로 받아야 할 값 index
-//	static double E48 = 29.471615; // TODO 변수로 받아야 할 값
+//	static double E43 = 4.59; //  변수로 받아야 할 값 index
+//	static double E44 = 7.91; //  변수로 받아야 할 값 index
+//	static double E45 = 0.1; //  변수로 받아야 할 값 index
+//	static double E46 = -0.01; //  변수로 받아야 할 값 index
+//	static double E48 = 29.471615; //  변수로 받아야 할 값
 //	static double E50 = 2.87;
 //	static double E53 = E4 - E7;
 //	static double E98 = 4;
@@ -112,7 +112,7 @@ public class Calc {
 //	static double H87 = E33 / 100;
 //	static double F94_H = H78/H92; // 다른 열의 값을 참고함
 	static double H92 = 17.374;
-	static double H96 = 0.0289; // TODO 11HRSG는 나중에
+	static double H96 = 0.0289;
 //	static double H133 = 0;
 //	static double H229 = -2.4896;
 //	static double H230 = -2.1977;
@@ -138,11 +138,11 @@ public class Calc {
 		double E36 = 49515.4786;
 		double E37 = 54861.2712;
 		double E41 = 7.64;
-		double E43 = 4.59; // TODO index
-		double E44 = 7.91; // TODO index
-		double E45 = 0.1; // TODO index
-		double E46 = -0.01; // TODO index
-		double E48 = 29.471615; // TODO 변수로 받아야 할 값
+		double E43 = 4.59;
+		double E44 = 7.91;
+		double E45 = 0.1;
+		double E46 = -0.01;
+		double E48 = 29.471615; //  변수로 받아야 할 값
 		double E50 = 2.87;
 		double E98 = 4;
 		double E99 = 3;
@@ -150,14 +150,14 @@ public class Calc {
 		double E101 = 0.5;
 		double E102 = 0; // 소수자리 늘려도 0
 		double E103 = 0; // 소수자리 늘려도 0
-		double E107 = 29000; // TODO index
-		double E108 = 30000; // TODO index
-		double E109 = 0.9784; // TODO index
-		double E110 = 0.9782; // TODO index
-		double E150 = 29000; // TODO index
-		double E151 = 30000; // TODO index
-		double E152 = 1.013; // TODO index
-		double E153 = 1.013; // TODO index
+		double E107 = 29000; //  index
+		double E108 = 30000; //  index
+		double E109 = 0.9784; //  index
+		double E110 = 0.9782; //  index
+		double E150 = 29000; //  index
+		double E151 = 30000; //  index
+		double E152 = 1.013; //  index
+		double E153 = 1.013; //  index
 		Calc calc = new Calc();
 //		System.out.println("Gross Power : " + getRound(calc.get1CCgrossPower(E3, E4, E5, E6, E7, E14, E18, E20, E21, E23, E24, E27, E28, E29, E30, E31, E32, E33, E36))); // 1
 //		System.out.println("Net Power : " + getRound(calc.get1CCnetPower(E3, E4, E5, E6, E7, E14, E18, E20, E21, E22, E23, E24, E27, E28, E29, E30, E31, E32, E33, E36))); // 2
@@ -590,7 +590,7 @@ public class Calc {
 
 	// 10Cond 2번
 	public double get10Condcond10SatT() {
-		double cond10SatT = 31.33;// TODO 다른 엑셀에서 가져오는 값 10Cond 2번
+		double cond10SatT = 31.33;//  다른 엑셀에서 가져오는 값 10Cond 2번
 //		System.out.printf("10Cond. Sat. T : %.4f\n", cond10SatT); // 2번
 		return cond10SatT;
 	}
@@ -869,14 +869,14 @@ public class Calc {
 	}
 
 	public static double getE105(double E13, double E107, double E108, double E109, double E110) {
-		// TODO index있음 getE105
+		//  index있음 getE105
 		double E106 = E13;
 		double E105 = E109 + (E106 - E107) * (E110 - E109) / (E108 - E107);
 		return E105;
 	}
 
 	public static double getE148(double E13, double E150, double E151, double E152, double E153) {
-		// TODO index있음 getE148
+		//  index있음 getE148
 		double E149 = E13;
 		double E148 = E152 + (E149 - E150) * (E153 - E152) / (E151 - E150);
 		return E148;
@@ -910,7 +910,7 @@ public class Calc {
 		
 		double E161 = E5 - 60;
 		double E162 = E6;
-		double E165 = E36 - 49307.9; // TODO 변수로 받아야 할 값
+		double E165 = E36 - 49307.9; //  변수로 받아야 할 값
 		double E166 = getE35(E27, E28, E29, E30, E31, E32, E33);
 		double E168 = E24 / 60;
 		double E169 = E6;
