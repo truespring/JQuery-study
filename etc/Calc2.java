@@ -152,7 +152,6 @@ public class Calc2 {
 //		double E151 = 30000;
 //		double E152 = 1.013;
 //		double E153 = 1.013;
-		List<Object> stack = new ArrayList<Object>();
 //		stack.add(E3);
 //		stack.add(E4);
 //		stack.add(E5);
@@ -215,60 +214,56 @@ public class Calc2 {
 
 //		calc.get11HRSGenergyIn(E41, E43, E44, E45, E46, E48);
 //		calc.get11HRSGenergyOut(E41, E43, E44, E45, E46, E48);
-//		calc.get11HRSGenergyGain();
-		stack.add(E3);
-		stack.add(E4);
-		stack.add(E5);
-		stack.add(E6);
-		stack.add(E11);
-		stack.add(E16);
-		stack.add(E20);
-		stack.add(E26);
-		stack.add(E27);
-		stack.add(E28);
-		stack.add(E29);
-		stack.add(E30);
-		stack.add(E31);
-		stack.add(E32);
-		stack.add(E33);
-		stack.add(E41);
-		stack.add(E48);
-		stack.add(H96);
-		stack.add(H246);
-		stack.add(H247);
-		stack.add(H248);
 		double H289 = 103.1737;
-		double H292 = 138.0052;
+		double H290 = 24.4308;
+		double H291 = 32.4078;
 		double H293 = 18.0636;
-		double H296 = 658.9992;
+		double H294 = 20.2117;
+		double H295 = 156.0009;
 		double H297 = 9.1536;
-		double H300 = 331.9321;
-		double H304 = 3168.2941;
+		double H298 = 24.3203;
+		double H299 = 78.8122;
+		double H302 = 33.9254;
+		double H303 = 375.6655;
 		double H305 = 86.5416;
-		double H308 = 3032.6400;
+		double H306 = 33.8736;
+		double H307 = 319.6202;
 		double H309 = 10.6190;
-		double H314 = 3554.0094;
+		double H312 = 140.6870;
+		double H313 = 585.6451;
 		double H315 = 86.0846;
-		double H319 = 3645.8709;
+		double H317 = 31.6111;
+		double H318 = 584.2984;
 		double H320 = 97.3690;
-		double H324 = 2989.5511;
+		double H322 = 3.7597;
+		double H323 = 261.8426;
 		double H325 = 8.3830;
+		List<Object> stack = new ArrayList<Object>();
 		stack.add(H289);
-		stack.add(H292);
+		stack.add(H290);
+		stack.add(H291);
 		stack.add(H293);
-		stack.add(H296);
+		stack.add(H294);
+		stack.add(H295);
 		stack.add(H297);
-		stack.add(H300);
-		stack.add(H304);
+		stack.add(H298);
+		stack.add(H299);
+		stack.add(H302);
+		stack.add(H303);
 		stack.add(H305);
-		stack.add(H308);
+		stack.add(H306);
+		stack.add(H307);
 		stack.add(H309);
-		stack.add(H314);
+		stack.add(H312);
+		stack.add(H313);
 		stack.add(H315);
-		stack.add(H319);
+		stack.add(H317);
+		stack.add(H318);
 		stack.add(H320);
-		stack.add(H324);
+		stack.add(H322);
+		stack.add(H323);
 		stack.add(H325);
+		System.out.println(Calc2.hrsg_working_fluid_energy_gain.apply(stack));
 //		System.out.println(Calc2.hrsg_efficiency.apply(stack));
 
 	}
@@ -999,6 +994,7 @@ public class Calc2 {
 
 	// 11HRSG 3번
 	private static Function<List<Object>, Double> hrsg_working_fluid_energy_gain = stack -> {
+		// TODO 제대로 되는지 확인 필요
 		Double hrsgLPSteamMassflow = (Double) popStack.apply(stack),
 				hrsgLPSteamTemperature = (Double) popStack.apply(stack),
 				hrsgLPSteamPressure = (Double) popStack.apply(stack),
@@ -1006,7 +1002,8 @@ public class Calc2 {
 				hrsgHRHSteamTemperature = (Double) popStack.apply(stack),
 				hrsgHRHSteamPressure = (Double) popStack.apply(stack);
 		Double hrsgHPSteamMassflow = (Double) popStack.apply(stack),
-				hrsgHPSteameEthalpy = (Double) popStack.apply(stack),
+				hrsgHPSteameTemperature = (Double) popStack.apply(stack),
+				hrsgHPSteamePressure = (Double) popStack.apply(stack),
 				ipSystemToColdReheatMassflow = (Double) popStack.apply(stack),
 				ipSystemToColdReheatTemperature = (Double) popStack.apply(stack),
 				ipSystemToColdReheatPressure = (Double) popStack.apply(stack);
@@ -1022,13 +1019,22 @@ public class Calc2 {
 
 		double hrsgCondensateEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(hrsgCondensatePressure, hrsgCondensateTemperature,
 				0);
+		System.out.println("hrsgCondensateEnthalpy : " + hrsgCondensateEnthalpy);
 		double fwEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(fwPressure, fwTemperature, 0);
+		System.out.println("fwEnthalpy : " + fwEnthalpy);
 		double fgHTREnthalpy = UniSteamCal.INSTANCE.STEAMPTH(fgHTRPressure, fgHTRTemperature, 0);
+		System.out.println("fgHTREnthalpy : " + fgHTREnthalpy);
 		double stColdReheatEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(stColdReheatPressure, stColdReheatTemperature, 0);
+		System.out.println("stColdReheatEnthalpy : " + stColdReheatEnthalpy);
 		double ipSystemToColdReheatEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(ipSystemToColdReheatPressure,
 				ipSystemToColdReheatTemperature, 0);
+		System.out.println("ipSystemToColdReheatEnthalpy : " + ipSystemToColdReheatEnthalpy);
+		double hrsgHPSteameEthalpy = UniSteamCal.INSTANCE.STEAMPTH(hrsgHPSteamePressure, hrsgHPSteameTemperature, 0);
+		System.out.println("hrsgHPSteameEthalpy : " + hrsgHPSteameEthalpy);
 		double hrsgHRHSteamEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(hrsgHRHSteamPressure, hrsgHRHSteamTemperature, 0);
+		System.out.println("hrsgHRHSteamEnthalpy : " + hrsgHRHSteamEnthalpy);
 		double hrsgLPSteamEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(hrsgLPSteamPressure, hrsgLPSteamTemperature, 0);
+		System.out.println("hrsgLPSteamEnthalpy : " + hrsgLPSteamEnthalpy);
 
 		double hrsgCondenserProheaterEnergyIn = (hrsgCondensateEnthalpy * hrsgCondensateMassflow
 				+ fwMassflow * fwEnthalpy + fgHTRMassflow * fgHTREnthalpy) / 1000;
@@ -1051,7 +1057,8 @@ public class Calc2 {
 				hrsgHRHSteamTemperature = (Double) popStack.apply(stack),
 				hrsgHRHSteamPressure = (Double) popStack.apply(stack);
 		Double hrsgHPSteamMassflow = (Double) popStack.apply(stack),
-				hrsgHPSteameEthalpy = (Double) popStack.apply(stack),
+				hrsgHPSteameTemperature = (Double) popStack.apply(stack),
+				hrsgHPSteamePressure = (Double) popStack.apply(stack),
 				ipSystemToColdReheatMassflow = (Double) popStack.apply(stack),
 				ipSystemToColdReheatTemperature = (Double) popStack.apply(stack),
 				ipSystemToColdReheatPressure = (Double) popStack.apply(stack);
@@ -1064,6 +1071,7 @@ public class Calc2 {
 				fwMassflow = (Double) popStack.apply(stack), hrsgCondensateTemperature = (Double) popStack.apply(stack),
 				hrsgCondensatePressure = (Double) popStack.apply(stack),
 				hrsgCondensateMassflow = (Double) popStack.apply(stack);
+
 		List<Object> gainArr = new ArrayList<>();
 		gainArr.add(hrsgCondensateMassflow);
 		gainArr.add(hrsgCondensatePressure);
@@ -1080,7 +1088,8 @@ public class Calc2 {
 		gainArr.add(ipSystemToColdReheatPressure);
 		gainArr.add(ipSystemToColdReheatTemperature);
 		gainArr.add(ipSystemToColdReheatMassflow);
-		gainArr.add(hrsgHPSteameEthalpy);
+		gainArr.add(hrsgHPSteamePressure);
+		gainArr.add(hrsgHPSteameTemperature);
 		gainArr.add(hrsgHPSteamMassflow);
 		gainArr.add(hrsgHRHSteamPressure);
 		gainArr.add(hrsgHRHSteamTemperature);
