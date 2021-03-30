@@ -8,6 +8,7 @@ public class JnaUnisteam {
 		UniSteamCal INSTANCE = (UniSteamCal) Native.load(("UniSteam97"), UniSteamCal.class);
 
 		/*
+		 * Java Native Access
 		 * jna 깃허브에서 jna 다운로드 후 libs 폴더를 만들어 옮김
 		 * 우클릭 후 Build Path에서 add to Build Path를 눌러 압축해제
 		 * Referenced Libraries가 생성되고 jna.jar 생성
