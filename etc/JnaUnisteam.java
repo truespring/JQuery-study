@@ -16,6 +16,9 @@ public class JnaUnisteam {
 		 * Source탭 Native library location 클릭
 		 * Edit -> Workspace -> libs(압축파일 옮긴 폴더) -> Ok -> Ok
 		 * extends Library, Native 정상적으로 import 완료
+		 * 
+		 * JNI, JNA 관련 정보 블로그
+		 * https://yaraba.tistory.com/665
 		 */
 
 		double STEAMPTH(double a, double b, int c);
