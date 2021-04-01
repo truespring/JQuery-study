@@ -1,7 +1,10 @@
 package com.doosan.test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GFG {
 
@@ -12,6 +15,9 @@ public class GFG {
 	
 	public static void main(String[] args) {
 
+		// forEach 각 상황별 사용법
+		
+		// 1. 리스트와 메서드
 		List<String> list = new ArrayList<String>();
 		list.add("Geeks");
 		list.add("For");
@@ -19,13 +25,34 @@ public class GFG {
 		
 		// call the static method
 		// using double colon operator
-		list.forEach(GFG::someFunction);
+		list.forEach(GFG::someFunction); // 메서드 생성 및 사용
 		System.out.println("--------------------");
-		list.forEach(s -> System.out.println(s));
+		list.forEach(s -> System.out.println(s)); // 람다식 사용
 		System.out.println("--------------------");
+		list.forEach(System.out::println); // 람다식 생략
+		System.out.println("--------------------");
+		
+		// 2. for in 문
 		for(String s : list) {
 			System.out.println(s);
 		}
+		System.out.println("--------------------");
+		
+		// 3. 배열
+		String[] strArr = { "a", "p", "p", "l", "e" };
+		Arrays.stream(strArr).forEach(GFG::someFunction);
+		System.out.println("--------------------");
+		Arrays.stream(strArr).forEach(s -> System.out.println(s));
+		System.out.println("--------------------");
+		Arrays.stream(strArr).forEach(System.out::println);
+		System.out.println("--------------------");
+		
+		// 4. 맵
+		Map<String, String> map = new HashMap<>();
+		map.put("korea", "korean");
+		map.put("usa", "english");
+		map.put("japan", "japanese");
+		map.forEach((key,value) -> System.out.println(key + " : " + value));
 	}
 
 }
