@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class GFG {
 
@@ -12,6 +13,7 @@ public class GFG {
 	static void someFunction(String s) {
 		System.out.println(s);
 	}
+	
 	
 	public static void main(String[] args) {
 
@@ -30,6 +32,16 @@ public class GFG {
 		list.forEach(s -> System.out.println(s)); // 람다식 사용
 		System.out.println("--------------------");
 		list.forEach(System.out::println); // 람다식 생략
+		System.out.println("--------------------");
+		SampleVO vo = new SampleVO();
+		vo.setNum(1);
+		vo.setS("2");
+		vo.setStr("3");
+		List<SampleVO> voList = new ArrayList<SampleVO>();
+		voList.add(vo);
+		System.out.println(voList.get(0).getNum());
+		List<String> newList = voList.stream().map(SampleVO::getS).collect(Collectors.toList());
+		System.out.println(newList);
 		System.out.println("--------------------");
 		
 		// 2. for in 문
