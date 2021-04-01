@@ -40,8 +40,17 @@ public class GFG {
 		List<SampleVO> voList = new ArrayList<SampleVO>();
 		voList.add(vo);
 		System.out.println(voList.get(0).getNum());
+		/*
+		 * map은 요소들을 특정조건에 해당하는 값으로 변환
+		 * filter는 요소들을 조건에 따라 걸러내는 작업
+		 * sorted는 요소들을 정렬해주는 작업
+		 * 요소들의 가공이 끝났다면 리턴해줄 결과를 collect를 통해 만듦
+		 */
 		List<String> newList = voList.stream().map(SampleVO::getS).collect(Collectors.toList());
 		System.out.println(newList);
+		System.out.println("--------------------");
+		int cnt = voList.stream().filter(item -> item.getS() == "2").collect(Collectors.toList()).size();
+		System.out.println("cnt : " + cnt);
 		System.out.println("--------------------");
 		
 		// 2. for in 문
