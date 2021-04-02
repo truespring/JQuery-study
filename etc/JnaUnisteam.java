@@ -29,7 +29,7 @@ public class JnaUnisteam {
         double STEAMPST(double a, double b, int c);
         double STEAMPQH(double a, double b, int c);
         double STEAMPQS(double a, double b, int c);
-        double STEAMPT(double a, int c);
+        double STEAMPT(double a, int c); // 압력만으로 온도구하는 식
         double STEAMTP(double a, int c);
         double STEAMPTM(double a, double b, int c); // dynamic viscosity
         double STEAMPTK(double a, double b, int c); // thermal conductivity

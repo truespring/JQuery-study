@@ -372,7 +372,6 @@ public class Calc3 {
 
     // 10ST 1¹ø
     private static Function<List<Object>, Double> st_power_output = stack -> {
-        // TODO Å¸¿¢¼¿
         Double stGrossPower = (Double) popStack.apply(stack);
         double stPowerOutput = stGrossPower;
         return changeRound(stPowerOutput);

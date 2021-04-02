@@ -656,250 +656,249 @@ public class Calc2 {
 		return changeRound(gtPressrurueRatio);
 	};
 
-	// 10ST 1¹ø
-	private static Function<List<Object>, Double> st_power_output = stack -> {
-		// TODO Å¸¿¢¼¿
-		Double stGrossPower = (Double) popStack.apply(stack);
-		double stPowerOutput = stGrossPower;
-		return changeRound(stPowerOutput);
-	};
+    // 10ST 1¹ø
+    private static Function<List<Object>, Double> st_power_output = stack -> {
+        Double stGrossPower = (Double) popStack.apply(stack);
+        double stPowerOutput = stGrossPower;
+        return changeRound(stPowerOutput);
+    };
 
-	// 10ST 2¹ø
-	private static Function<List<Object>, Double> st_energy_in = stack -> {
-		// TODO Å¸¿¢¼¿
-		Double condensateWaterToCondensorH = (Double) popStack.apply(stack),
-				steamFromLPBoiler1H = (Double) popStack.apply(stack),
-				steamFromHRHBoiler1H = (Double) popStack.apply(stack),
-				steamToCRHBoiler1H = (Double) popStack.apply(stack);
-		Double steamFromHPBoiler1H = (Double) popStack.apply(stack), condensateWaterF = (Double) popStack.apply(stack),
-				steamFromLPBoiler1F = (Double) popStack.apply(stack),
-				steamFromHRHBoiler1F = (Double) popStack.apply(stack);
-		Double steamFromHPBoiler1F = (Double) popStack.apply(stack);
-		double cSteamFromHPBoiler1F = steamFromHPBoiler1F;
-		double cSteamToCRHBoiler1F = steamFromHPBoiler1F;
-		double cSteamFromHRHBoiler1F = steamFromHRHBoiler1F;
-		double cSteaFromLPBoiler1F = steamFromLPBoiler1F;
-		double energyInFromHPBoiler = (steamFromHPBoiler1H * cSteamFromHPBoiler1F) / 1000;
-		double energyOutToCRHBoiler = -steamToCRHBoiler1H / 1000 * cSteamToCRHBoiler1F;
-		double energyInFromHRHBoiler = (steamFromHRHBoiler1H * cSteamFromHRHBoiler1F) / 1000;
-		double energyInFromLPBoiler = steamFromLPBoiler1H / 1000 * cSteaFromLPBoiler1F;
-		double cCondensateWaterF = condensateWaterF / 3.6;
-		double energyOutToCondensorPreHeater = -condensateWaterToCondensorH * cCondensateWaterF / 1000;
-		double stEnergyIn = (energyInFromHPBoiler + energyInFromHRHBoiler + energyInFromLPBoiler)
-				+ (energyOutToCRHBoiler + energyOutToCondensorPreHeater);
-		return changeRound(stEnergyIn);
-	};
+    // 10ST 2¹ø
+    private static Function<List<Object>, Double> st_energy_in = stack -> {
+    	Double condensateWaterF = (Double) popStack.apply(stack), steamFromLPBoiler1F = (Double) popStack.apply(stack), steamFromLPBoilerT = (Double) popStack.apply(stack);
+        Double steamFromLPBoilerP = (Double) popStack.apply(stack), steamFromHRHBoiler1F = (Double) popStack.apply(stack), steamFromHRHBoiler1T = (Double) popStack.apply(stack); 
+		Double steamFromHRHBoiler1P = (Double) popStack.apply(stack), steamToCRHBoilerT = (Double) popStack.apply(stack), steamToCRHBoilerP = (Double) popStack.apply(stack); 
+		Double steamFromHPBoiler1F = (Double) popStack.apply(stack), steamFromHPBoiler1T = (Double) popStack.apply(stack), steamFromHPBoiler1P = (Double) popStack.apply(stack); 
+        Double stCondenserP = (Double) popStack.apply(stack); 
+        double cSteamFromHPBoiler1F = steamFromHPBoiler1F;
+        double cSteamToCRHBoiler1F = steamFromHPBoiler1F;
+        double cSteamFromHRHBoiler1F = steamFromHRHBoiler1F;
+        double cSteaFromLPBoiler1F = steamFromLPBoiler1F;
+        double steamFromHPBoiler1H = UniSteamCal.INSTANCE.STEAMPTH(steamFromHPBoiler1P, steamFromHPBoiler1T, 0);
+        double steamToCRHBoiler1H = UniSteamCal.INSTANCE.STEAMPTH(steamToCRHBoilerP, steamToCRHBoilerT, 0);
+        double steamFromHRHBoiler1H = UniSteamCal.INSTANCE.STEAMPTH(steamFromHRHBoiler1P, steamFromHRHBoiler1T, 0);
+        double steamFromLPBoiler1H = UniSteamCal.INSTANCE.STEAMPTH(steamFromLPBoilerP, steamFromLPBoilerT, 0);
+        double condensateTemp = UniSteamCal.INSTANCE.STEAMPT(stCondenserP, 0);
+        double condensateWaterToCondensorH = UniSteamCal.INSTANCE.STEAMPTH(stCondenserP, condensateTemp, 0);
+        double energyInFromHPBoiler = (steamFromHPBoiler1H * cSteamFromHPBoiler1F) / 1000;
+        double energyOutToCRHBoiler = -steamToCRHBoiler1H / 1000 * cSteamToCRHBoiler1F;
+        double energyInFromHRHBoiler = (steamFromHRHBoiler1H * cSteamFromHRHBoiler1F) / 1000;
+        double energyInFromLPBoiler = steamFromLPBoiler1H / 1000 * cSteaFromLPBoiler1F;
+        double cCondensateWaterF = condensateWaterF / 3.6;
+        double energyOutToCondensorPreHeater = -condensateWaterToCondensorH * cCondensateWaterF / 1000;
+        double stEnergyIn = (energyInFromHPBoiler + energyInFromHRHBoiler + energyInFromLPBoiler) + (energyOutToCRHBoiler + energyOutToCondensorPreHeater);
+        return changeRound(stEnergyIn);
+    };
 
-	// 10ST 3¹ø
-	private static Function<List<Object>, Double> st_efficiency = stack -> {
-		// TODO Å¸¿¢¼¿
-		Double condensateWaterToCondensorH = (Double) popStack.apply(stack),
-				steamFromLPBoiler1H = (Double) popStack.apply(stack),
-				steamFromHRHBoiler1H = (Double) popStack.apply(stack),
-				steamToCRHBoiler1H = (Double) popStack.apply(stack);
-		Double steamFromHPBoiler1H = (Double) popStack.apply(stack), stGrossPower = (Double) popStack.apply(stack),
-				condensateWaterF = (Double) popStack.apply(stack), steamFromLPBoiler1F = (Double) popStack.apply(stack);
-		Double steamFromHRHBoiler1F = (Double) popStack.apply(stack),
-				steamFromHPBoiler1F = (Double) popStack.apply(stack);
-		List<Object> outPutArr = new ArrayList();
-		outPutArr.add(stGrossPower);
-		List<Object> inArr = new ArrayList();
-		inArr.add(steamFromHPBoiler1F);
-		inArr.add(steamFromHRHBoiler1F);
-		inArr.add(steamFromLPBoiler1F);
-		inArr.add(condensateWaterF);
-		inArr.add(steamFromHPBoiler1H);
-		inArr.add(steamToCRHBoiler1H);
-		inArr.add(steamFromHRHBoiler1H);
-		inArr.add(steamFromLPBoiler1H);
-		inArr.add(condensateWaterToCondensorH);
-		double st10Efficiency = st_power_output.apply(outPutArr) / st_energy_in.apply(inArr);
-		return changeRound(st10Efficiency * 100);
-	};
+    // 10ST 3¹ø
+    private static Function<List<Object>, Double> st_efficiency = stack -> {
+    	Double stGrossPower = (Double) popStack.apply(stack), condensateWaterF = (Double) popStack.apply(stack), steamFromLPBoiler1F = (Double) popStack.apply(stack), steamFromLPBoilerT = (Double) popStack.apply(stack);
+        Double steamFromLPBoilerP = (Double) popStack.apply(stack), steamFromHRHBoiler1F = (Double) popStack.apply(stack), steamFromHRHBoiler1T = (Double) popStack.apply(stack); 
+		Double steamFromHRHBoiler1P = (Double) popStack.apply(stack), steamToCRHBoilerT = (Double) popStack.apply(stack), steamToCRHBoilerP = (Double) popStack.apply(stack); 
+		Double steamFromHPBoiler1F = (Double) popStack.apply(stack), steamFromHPBoiler1T = (Double) popStack.apply(stack), steamFromHPBoiler1P = (Double) popStack.apply(stack); 
+        Double stCondenserP = (Double) popStack.apply(stack); 
+        List<Object> outPutArr = new ArrayList();
+        outPutArr.add(stGrossPower);
+        List<Object> inArr = new ArrayList();
+        inArr.add(stCondenserP);
+        inArr.add(steamFromHPBoiler1P);
+        inArr.add(steamFromHPBoiler1T);
+        inArr.add(steamFromHPBoiler1F);
+        inArr.add(steamToCRHBoilerP);
+        inArr.add(steamToCRHBoilerT);
+        inArr.add(steamFromHRHBoiler1P);
+        inArr.add(steamFromHRHBoiler1T);
+        inArr.add(steamFromHRHBoiler1F);
+        inArr.add(steamFromLPBoilerP);
+        inArr.add(steamFromLPBoilerT);
+        inArr.add(steamFromLPBoiler1F);
+        inArr.add(condensateWaterF);
+        double stPowerOutput = st_power_output.apply(outPutArr);
+        double stEnergyIn = st_energy_in.apply(inArr);
 
-	// 10Cond 1¹ø
-	private static Function<List<Object>, Double> cond_p = stack -> {
-		Double st10CondenserP = (Double) popStack.apply(stack);
-		double cond10P = st10CondenserP;
-		return changeRound(cond10P);
-	};
+		System.out.println("stPowerOutput : " + stPowerOutput);
+		System.out.println("stEnergyIn : " + stEnergyIn);
+        double st10Efficiency = stPowerOutput / stEnergyIn;
+        return changeRound(st10Efficiency * 100);
+    };
 
-	// 10Cond 2¹ø
-	private static Function<List<Object>, Double> cond_sat_t = stack -> {
-		// TODO Å¸¿¢¼¿
-		Double val = (Double) popStack.apply(stack);
-		double cond10SatT = val;
-		return changeRound(cond10SatT);
-	};
+    // 10Cond 1¹ø
+    private static Function<List<Object>, Double> cond_p = stack -> {
+        Double stCondenserP = (Double) popStack.apply(stack);
+        double cond10P = stCondenserP;
+        return changeRound(cond10P);
+    };
 
-	// 10Cond 3¹ø
-	private static Function<List<Object>, Double> ttd = stack -> {
-		// TODO Å¸¿¢¼¿
-		Double condenserHotwellT = (Double) popStack.apply(stack), condOutCWT = (Double) popStack.apply(stack);
-		double terminalTempDifference = condenserHotwellT - condOutCWT;
-		double tTD = terminalTempDifference;
-		return changeRound(tTD);
-	};
+    // 10Cond 2¹ø
+    private static Function <List<Object>, Double> cond_sat_t = stack -> {
+        Double stCondenserP = (Double) popStack.apply(stack);
+        double cond10SatT = UniSteamCal.INSTANCE.STEAMPT(stCondenserP, 0);
+        return changeRound(cond10SatT);
+    };
 
-	// 10Cond 4¹ø
-	private static Function<List<Object>, Double> itd = stack -> {
-		// TODO Å¸¿¢¼¿
-		Double condenserHotwellT = (Double) popStack.apply(stack), ambientRH = (Double) popStack.apply(stack),
-				ambientT = (Double) popStack.apply(stack);
-		double ambientWetT = ambientT * Math.atan(0.151977 * Math.pow((ambientRH + 8.313659), 0.5))
-				+ Math.atan(ambientT + ambientRH) - Math.atan(ambientRH - 1.676331)
-				+ 0.00391838 * Math.pow(ambientRH, 1.5) * Math.atan(0.023101 * ambientRH) - 4.686035;
-		double initialTempDifference = condenserHotwellT - ambientWetT;
-		double iTD = initialTempDifference;
-		return changeRound(iTD);
-	};
+    // 10Cond 3¹ø
+    private static Function<List<Object>, Double> ttd = stack -> {
+        Double stCondenserP = (Double) popStack.apply(stack), condOutCWT = (Double) popStack.apply(stack);
+        double condenserHotwellT = UniSteamCal.INSTANCE.STEAMPT(stCondenserP, 0);
+        double terminalTempDifference = condenserHotwellT - condOutCWT;
+        double tTD = terminalTempDifference;
+        return changeRound(tTD);
+    };
 
-	// 10Cond 5¹ø
-	private static Function<List<Object>, Double> cw_t_rise = stack -> {
-		Double condOutCWT = (Double) popStack.apply(stack), condInCWT = (Double) popStack.apply(stack);
-		double cwTRise = condOutCWT - condInCWT;
-		return changeRound(cwTRise);
-	};
+    // 10Cond 4¹ø
+    private static Function<List<Object>, Double> itd = stack -> {
+        Double stCondenserP = (Double) popStack.apply(stack), ambientRH = (Double) popStack.apply(stack), ambientT = (Double) popStack.apply(stack);
+        double ambientWetT = ambientT * Math.atan(0.151977 * Math.pow((ambientRH + 8.313659), 0.5))+ Math.atan(ambientT + ambientRH) - Math.atan(ambientRH - 1.676331) + 0.00391838 * Math.pow(ambientRH, 1.5) * Math.atan(0.023101 * ambientRH) - 4.686035;
+        double condenserHotwellT = UniSteamCal.INSTANCE.STEAMPT(stCondenserP, 0);
+        double initialTempDifference = condenserHotwellT - ambientWetT;
+        double iTD =  initialTempDifference;
+        return changeRound(iTD);
+    };
 
-	// 10Cond 6¹ø
-	private static Function<List<Object>, Double> st_ueep = stack -> {
-		// TODO Å¸¿¢¼¿
-		Double condensateWaterToCondensorH = (Double) popStack.apply(stack),
-				steamFromLPBoiler1H = (Double) popStack.apply(stack),
-				steamFromHRHBoiler1H = (Double) popStack.apply(stack),
-				steamToCRHBoiler1H = (Double) popStack.apply(stack);
-		Double steamFromHPBoiler1H = (Double) popStack.apply(stack), stGrossPower = (Double) popStack.apply(stack),
-				CondenserMakeUpWaterF = (Double) popStack.apply(stack), afterCEPWaterF = (Double) popStack.apply(stack);
-		Double steamFromLPBoiler1F = (Double) popStack.apply(stack),
-				steamFromHRHBoiler1F = (Double) popStack.apply(stack),
-				steamFromHPBoiler1F = (Double) popStack.apply(stack);
-		double condensateWaterF = afterCEPWaterF - CondenserMakeUpWaterF;
-		double stUEEP = stEnergyInSTEnergyOut(steamFromHPBoiler1F, steamFromHRHBoiler1F, steamFromLPBoiler1F,
-				stGrossPower, steamFromHPBoiler1H, steamToCRHBoiler1H, steamFromHRHBoiler1H, steamFromLPBoiler1H,
-				condensateWaterToCondensorH, condensateWaterF) / afterCEPWaterF * 1000; // 6¹ø
-		return changeRound(stUEEP);
-	};
+    // 10Cond 5¹ø
+    private static Function<List<Object>, Double> cw_t_rise = stack -> {
+        Double condOutCWT = (Double) popStack.apply(stack), condInCWT = (Double) popStack.apply(stack);
+        double cwTRise = condOutCWT - condInCWT;
+        return changeRound(cwTRise);
+    };
 
-	// 10Cond 7¹ø
-	private static Function<List<Object>, Double> condensate_water_h = stack -> {
-		// TODO Å¸¿¢¼¿
-		Double condensateWaterHTag = (Double) popStack.apply(stack);
-		double condensateWaterH = condensateWaterHTag;
-		return changeRound(condensateWaterH);
-	};
+    // 10Cond 6¹ø
+    private static Function<List<Object>, Double> st_ueep = stack -> {
+        Double stGrossPower = (Double) popStack.apply(stack), condenserMakeUpWaterF = (Double) popStack.apply(stack), afterCEPWaterF = (Double) popStack.apply(stack);   
+        Double steamFromLPBoiler1F = (Double) popStack.apply(stack), steamFromLPBoilerT = (Double) popStack.apply(stack), steamFromLPBoilerP = (Double) popStack.apply(stack);
+        Double steamFromHRHBoiler1F = (Double) popStack.apply(stack), steamFromHRHBoiler1T = (Double) popStack.apply(stack), steamFromHRHBoiler1P = (Double) popStack.apply(stack); 
+        Double steamToCRHBoilerT = (Double) popStack.apply(stack), steamToCRHBoilerP = (Double) popStack.apply(stack), steamFromHPBoiler1F = (Double) popStack.apply(stack);
+        Double steamFromHPBoiler1T = (Double) popStack.apply(stack), steamFromHPBoiler1P = (Double) popStack.apply(stack), stCondenserP = (Double) popStack.apply(stack); 
+        double steamFromHPBoiler1H = UniSteamCal.INSTANCE.STEAMPTH(steamFromHPBoiler1P, steamFromHPBoiler1T, 0);
+        double steamToCRHBoiler1H = UniSteamCal.INSTANCE.STEAMPTH(steamToCRHBoilerP, steamToCRHBoilerT, 0);
+        double steamFromHRHBoiler1H = UniSteamCal.INSTANCE.STEAMPTH(steamFromHRHBoiler1P, steamFromHRHBoiler1T, 0);
+        double steamFromLPBoiler1H = UniSteamCal.INSTANCE.STEAMPTH(steamFromLPBoilerP, steamFromLPBoilerT, 0);
+        double condensateTemp = UniSteamCal.INSTANCE.STEAMPT(stCondenserP, 0);
+        double condensateWaterToCondensorH = UniSteamCal.INSTANCE.STEAMPTH(stCondenserP, condensateTemp, 0);
+        System.out.println("steamFromHPBoiler1H : " + steamFromHPBoiler1H);
+        System.out.println("steamToCRHBoiler1H : " + steamToCRHBoiler1H);
+        System.out.println("steamFromHRHBoiler1H : " + steamFromHRHBoiler1H);
+        System.out.println("steamFromLPBoiler1H : " + steamFromLPBoiler1H);
+        System.out.println("condensateTemp : " + condensateTemp);
+        System.out.println("condensateWaterToCondensorH : " + condensateWaterToCondensorH);
+        double condensateWaterF = afterCEPWaterF - condenserMakeUpWaterF;
+        double stUEEP = stEnergyInSTEnergyOut(steamFromHPBoiler1F, steamFromHRHBoiler1F, steamFromLPBoiler1F, stGrossPower, steamFromHPBoiler1H, steamToCRHBoiler1H, steamFromHRHBoiler1H, steamFromLPBoiler1H, condensateWaterToCondensorH, condensateWaterF)
+                / afterCEPWaterF * 1000; // 6¹ø
+        return changeRound(stUEEP);
+    };
 
-	// 10Cond 8¹ø
-	private static Function<List<Object>, Double> condensate_water_f = stack -> {
-		Double afterCEPWaterF = (Double) popStack.apply(stack);
-		double condensateWaterF = afterCEPWaterF / 3.6;
-		return changeRound(condensateWaterF);
-	};
+    // 10Cond 7¹ø
+    private static Function<List<Object>, Double> condensate_water_h = stack -> {
+        Double stCondenserP = (Double) popStack.apply(stack);
+        double condenserHotwellT = UniSteamCal.INSTANCE.STEAMPT(stCondenserP, 0);
+        double condensateWaterHTag = UniSteamCal.INSTANCE.STEAMPTH(stCondenserP, condenserHotwellT, 0);
+        double condensateWaterH = condensateWaterHTag;
+        return changeRound(condensateWaterH);
+    };
 
-	// 10Cond 9¹ø
-	private static Function<List<Object>, Double> condenser_heat_load = stack -> {
-		// TODO Å¸¿¢¼¿
-		Double condensateWaterToCondensorH = (Double) popStack.apply(stack),
-				steamFromLPBoiler1H = (Double) popStack.apply(stack),
-				steamFromHRHBoiler1H = (Double) popStack.apply(stack),
-				steamToCRHBoiler1H = (Double) popStack.apply(stack);
-		Double steamFromHPBoiler1H = (Double) popStack.apply(stack),
-				condensateWaterHTag = (Double) popStack.apply(stack), stGrossPower = (Double) popStack.apply(stack),
-				condenserMakeUpWaterF = (Double) popStack.apply(stack);
-		Double afterCEPWaterF = (Double) popStack.apply(stack), steamFromLPBoiler1F = (Double) popStack.apply(stack),
-				steamFromHRHBoiler1F = (Double) popStack.apply(stack),
-				steamFromHPBoiler1F = (Double) popStack.apply(stack);
-		List<Object> objArr = new ArrayList();
-		objArr.add(steamFromHPBoiler1F);
-		objArr.add(steamFromHRHBoiler1F);
-		objArr.add(steamFromLPBoiler1F);
-		objArr.add(afterCEPWaterF);
-		objArr.add(condenserMakeUpWaterF);
-		objArr.add(stGrossPower);
-		objArr.add(steamFromHPBoiler1H);
-		objArr.add(steamToCRHBoiler1H);
-		objArr.add(steamFromHRHBoiler1H);
-		objArr.add(steamFromLPBoiler1H);
-		objArr.add(condensateWaterToCondensorH);
-		double condenserHeatLoad = (st_ueep.apply(objArr) - condensateWaterHTag)
-				* (afterCEPWaterF - condenserMakeUpWaterF) / 1000;
-		return changeRound(condenserHeatLoad);
-	};
+    // 10Cond 8¹ø
+    private static Function<List<Object>, Double> condensate_water_f = stack -> {
+        Double afterCEPWaterF = (Double) popStack.apply(stack);
+        double condensateWaterF = afterCEPWaterF / 3.6;
+        return changeRound(condensateWaterF);
+    };
 
-	// 10Cond 10¹ø
-	private static Function<List<Object>, Double> cond_cleanliness = stack -> {
-		// TODO Å¸¿¢¼¿
-		Double condensateWaterToCondensorH = (Double) popStack.apply(stack),
-				steamFromLPBoiler1H = (Double) popStack.apply(stack),
-				steamFromHRHBoiler1H = (Double) popStack.apply(stack),
-				steamToCRHBoiler1H = (Double) popStack.apply(stack);
-		Double steamFromHPBoiler1H = (Double) popStack.apply(stack),
-				condensateWaterHTag = (Double) popStack.apply(stack),
-				condenserHotwellT = (Double) popStack.apply(stack), stGrossPower = (Double) popStack.apply(stack);
-		Double condenserMakeUpWaterF = (Double) popStack.apply(stack), afterCEPWaterF = (Double) popStack.apply(stack),
-				steamFromLPBoiler1F = (Double) popStack.apply(stack),
-				steamFromHRHBoiler1F = (Double) popStack.apply(stack);
-		Double steamFromHPBoiler1F = (Double) popStack.apply(stack), condOutCWT = (Double) popStack.apply(stack),
-				condInCWT = (Double) popStack.apply(stack), ambientRH = (Double) popStack.apply(stack),
-				ambientT = (Double) popStack.apply(stack);
-		List<Object> ueepArr = new ArrayList();
-		ueepArr.add(steamFromHPBoiler1F);
-		ueepArr.add(steamFromHRHBoiler1F);
-		ueepArr.add(steamFromLPBoiler1F);
-		ueepArr.add(afterCEPWaterF);
-		ueepArr.add(condenserMakeUpWaterF);
-		ueepArr.add(stGrossPower);
-		ueepArr.add(steamFromHPBoiler1H);
-		ueepArr.add(steamToCRHBoiler1H);
-		ueepArr.add(steamFromHRHBoiler1H);
-		ueepArr.add(steamFromLPBoiler1H);
-		ueepArr.add(condensateWaterToCondensorH);
-		double heatLoadOnCondenser = (st_ueep.apply(ueepArr) - condensateWaterHTag)
-				* (afterCEPWaterF - condenserMakeUpWaterF) / 1000;
-		double ambientWetT = ambientT * Math.atan(0.151977 * Math.pow((ambientRH + 8.313659), 0.5))
-				+ Math.atan(ambientT + ambientRH) - Math.atan(ambientRH - 1.676331)
-				+ 0.00391838 * Math.pow(ambientRH, 1.5) * Math.atan(0.023101 * ambientRH) - 4.686035;
-		double initialTempDifference = condenserHotwellT - ambientWetT;
-		double terminalTempDifference = condenserHotwellT - condOutCWT;
-		double G52 = condInCWT * 9 / 5 + 32;
-		List<Number> unitArr = new ArrayList<Number>();
-		unitArr.add(35);
-		unitArr.add(40);
-		unitArr.add(45);
-		unitArr.add(50);
-		unitArr.add(55);
-		unitArr.add(60);
-		unitArr.add(70);
-		unitArr.add(80);
-		unitArr.add(90);
-		unitArr.add(100);
-		List<Number> tagArr = new ArrayList<>();
-		tagArr.add(0.57);
-		tagArr.add(0.64);
-		tagArr.add(0.72);
-		tagArr.add(0.79);
-		tagArr.add(0.86);
-		tagArr.add(0.92);
-		tagArr.add(1);
-		tagArr.add(1.04);
-		tagArr.add(1.08);
-		tagArr.add(1.1);
-		double fromThermoflexTestX1 = getIndex(unitArr, getMatch(G52, unitArr, 1));
-		double fromThermoflexTestX2 = getIndex(unitArr, getMatch(G52, unitArr, 1) + 1);
-		double fromThermoflexTestY1 = getIndex(tagArr, getMatch(G52, unitArr, 1));
-		double fromThermoflexTestY2 = getIndex(tagArr, getMatch(G52, unitArr, 1) + 1);
-		double cwInletTFactor = fromThermoflexTestY1 + (G52 - fromThermoflexTestX1)
-				* (fromThermoflexTestY2 - fromThermoflexTestY1) / (fromThermoflexTestX2 - fromThermoflexTestX1);
-		double logarithmicMeanTemp = (initialTempDifference - terminalTempDifference)
-				/ Math.log(initialTempDifference / terminalTempDifference);
-		double totalOutsideTubeSurfaceAreaTag = 14050;
-		double tubeODFactorTag = 2582;
-		double tubeMaterialAndGaugeFactorTag = 0.89;
-		double cwVelocityTag = 1.97;
-		double cond10Cleanliness = 1000000 * heatLoadOnCondenser
-				/ (tubeODFactorTag * cwInletTFactor * tubeMaterialAndGaugeFactorTag * Math.sqrt(cwVelocityTag)
-						* totalOutsideTubeSurfaceAreaTag * logarithmicMeanTemp); // 10¹ø
-		return changeRound(cond10Cleanliness * 100);
-	};
+    // 10Cond 9¹ø
+    private static Function<List<Object>, Double> condenser_heat_load = stack -> {
+    	Double stGrossPower = (Double) popStack.apply(stack), condenserMakeUpWaterF = (Double) popStack.apply(stack), afterCEPWaterF = (Double) popStack.apply(stack);   
+        Double steamFromLPBoiler1F = (Double) popStack.apply(stack), steamFromLPBoilerT = (Double) popStack.apply(stack), steamFromLPBoilerP = (Double) popStack.apply(stack);
+        Double steamFromHRHBoiler1F = (Double) popStack.apply(stack), steamFromHRHBoiler1T = (Double) popStack.apply(stack), steamFromHRHBoiler1P = (Double) popStack.apply(stack); 
+        Double steamToCRHBoilerT = (Double) popStack.apply(stack), steamToCRHBoilerP = (Double) popStack.apply(stack), steamFromHPBoiler1F = (Double) popStack.apply(stack);
+        Double steamFromHPBoiler1T = (Double) popStack.apply(stack), steamFromHPBoiler1P = (Double) popStack.apply(stack), stCondenserP = (Double) popStack.apply(stack); 
+        List<Object> ueepArr = new ArrayList();
+        ueepArr.add(stCondenserP);
+        ueepArr.add(steamFromHPBoiler1P);
+        ueepArr.add(steamFromHPBoiler1T);
+        ueepArr.add(steamFromHPBoiler1F);
+        ueepArr.add(steamToCRHBoilerP);
+        ueepArr.add(steamToCRHBoilerT);
+        ueepArr.add(steamFromHRHBoiler1P);
+        ueepArr.add(steamFromHRHBoiler1T);
+        ueepArr.add(steamFromHRHBoiler1F);
+        ueepArr.add(steamFromLPBoilerP);
+        ueepArr.add(steamFromLPBoilerT);
+        ueepArr.add(steamFromLPBoiler1F);
+        ueepArr.add(afterCEPWaterF);
+        ueepArr.add(condenserMakeUpWaterF);
+        ueepArr.add(stGrossPower);
+        List<Object> waterArr = new ArrayList();
+        waterArr.add(stCondenserP);
+        double condenserHeatLoad = (st_ueep.apply(ueepArr) - condensate_water_h.apply(waterArr))
+                * (afterCEPWaterF - condenserMakeUpWaterF) / 1000;
+        return changeRound(condenserHeatLoad);
+    };
+
+    // 10Cond 10¹ø
+    private static Function<List<Object>, Double> cond_cleanliness = stack -> {
+    	Double stGrossPower = (Double) popStack.apply(stack), condenserMakeUpWaterF = (Double) popStack.apply(stack), afterCEPWaterF = (Double) popStack.apply(stack);   
+        Double steamFromLPBoiler1F = (Double) popStack.apply(stack), steamFromLPBoilerT = (Double) popStack.apply(stack), steamFromLPBoilerP = (Double) popStack.apply(stack);
+        Double steamFromHRHBoiler1F = (Double) popStack.apply(stack), steamFromHRHBoiler1T = (Double) popStack.apply(stack), steamFromHRHBoiler1P = (Double) popStack.apply(stack); 
+        Double steamToCRHBoilerT = (Double) popStack.apply(stack), steamToCRHBoilerP = (Double) popStack.apply(stack), steamFromHPBoiler1F = (Double) popStack.apply(stack);
+        Double steamFromHPBoiler1T = (Double) popStack.apply(stack), steamFromHPBoiler1P = (Double) popStack.apply(stack), stCondenserP = (Double) popStack.apply(stack); 
+        Double condOutCWT = (Double) popStack.apply(stack), condInCWT = (Double) popStack.apply(stack), ambientRH = (Double) popStack.apply(stack), ambientT = (Double) popStack.apply(stack);
+        List<Object> ueepArr = new ArrayList();
+        ueepArr.add(stCondenserP);
+        ueepArr.add(steamFromHPBoiler1P);
+        ueepArr.add(steamFromHPBoiler1T);
+        ueepArr.add(steamFromHPBoiler1F);
+        ueepArr.add(steamToCRHBoilerP);
+        ueepArr.add(steamToCRHBoilerT);
+        ueepArr.add(steamFromHRHBoiler1P);
+        ueepArr.add(steamFromHRHBoiler1T);
+        ueepArr.add(steamFromHRHBoiler1F);
+        ueepArr.add(steamFromLPBoilerP);
+        ueepArr.add(steamFromLPBoilerT);
+        ueepArr.add(steamFromLPBoiler1F);
+        ueepArr.add(afterCEPWaterF);
+        ueepArr.add(condenserMakeUpWaterF);
+        ueepArr.add(stGrossPower);
+        double condenserHotwellT = UniSteamCal.INSTANCE.STEAMPT(stCondenserP, 0);
+        double condensateWaterHTag = UniSteamCal.INSTANCE.STEAMPTH(stCondenserP, condenserHotwellT, 0);
+        double heatLoadOnCondenser = (st_ueep.apply(ueepArr) - condensateWaterHTag) * (afterCEPWaterF - condenserMakeUpWaterF) / 1000;
+        double ambientWetT = ambientT * Math.atan(0.151977 * Math.pow((ambientRH + 8.313659), 0.5)) + Math.atan(ambientT + ambientRH) - Math.atan(ambientRH - 1.676331) + 0.00391838*Math.pow(ambientRH, 1.5) * Math.atan(0.023101 * ambientRH) - 4.686035;
+        double initialTempDifference = condenserHotwellT - ambientWetT;
+        double terminalTempDifference = condenserHotwellT - condOutCWT; // ÇöÀç condenserHotwellT°¡ °íÁ¤°ªÀÌ¶ó terminalTempDifference °ªÀÌ À½¼ö°¡ ³ª¿Ã°æ¿ì ¿¡·¯ ¹ß»ý
+        double G52 = condInCWT * 9 / 5 + 32;
+        List<Number> unitArr = new ArrayList<>();
+        unitArr.add(35);
+        unitArr.add(40);
+        unitArr.add(45);
+        unitArr.add(50);
+        unitArr.add(55);
+        unitArr.add(60);
+        unitArr.add(70);
+        unitArr.add(80);
+        unitArr.add(90);
+        unitArr.add(100);
+        List<Number> tagArr = new ArrayList<>();
+        tagArr.add(0.57);
+        tagArr.add(0.64);
+        tagArr.add(0.72);
+        tagArr.add(0.79);
+        tagArr.add(0.86);
+        tagArr.add(0.92);
+        tagArr.add(1);
+        tagArr.add(1.04);
+        tagArr.add(1.08);
+        tagArr.add(1.1);
+        double fromThermoflexTestX1 = getIndex(unitArr, getMatch(G52, unitArr, 1));
+        double fromThermoflexTestX2 = getIndex(unitArr, getMatch(G52, unitArr, 1) + 1);
+        double fromThermoflexTestY1 = getIndex(tagArr, getMatch(G52, unitArr, 1));
+        double fromThermoflexTestY2 = getIndex(tagArr, getMatch(G52, unitArr, 1) + 1);
+        double cwInletTFactor = fromThermoflexTestY1 + (G52 - fromThermoflexTestX1) * (fromThermoflexTestY2 - fromThermoflexTestY1) / (fromThermoflexTestX2 - fromThermoflexTestX1);
+        double logarithmicMeanTemp = (initialTempDifference - terminalTempDifference) / Math.log(initialTempDifference / terminalTempDifference);
+        double totalOutsideTubeSurfaceAreaTag = 14050;
+        double tubeODFactorTag = 2582;
+        double tubeMaterialAndGaugeFactorTag = 0.89;
+        double cwVelocityTag = 1.97;
+        double cond10Cleanliness = 1000000 * heatLoadOnCondenser / (tubeODFactorTag * cwInletTFactor * tubeMaterialAndGaugeFactorTag * Math.sqrt(cwVelocityTag) * totalOutsideTubeSurfaceAreaTag * logarithmicMeanTemp); // 10¹ø
+        return changeRound(cond10Cleanliness * 100);
+    };
 
 	// 11HRSG 1¹ø
 	private static Function<List<Object>, Double> hrsg_energy_in = stack -> {
