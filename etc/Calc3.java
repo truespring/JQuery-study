@@ -36,7 +36,7 @@ public class Calc3 {
 , G5 = 24.2283607 
 , G7 = 20.3975559 
 , G8 = 27.8799087 
-, G9 = 0.0397797 
+, G9 = 0.039780
 , G10 = 141.2980374 
 , G11 = 574.8329444 
 , G12 = 88.5859843 
@@ -53,10 +53,10 @@ public class Calc3 {
 , G23 = 153.7523168 
 ;
 
-//		stack.add(G3);
-//		stack.add(G5);
-//		stack.add(G7);
-//		stack.add(G8);
+		stack.add(G3);
+		stack.add(G5);
+		stack.add(G7);
+		stack.add(G8);
 		stack.add(G9);
 		stack.add(G10);
 		stack.add(G11);
@@ -78,10 +78,10 @@ public class Calc3 {
 //		System.out.println("itd : " + itd.apply(stack));
 //		System.out.println("cw_t_rise : " + cw_t_rise.apply(stack));
 //		System.out.println("st_ueep : " + st_ueep.apply(stack));
-//		System.out.println("condensate_water_h : " + condensate_water_h.apply(stack)); // TODO 값이 다름
+//		System.out.println("condensate_water_h : " + condensate_water_h.apply(stack));
 //		System.out.println("condensate_water_f : " + condensate_water_f.apply(stack));
-//		System.out.println("condenser_heat_load : " + condenser_heat_load.apply(stack)); // TODO 값이 다름
-//		System.out.println("cond_cleanliness : " + cond_cleanliness.apply(stack)); // TODO 값이 다름
+//		System.out.println("condenser_heat_load : " + condenser_heat_load.apply(stack));
+		System.out.println("cond_cleanliness : " + cond_cleanliness.apply(stack));
 		
 	}
 	 // TODO 모든 시트 계산식에는 tag값을 받아 다른 엑셀의 계산식을 통해 값을 전달하는 것이 있음
@@ -429,9 +429,6 @@ public class Calc3 {
         inArr.add(condensateWaterF);
         double stPowerOutput = st_power_output.apply(outPutArr);
         double stEnergyIn = st_energy_in.apply(inArr);
-
-		System.out.println("stPowerOutput : " + stPowerOutput);
-		System.out.println("stEnergyIn : " + stEnergyIn);
         double st10Efficiency = stPowerOutput / stEnergyIn;
         return changeRound(st10Efficiency * 100);
     };
@@ -489,12 +486,6 @@ public class Calc3 {
         double steamFromLPBoiler1H = UniSteamCal.INSTANCE.STEAMPTH(steamFromLPBoilerP, steamFromLPBoilerT, 0);
         double condensateTemp = UniSteamCal.INSTANCE.STEAMPT(stCondenserP, 0);
         double condensateWaterToCondensorH = UniSteamCal.INSTANCE.STEAMPTH(stCondenserP, condensateTemp, 0);
-        System.out.println("steamFromHPBoiler1H : " + steamFromHPBoiler1H);
-        System.out.println("steamToCRHBoiler1H : " + steamToCRHBoiler1H);
-        System.out.println("steamFromHRHBoiler1H : " + steamFromHRHBoiler1H);
-        System.out.println("steamFromLPBoiler1H : " + steamFromLPBoiler1H);
-        System.out.println("condensateTemp : " + condensateTemp);
-        System.out.println("condensateWaterToCondensorH : " + condensateWaterToCondensorH);
         double condensateWaterF = afterCEPWaterF - condenserMakeUpWaterF;
         double stUEEP = stEnergyInSTEnergyOut(steamFromHPBoiler1F, steamFromHRHBoiler1F, steamFromLPBoiler1F, stGrossPower, steamFromHPBoiler1H, steamToCRHBoiler1H, steamFromHRHBoiler1H, steamFromLPBoiler1H, condensateWaterToCondensorH, condensateWaterF)
                 / afterCEPWaterF * 1000; // 6번

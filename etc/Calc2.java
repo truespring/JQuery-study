@@ -263,9 +263,77 @@ public class Calc2 {
 		stack.add(H322);
 		stack.add(H323);
 		stack.add(H325);
-		System.out.println(Calc2.hrsg_working_fluid_energy_gain.apply(stack));
+		System.out.println(hrsg_working_fluid_energy_gain.apply(stack));
 //		System.out.println(Calc2.hrsg_efficiency.apply(stack));
+		double F6 = 0.0447; 
+		double F7 = 137.6832;
+		double F8 = 574.9726; 
+		double F9 = 86.1158; 
+		double F10 = 33.8913;
+		double F11 = 374.8733; 
+		double F12 = 31.6008;
+		double F13 = 584.8789;
+		double F14 = 96.8963; 
+		double F15 = 3.6000; 
+		double F16 = 255.9344; 
+		double F17 = 8.8329; 
+		double F18 = 106.6696;
+//		stack.add(F6);
+//		stack.add(F7);
+//		stack.add(F8);
+//		stack.add(F9);
+//		stack.add(F10);
+//		stack.add(F11);
+//		stack.add(F12);
+//		stack.add(F13);
+//		stack.add(F14);
+//		stack.add(F15);
+//		stack.add(F16);
+//		stack.add(F17);
+//		stack.add(F18);
+//		System.out.println(Calc2.st_energy_in.apply(stack));
+		
+		double G3 =2.5516328 
+				, G5 = 24.2283607 
+				, G7 = 20.3975559 
+				, G8 = 27.8799087 
+				, G9 = 0.039780
+				, G10 = 141.2980374 
+				, G11 = 574.8329444 
+				, G12 = 88.5859843 
+				, G13 = 34.7526730 
+				, G14 = 374.6637500 
+				, G15 = 32.2686344 
+				, G16 = 581.4560869 
+				, G17 = 99.7087903 
+				, G18 = 3.5993939 
+				, G19 = 256.9000000 
+				, G20 = 9.0780124 
+				, G21 = 109.2919509 
+				, G22 = 0.0035752 
+				, G23 = 153.7523168 
+				;
 
+		stack.add(G3);
+		stack.add(G5);
+		stack.add(G7);
+		stack.add(G8);
+		stack.add(G9);
+		stack.add(G10);
+		stack.add(G11);
+		stack.add(G12);
+		stack.add(G13);
+		stack.add(G14);
+		stack.add(G15);
+		stack.add(G16);
+		stack.add(G17);
+		stack.add(G18);
+		stack.add(G19);
+		stack.add(G20);
+		stack.add(G21);
+		stack.add(G22);
+		stack.add(G23);
+//		System.out.println("cond_cleanliness : " + cond_cleanliness.apply(stack));
 	}
 
 	private static Function<List<Object>, Object> popStack = stack -> stack.remove(stack.size() - 1);
@@ -504,19 +572,41 @@ public class Calc2 {
 	// 1CC 7번
 	private static Function<List<Object>, Double> gt_gross_efficiency = stack -> {
 		// TODO 타엑셀
-		Double gtFuelCp = (Double) popStack.apply(stack), gtDensity = (Double) popStack.apply(stack),
+		Double gtDensity = (Double) popStack.apply(stack),
 				reynoldsNumber = (Double) popStack.apply(stack), lhv = (Double) popStack.apply(stack),
 				isopentane = (Double) popStack.apply(stack);
 		Double pentane = (Double) popStack.apply(stack), isobutane = (Double) popStack.apply(stack),
 				butane = (Double) popStack.apply(stack), propane = (Double) popStack.apply(stack),
 				ethane = (Double) popStack.apply(stack);
-		Double methane = (Double) popStack.apply(stack), stFrequency = (Double) popStack.apply(stack),
+		Double methane = (Double) popStack.apply(stack), nitrogen = (Double) popStack.apply(stack),
+				stFrequency = (Double) popStack.apply(stack),
 				gtGrossPowerTag = (Double) popStack.apply(stack), gasTAfterFPRH = (Double) popStack.apply(stack),
 				gasFlowRate = (Double) popStack.apply(stack);
 		Double gtEBH = (Double) popStack.apply(stack), compPin = (Double) popStack.apply(stack),
 				compTin = (Double) popStack.apply(stack), ambientRH = (Double) popStack.apply(stack),
 				ambientP = (Double) popStack.apply(stack);
 		Double ambientT = (Double) popStack.apply(stack);
+		List<Double> airArr = new ArrayList<Double>();
+		airArr.add(nitrogen);
+		airArr.add(methane);
+		airArr.add(ethane);
+		airArr.add(propane);
+		airArr.add(butane);
+		airArr.add(isobutane);
+		airArr.add(pentane);
+		airArr.add(isopentane);
+		List<Double> inputArr = new ArrayList<Double>();
+		inputArr.add(29.52290477);
+		inputArr.add(45.57590665);
+		inputArr.add(76.27677252);
+		inputArr.add(109.2312961);
+		inputArr.add(143.0678918);
+		inputArr.add(143.6499273);
+		inputArr.add(176.2804368);
+		inputArr.add(209.5530516);
+		double calcVal = getSumArr(airArr, inputArr);
+		double resultVal = calcVal / molacularWeightFuel(nitrogen, methane, ethane, propane, butane, isobutane, pentane, isopentane);
+		double gtFuelCp = resultVal * 1.0306;
 		double gtFuelEnthalpyAbove15C = gtFuelCp * (gasTAfterFPRH - 15);
 		double gtFuelQinput = gtMassFlow(gasFlowRate, reynoldsNumber, gtDensity) * (lhv + gtFuelEnthalpyAbove15C)
 				/ 3600;
@@ -697,9 +787,9 @@ public class Calc2 {
 		Double steamFromHRHBoiler1P = (Double) popStack.apply(stack), steamToCRHBoilerT = (Double) popStack.apply(stack), steamToCRHBoilerP = (Double) popStack.apply(stack); 
 		Double steamFromHPBoiler1F = (Double) popStack.apply(stack), steamFromHPBoiler1T = (Double) popStack.apply(stack), steamFromHPBoiler1P = (Double) popStack.apply(stack); 
         Double stCondenserP = (Double) popStack.apply(stack); 
-        List<Object> outPutArr = new ArrayList();
+        List<Object> outPutArr = new ArrayList<>();
         outPutArr.add(stGrossPower);
-        List<Object> inArr = new ArrayList();
+        List<Object> inArr = new ArrayList<>();
         inArr.add(stCondenserP);
         inArr.add(steamFromHPBoiler1P);
         inArr.add(steamFromHPBoiler1T);
@@ -775,12 +865,6 @@ public class Calc2 {
         double steamFromLPBoiler1H = UniSteamCal.INSTANCE.STEAMPTH(steamFromLPBoilerP, steamFromLPBoilerT, 0);
         double condensateTemp = UniSteamCal.INSTANCE.STEAMPT(stCondenserP, 0);
         double condensateWaterToCondensorH = UniSteamCal.INSTANCE.STEAMPTH(stCondenserP, condensateTemp, 0);
-        System.out.println("steamFromHPBoiler1H : " + steamFromHPBoiler1H);
-        System.out.println("steamToCRHBoiler1H : " + steamToCRHBoiler1H);
-        System.out.println("steamFromHRHBoiler1H : " + steamFromHRHBoiler1H);
-        System.out.println("steamFromLPBoiler1H : " + steamFromLPBoiler1H);
-        System.out.println("condensateTemp : " + condensateTemp);
-        System.out.println("condensateWaterToCondensorH : " + condensateWaterToCondensorH);
         double condensateWaterF = afterCEPWaterF - condenserMakeUpWaterF;
         double stUEEP = stEnergyInSTEnergyOut(steamFromHPBoiler1F, steamFromHRHBoiler1F, steamFromLPBoiler1F, stGrossPower, steamFromHPBoiler1H, steamToCRHBoiler1H, steamFromHRHBoiler1H, steamFromLPBoiler1H, condensateWaterToCondensorH, condensateWaterF)
                 / afterCEPWaterF * 1000; // 6번
@@ -810,7 +894,7 @@ public class Calc2 {
         Double steamFromHRHBoiler1F = (Double) popStack.apply(stack), steamFromHRHBoiler1T = (Double) popStack.apply(stack), steamFromHRHBoiler1P = (Double) popStack.apply(stack); 
         Double steamToCRHBoilerT = (Double) popStack.apply(stack), steamToCRHBoilerP = (Double) popStack.apply(stack), steamFromHPBoiler1F = (Double) popStack.apply(stack);
         Double steamFromHPBoiler1T = (Double) popStack.apply(stack), steamFromHPBoiler1P = (Double) popStack.apply(stack), stCondenserP = (Double) popStack.apply(stack); 
-        List<Object> ueepArr = new ArrayList();
+        List<Object> ueepArr = new ArrayList<>();
         ueepArr.add(stCondenserP);
         ueepArr.add(steamFromHPBoiler1P);
         ueepArr.add(steamFromHPBoiler1T);
@@ -826,7 +910,7 @@ public class Calc2 {
         ueepArr.add(afterCEPWaterF);
         ueepArr.add(condenserMakeUpWaterF);
         ueepArr.add(stGrossPower);
-        List<Object> waterArr = new ArrayList();
+        List<Object> waterArr = new ArrayList<>();
         waterArr.add(stCondenserP);
         double condenserHeatLoad = (st_ueep.apply(ueepArr) - condensate_water_h.apply(waterArr))
                 * (afterCEPWaterF - condenserMakeUpWaterF) / 1000;
@@ -841,7 +925,7 @@ public class Calc2 {
         Double steamToCRHBoilerT = (Double) popStack.apply(stack), steamToCRHBoilerP = (Double) popStack.apply(stack), steamFromHPBoiler1F = (Double) popStack.apply(stack);
         Double steamFromHPBoiler1T = (Double) popStack.apply(stack), steamFromHPBoiler1P = (Double) popStack.apply(stack), stCondenserP = (Double) popStack.apply(stack); 
         Double condOutCWT = (Double) popStack.apply(stack), condInCWT = (Double) popStack.apply(stack), ambientRH = (Double) popStack.apply(stack), ambientT = (Double) popStack.apply(stack);
-        List<Object> ueepArr = new ArrayList();
+        List<Object> ueepArr = new ArrayList<>();
         ueepArr.add(stCondenserP);
         ueepArr.add(steamFromHPBoiler1P);
         ueepArr.add(steamFromHPBoiler1T);
@@ -906,7 +990,6 @@ public class Calc2 {
 		Double specificEnthalpyOfFuel77degF = (Double) popStack.apply(stack),
 				specificEnthalpyOfFuelProcessTemperature = (Double) popStack.apply(stack),
 				gtHVnet59degF = (Double) popStack.apply(stack);
-		Double gtFuelNitrogenMolarFlow = (Double) popStack.apply(stack);
 		Double gtDensity = (Double) popStack.apply(stack), reynoldsNumber = (Double) popStack.apply(stack),
 				isopentane = (Double) popStack.apply(stack), pentane = (Double) popStack.apply(stack),
 				isobutane = (Double) popStack.apply(stack);
@@ -917,6 +1000,7 @@ public class Calc2 {
 				gtExhaustTemp = (Double) popStack.apply(stack), compTin = (Double) popStack.apply(stack),
 				ambientRH = (Double) popStack.apply(stack), ambientP = (Double) popStack.apply(stack),
 				ambientT = (Double) popStack.apply(stack);
+		double gtFuelNitrogenMolarFlow = nitrogen * 28.0135;
 		double hrsgGTExhaustEnergy = hrsgMassFlowOfBalanceOfAir(ambientT, ambientP, ambientRH, compTin, gtExhaustTemp,
 				gasFlowRate, gtGrossPowerTag, nitrogen, methane, ethane, propane, butane, isobutane, pentane,
 				isopentane, reynoldsNumber, gtDensity, gtFuelNitrogenMolarFlow, gtHVnet59degF,
@@ -937,7 +1021,6 @@ public class Calc2 {
 		Double specificEnthalpyOfFuel77degF = (Double) popStack.apply(stack),
 				specificEnthalpyOfFuelProcessTemperature = (Double) popStack.apply(stack),
 				gtHVnet59degF = (Double) popStack.apply(stack);
-		Double gtFuelNitrogenMolarFlow = (Double) popStack.apply(stack);
 		Double gtDensity = (Double) popStack.apply(stack), reynoldsNumber = (Double) popStack.apply(stack),
 				isopentane = (Double) popStack.apply(stack), pentane = (Double) popStack.apply(stack),
 				isobutane = (Double) popStack.apply(stack);
@@ -948,6 +1031,7 @@ public class Calc2 {
 				gtExhaustTemp = (Double) popStack.apply(stack), compTin = (Double) popStack.apply(stack),
 				ambientRH = (Double) popStack.apply(stack), ambientP = (Double) popStack.apply(stack),
 				ambientT = (Double) popStack.apply(stack);
+		double gtFuelNitrogenMolarFlow = nitrogen * 28.0135;
 		List<Double> gt11GasArr = new ArrayList<Double>();
 		gt11GasArr.add(gtNitrogen(ambientT, ambientP, ambientRH, gasFlowRate, nitrogen, methane, ethane, propane,
 				butane, isobutane, pentane, isopentane, reynoldsNumber, gtDensity, gtFuelNitrogenMolarFlow));
@@ -993,7 +1077,6 @@ public class Calc2 {
 
 	// 11HRSG 3번
 	private static Function<List<Object>, Double> hrsg_working_fluid_energy_gain = stack -> {
-		// TODO 제대로 되는지 확인 필요
 		Double hrsgLPSteamMassflow = (Double) popStack.apply(stack),
 				hrsgLPSteamTemperature = (Double) popStack.apply(stack),
 				hrsgLPSteamPressure = (Double) popStack.apply(stack),
@@ -1018,22 +1101,14 @@ public class Calc2 {
 
 		double hrsgCondensateEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(hrsgCondensatePressure, hrsgCondensateTemperature,
 				0);
-		System.out.println("hrsgCondensateEnthalpy : " + hrsgCondensateEnthalpy);
 		double fwEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(fwPressure, fwTemperature, 0);
-		System.out.println("fwEnthalpy : " + fwEnthalpy);
 		double fgHTREnthalpy = UniSteamCal.INSTANCE.STEAMPTH(fgHTRPressure, fgHTRTemperature, 0);
-		System.out.println("fgHTREnthalpy : " + fgHTREnthalpy);
 		double stColdReheatEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(stColdReheatPressure, stColdReheatTemperature, 0);
-		System.out.println("stColdReheatEnthalpy : " + stColdReheatEnthalpy);
 		double ipSystemToColdReheatEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(ipSystemToColdReheatPressure,
 				ipSystemToColdReheatTemperature, 0);
-		System.out.println("ipSystemToColdReheatEnthalpy : " + ipSystemToColdReheatEnthalpy);
 		double hrsgHPSteameEthalpy = UniSteamCal.INSTANCE.STEAMPTH(hrsgHPSteamePressure, hrsgHPSteameTemperature, 0);
-		System.out.println("hrsgHPSteameEthalpy : " + hrsgHPSteameEthalpy);
 		double hrsgHRHSteamEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(hrsgHRHSteamPressure, hrsgHRHSteamTemperature, 0);
-		System.out.println("hrsgHRHSteamEnthalpy : " + hrsgHRHSteamEnthalpy);
 		double hrsgLPSteamEnthalpy = UniSteamCal.INSTANCE.STEAMPTH(hrsgLPSteamPressure, hrsgLPSteamTemperature, 0);
-		System.out.println("hrsgLPSteamEnthalpy : " + hrsgLPSteamEnthalpy);
 
 		double hrsgCondenserProheaterEnergyIn = (hrsgCondensateEnthalpy * hrsgCondensateMassflow
 				+ fwMassflow * fwEnthalpy + fgHTRMassflow * fgHTREnthalpy) / 1000;
@@ -1100,7 +1175,6 @@ public class Calc2 {
 		Double specificEnthalpyOfFuel77degF = (Double) popStack.apply(stack),
 				specificEnthalpyOfFuelProcessTemperature = (Double) popStack.apply(stack),
 				gtHVnet59degF = (Double) popStack.apply(stack);
-		Double gtFuelNitrogenMolarFlow = (Double) popStack.apply(stack);
 		Double gtDensity = (Double) popStack.apply(stack), reynoldsNumber = (Double) popStack.apply(stack),
 				isopentane = (Double) popStack.apply(stack), pentane = (Double) popStack.apply(stack),
 				isobutane = (Double) popStack.apply(stack);
@@ -1130,7 +1204,6 @@ public class Calc2 {
 		inArr.add(isopentane);
 		inArr.add(reynoldsNumber);
 		inArr.add(gtDensity);
-		inArr.add(gtFuelNitrogenMolarFlow);
 		inArr.add(gtHVnet59degF);
 		inArr.add(specificEnthalpyOfFuelProcessTemperature);
 		inArr.add(specificEnthalpyOfFuel77degF);
@@ -1173,7 +1246,7 @@ public class Calc2 {
 
 	private static Map<String, List<Number>> calibrationResult() {
 		Map<String, List<Number>> resultMap = new HashMap<>();
-		List<Number> qiQmaxArr = new ArrayList();
+		List<Number> qiQmaxArr = new ArrayList<>();
 		qiQmaxArr.add(0.05);
 		qiQmaxArr.add(0.1);
 		qiQmaxArr.add(0.25);
@@ -1181,7 +1254,7 @@ public class Calc2 {
 		qiQmaxArr.add(0.7);
 		qiQmaxArr.add(1);
 		resultMap.put("Qi/Qmax", qiQmaxArr);
-		List<Number> qiArr = new ArrayList();
+		List<Number> qiArr = new ArrayList<>();
 		qiArr.add(128.2);
 		qiArr.add(248.5);
 		qiArr.add(621.77);
@@ -1189,7 +1262,7 @@ public class Calc2 {
 		qiArr.add(1752.2);
 		qiArr.add(2533.7);
 		resultMap.put("Qi", qiArr);
-		List<Number> reArr = new ArrayList();
+		List<Number> reArr = new ArrayList<>();
 		reArr.add(0.59);
 		reArr.add(1.14);
 		reArr.add(2.84);
@@ -1197,7 +1270,7 @@ public class Calc2 {
 		reArr.add(7.91);
 		reArr.add(11.25);
 		resultMap.put("Re", reArr);
-		List<Number> deviationArr = new ArrayList();
+		List<Number> deviationArr = new ArrayList<>();
 		deviationArr.add(-0.01);
 		deviationArr.add(0.03);
 		deviationArr.add(-0.05);
@@ -1243,10 +1316,6 @@ public class Calc2 {
 				getMatch(gtEBH, ltmpDegradation().get("t3_EBH"), 1));
 		double pEBHTestY2 = getIndex(ltmpDegradation().get("t3_PDF"),
 				getMatch(gtEBH, ltmpDegradation().get("t3_EBH"), 1) + 1);
-		System.out.println("pEBHTestX1 : " + pEBHTestX1);
-		System.out.println("pEBHTestX2 : " + pEBHTestX2);
-		System.out.println("pEBHTestY1 : " + pEBHTestY1);
-		System.out.println("pEBHTestY2 : " + pEBHTestY2);
 		double pEBHTestX = gtEBH;
 		double pGTEquivalentBoxHours = pEBHTestY1
 				+ (pEBHTestX - pEBHTestX1) * (pEBHTestY2 - pEBHTestY1) / (pEBHTestX2 - pEBHTestX1);
@@ -1274,8 +1343,8 @@ public class Calc2 {
 
 	private static Map<String, List<Number>> ltmpDegradation() {
 		Map<String, List<Number>> resultMap = new HashMap<>();
-		List<Number> t3_EBH = new ArrayList();
-		List<Number> t4_EBH = new ArrayList();
+		List<Number> t3_EBH = new ArrayList<>();
+		List<Number> t4_EBH = new ArrayList<>();
 		t3_EBH.add(200);
 		t4_EBH.add(200);
 		int i = 1000;
@@ -1286,7 +1355,7 @@ public class Calc2 {
 		}
 		resultMap.put("t3_EBH", t3_EBH);
 		resultMap.put("t4_EBH", t4_EBH);
-		List<Number> t3_PDF = new ArrayList();
+		List<Number> t3_PDF = new ArrayList<>();
 		t3_PDF.add(1.0000);
 		t3_PDF.add(0.9974);
 		t3_PDF.add(0.9948);
@@ -1339,7 +1408,7 @@ public class Calc2 {
 		t3_PDF.add(0.9763);
 		t3_PDF.add(0.9763);
 		resultMap.put("t3_PDF", t3_PDF);
-		List<Number> t4_PDF = new ArrayList();
+		List<Number> t4_PDF = new ArrayList<>();
 		t4_PDF.add(1);
 		t4_PDF.add(1.002);
 		t4_PDF.add(1.003);
@@ -1654,7 +1723,7 @@ public class Calc2 {
 	private static double gtMAirCombDry(double gasFlowRate, double nitrogen, double methane, double ethane,
 			double propane, double butane, double isobutane, double pentane, double isopentane, double reynoldsNumber,
 			double gtDensity) {
-		double pNitrogen = nitrogen / 100; // 백분율이 아니기 때문에 100으로 나눔
+		double pNitrogen = nitrogen / 100; // H는 1이 100%이기 때문에 100으로 나눠줌
 		double pMethane = methane / 100;
 		double pEthane = ethane / 100;
 		double pPropane = propane / 100;
@@ -1662,7 +1731,7 @@ public class Calc2 {
 		double pIsobutane = isobutane / 100;
 		double pPentane = pentane / 100;
 		double pIsopentane = isopentane / 100;
-		double molacularWeightFuel = 17.3741;
+		double molacularWeightFuel = molacularWeightFuel(pNitrogen, pMethane, pEthane, pPropane, pButane, pIsobutane, pPentane, pIsopentane);
 		double gtFuelMolarFlow = gtFuelGasFlow(gasFlowRate, reynoldsNumber, gtDensity) / molacularWeightFuel;
 		double gtO2MolarFlowChange = -gtFuelMolarFlow * (pNitrogen * 0 + pMethane * 2 + pEthane * 3.5 + pPropane * 5
 				+ pIsobutane * 6.5 + pButane * 6.5 + pIsopentane * 8 + pPentane * 8);
@@ -1710,7 +1779,15 @@ public class Calc2 {
 				butane, isobutane, pentane, isopentane, reynoldsNumber, gtDensity)
 				* nitrogenMoleFraction(ambientT, ambientP, ambientRH) / molecularWeight(ambientT, ambientP, ambientRH);
 		double gtMAirN2 = gtMN2;
-		double molacularWeightFuel = 17.3741;
+		double pNitrogen = nitrogen / 100; // H는 1이 100%이기 때문에 100으로 나눠줌
+		double pMethane = methane / 100;
+		double pEthane = ethane / 100;
+		double pPropane = propane / 100;
+		double pButane = butane / 100;
+		double pIsobutane = isobutane / 100;
+		double pPentane = pentane / 100;
+		double pIsopentane = isopentane / 100;
+		double molacularWeightFuel = molacularWeightFuel(pNitrogen, pMethane, pEthane, pPropane, pButane, pIsobutane, pPentane, pIsopentane);
 		double gtFuelMolarFlow = gtFuelGasFlow(gasFlowRate, reynoldsNumber, gtDensity) / molacularWeightFuel;
 		double gtN2MolarFlowChange = gtFuelMolarFlow * gtFuelNitrogenMolarFlow * 1;
 		double changeInMolarFlowOfNitrogenDueToCombustion = gtN2MolarFlowChange;
@@ -1728,8 +1805,6 @@ public class Calc2 {
 				butane, isobutane, pentane, isopentane, reynoldsNumber, gtDensity)
 				* oxygenMoleFraction(ambientT, ambientP, ambientRH) / molecularWeight(ambientT, ambientP, ambientRH);
 		double gtMAirO2 = gtMO2;
-		double molacularWeightFuel = 17.3741;
-		double gtFuelMolarFlow = gtFuelGasFlow(gasFlowRate, reynoldsNumber, gtDensity) / molacularWeightFuel;
 		double pNitrogen = nitrogen / 100; // H는 1이 100%이기 때문에 100으로 나눠줌
 		double pMethane = methane / 100;
 		double pEthane = ethane / 100;
@@ -1738,6 +1813,8 @@ public class Calc2 {
 		double pIsobutane = isobutane / 100;
 		double pPentane = pentane / 100;
 		double pIsopentane = isopentane / 100;
+		double molacularWeightFuel = molacularWeightFuel(pNitrogen, pMethane, pEthane, pPropane, pButane, pIsobutane, pPentane, pIsopentane);
+		double gtFuelMolarFlow = gtFuelGasFlow(gasFlowRate, reynoldsNumber, gtDensity) / molacularWeightFuel;
 		double gtO2MolarFlowChange = -gtFuelMolarFlow * (pNitrogen * 0 + pMethane * 2 + pEthane * 3.5 + pPropane * 5
 				+ pIsobutane * 6.5 + pButane * 6.5 + pIsopentane * 8 + pPentane * 8);
 		double changeInMolarFlowOfOxygenDueToCombustion = gtO2MolarFlowChange;
@@ -1754,8 +1831,6 @@ public class Calc2 {
 		double gtMCO2 = step1GTMAirComb(ambientT, ambientP, ambientRH, gasFlowRate, nitrogen, methane, ethane, propane,
 				butane, isobutane, pentane, isopentane, reynoldsNumber, gtDensity)
 				* carbonMoleFraction(ambientT, ambientP, ambientRH) / molecularWeight(ambientT, ambientP, ambientRH);
-		double molacularWeightFuel = 17.3741;
-		double gtFuelMolarFlow = gtFuelGasFlow(gasFlowRate, reynoldsNumber, gtDensity) / molacularWeightFuel;
 		double pNitrogen = nitrogen / 100; // H는 1이 100%이기 때문에 100으로 나눠줌
 		double pMethane = methane / 100;
 		double pEthane = ethane / 100;
@@ -1764,6 +1839,8 @@ public class Calc2 {
 		double pIsobutane = isobutane / 100;
 		double pPentane = pentane / 100;
 		double pIsopentane = isopentane / 100;
+		double molacularWeightFuel = molacularWeightFuel(pNitrogen, pMethane, pEthane, pPropane, pButane, pIsobutane, pPentane, pIsopentane);
+		double gtFuelMolarFlow = gtFuelGasFlow(gasFlowRate, reynoldsNumber, gtDensity) / molacularWeightFuel;
 		double gtCO2MolarFlowChange = gtFuelMolarFlow * (pNitrogen * 0 + pMethane * 1 + pEthane * 2 + pPropane * 3
 				+ pIsobutane * 4 + pButane * 4 + pIsopentane * 5 + pPentane * 5);
 		double gtMAirCO2 = gtMCO2;
@@ -1798,7 +1875,6 @@ public class Calc2 {
 				butane, isobutane, pentane, isopentane, reynoldsNumber, gtDensity)
 				* waterMoleFraction(ambientT, ambientP, ambientRH) / molecularWeight(ambientT, ambientP, ambientRH);
 		double gtMMAirH2O = gtMH2O;
-		double molacularWeightFuel = 17.3741;
 		double pNitrogen = nitrogen / 100; // H는 1이 100%이기 때문에 100으로 나눠줌
 		double pMethane = methane / 100;
 		double pEthane = ethane / 100;
@@ -1807,6 +1883,7 @@ public class Calc2 {
 		double pIsobutane = isobutane / 100;
 		double pPentane = pentane / 100;
 		double pIsopentane = isopentane / 100;
+		double molacularWeightFuel = molacularWeightFuel(pNitrogen, pMethane, pEthane, pPropane, pButane, pIsobutane, pPentane, pIsopentane);
 		double gtFuelMolarFlow = gtFuelGasFlow(gasFlowRate, reynoldsNumber, gtDensity) / molacularWeightFuel;
 		double gtH2OMolarFlowChange = gtFuelMolarFlow * (pNitrogen * 0 + pMethane * 2 + pEthane * 3 + pPropane * 4
 				+ pIsobutane * 5 + pButane * 5 + pIsopentane * 6 + pPentane * 6);
@@ -1930,7 +2007,7 @@ public class Calc2 {
 
 	private static Map<String, List<Double>> getGlennCoefficient() {
 		Map<String, List<Double>> resultMap = new HashMap<>();
-		List<Double> n2 = new ArrayList();
+		List<Double> n2 = new ArrayList<>();
 		n2.add(22103.715);
 		n2.add(-381.846182);
 		n2.add(6.08273836);
@@ -1942,7 +2019,7 @@ public class Calc2 {
 		n2.add(0.00E+00);
 		n2.add(2.80E+01);
 		resultMap.put("n2", n2);
-		List<Double> o2 = new ArrayList();
+		List<Double> o2 = new ArrayList<>();
 		o2.add(-34255.6342);
 		o2.add(484.700097);
 		o2.add(1.11901096);
@@ -1954,7 +2031,7 @@ public class Calc2 {
 		o2.add(0.00E+00);
 		o2.add(3.20E+01);
 		resultMap.put("o2", o2);
-		List<Double> co2 = new ArrayList();
+		List<Double> co2 = new ArrayList<>();
 		co2.add(49436.5054);
 		co2.add(-626.411601);
 		co2.add(5.30172524);
@@ -1966,7 +2043,7 @@ public class Calc2 {
 		co2.add(-3.94E+05);
 		co2.add(4.40E+01);
 		resultMap.put("co2", co2);
-		List<Double> ar = new ArrayList();
+		List<Double> ar = new ArrayList<>();
 		ar.add((double) 0);
 		ar.add((double) 0);
 		ar.add(2.5);
@@ -1978,7 +2055,7 @@ public class Calc2 {
 		ar.add((double) 0);
 		ar.add(3.99E+01);
 		resultMap.put("ar", ar);
-		List<Double> h2o = new ArrayList();
+		List<Double> h2o = new ArrayList<>();
 		h2o.add(-39479.6083);
 		h2o.add(575.573102);
 		h2o.add(0.931782653);
@@ -1992,6 +2069,32 @@ public class Calc2 {
 		resultMap.put("h2o", h2o);
 		return resultMap;
 	}
+	
+	private static double molacularWeightFuel(double nitrogen, double methane, double ethane, double propane, double butane, double isobutane, double pentane,
+			double isopentane) {
+		// CC, HRSG사용
+		List<Double> airArr = new ArrayList<>();
+		airArr.add(nitrogen);
+		airArr.add(methane);
+		airArr.add(ethane);
+		airArr.add(propane);
+		airArr.add(butane);
+		airArr.add(isobutane);
+		airArr.add(pentane);
+		airArr.add(isopentane);
+		List<Double> inputArr = new ArrayList<>();
+		inputArr.add(28.0134);
+		inputArr.add(16.04206);
+		inputArr.add(30.06844);
+		inputArr.add(44.09482);
+		inputArr.add(58.1212);
+		inputArr.add(58.1212);
+		inputArr.add(72.14758);
+		inputArr.add(72.14758);
+		double molacularWeightFuel = getSumArr(airArr, inputArr);
+		return molacularWeightFuel;
+	}
+
 
 	// product(arr) arr의 각 값들을 전부 곱함
 	private static double getProduct(List<Double> list) {
