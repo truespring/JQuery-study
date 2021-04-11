@@ -33,7 +33,7 @@ public class Contains {
 //			}
 //		}
 		
-		if(adminRoles.contains(userRole)) isAdmin = true;
+		if(adminRoles.contains(userRole)) isAdmin = true; // 위의 주석과 같은 기능
 		
 		return isAdmin;
 	}
