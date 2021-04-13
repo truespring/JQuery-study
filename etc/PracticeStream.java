@@ -7,7 +7,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.OptionalInt;
 import java.util.Random;
 import java.util.regex.Pattern;
@@ -17,6 +19,8 @@ import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+
+import com.doosan.test.SampleVO;
 
 public class PracticeStream {
 	
@@ -299,24 +303,73 @@ public class PracticeStream {
 		// 병렬 스트림이 무조건 스퀀셜보다 좋은 것은 아니다. 오히려 간단한 경우에는 이렇게 부가적인 처리가 필요하기 때문에 오히려 느릴 수도 있다.
 		
 		// 3.3 Collecting
+		// collect 메소드는 또 다른 종료 작업이다. Collector 타입의 인자를 받아서 처리를 하는데, 자주 사용하는 작업은 Collectors 객체에서 제공하고 있다.
+		List<Product> productList_2 = 
+				Arrays.asList(new Product(23, "potatoes"),
+							  new Product(14, "orange"),
+							  new Product(13, "lemon"),
+							  new Product(23, "bread"),
+							  new Product(13, "sugar"));
+		// 주소값을 반환
+		
+		// Collectors.toList()
+		// 스트림에서 작업한 결과를 담은 리스트로 반환한다.
+		List<String> collectorCollection =
+				productList_2.stream()
+						.map(Product::getName)
+						.collect(Collectors.toList());
+//		System.out.println(collectorCollection);
+		// [potatoes, orange, lemon, bread, sugar]
+		
+		// Collectors.joining()
+		// 스트림에서 작업한 결과를 하나의 스트링으로 이어 붙일 수 있다.
+		String listToString = 
+				productList_2.stream()
+					.map(Product::getName)
+					.collect(Collectors.joining());
+		// potatoesorangelemonbreadsugar
+		
+		/**
+		 * 또한 세 개의 인자를 받을 수 있다.
+		 * delimiter : 각 요소 중간에 들어가 요소를 구분시켜주는 구분자
+		 * prefix : 결과 맨 앞에 붙는 문자
+		 * suffix : 결과 맨 뒤에 붙는 문자
+		 */
+		String listToString_2 = 
+				productList_2.stream()
+				.map(Product::getName)
+				.collect(Collectors.joining(",", "<", ">"));
+		// <potatoes, orange, lemon, bread, sugar>
+		
+		// Collectors.averageingInt() 추후에 이어서 작성
 		
 		
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		PracticeStream ps = new PracticeStream();
+		System.out.println("getModelList : " + ps.getModelList());
+	}
+	
+	public List<Map<String, Object>> getModelList() {
+		List<Map<String, Object>> returnList = new ArrayList<>();
+		List<SampleVO> voList = new ArrayList<>();
+		for(int i = 0; i < 4; i++) {
+			SampleVO model = new SampleVO();
+			model.setNum(1);
+			model.setS("s");
+			model.setStr("str");
+			voList.add(model);
+		}
+		returnList.addAll(voList.stream().map(this::setMapData).collect(Collectors.toList()));
+		return returnList;
+	}
+	
+	private Map<String, Object> setMapData(SampleVO vo) {
+		Map<String, Object> returnMap = new HashMap<>();
+		returnMap.put("str", vo.getStr());
+		returnMap.put("num", vo.getNum());
+		returnMap.put("s", vo.getS());
+		return returnMap;
 	}
 }
