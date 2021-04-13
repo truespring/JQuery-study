@@ -16,6 +16,8 @@ public class GFG {
 	
 	
 	public static void main(String[] args) {
+		
+		// 링크 : https://ponyozzang.tistory.com/406
 
 		// forEach 각 상황별 사용법
 		
