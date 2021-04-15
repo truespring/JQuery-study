@@ -41,7 +41,12 @@ public class GFG {
 		vo.setStr("3");
 		List<SampleVO> voList = new ArrayList<SampleVO>();
 		voList.add(vo);
+//		voList.add(vo);
 		System.out.println("voList : " + voList.get(0).getNum());
+		voList.stream().forEach(item -> {
+			if(item.getNum() == 1) System.out.println("item.getNum : " + item.getNum());
+			else System.out.println("item.getS : " + item.getS());
+		});
 		/*
 		 * map은 요소들을 특정조건에 해당하는 값으로 변환
 		 * filter는 요소들을 조건에 따라 걸러내는 작업
