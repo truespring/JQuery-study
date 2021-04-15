@@ -57,10 +57,27 @@ public class GFG {
 		System.out.println("newList : " + newList); // [2]
 		System.out.println("--------------------");
 		int cnt = voList.stream().filter(item -> item.getS() == "2").collect(Collectors.toList()).size();
+		int cnt_2 = voList.stream().map(item -> item.getS() == "2").collect(Collectors.toList()).size();
 		System.out.println("cnt : " + cnt); // 1
+		System.out.println("cnt_2 : " + cnt_2); // 1
 		System.out.println("--------------------");
 		int idx = voList.stream().filter(item -> item.getStr().equals("3")).collect(Collectors.toList()).size();
 		System.out.println("idx : " + idx); // 1
+		System.out.println("--------------------");
+		
+		/**
+		 * 링크 : https://dpdpwl.tistory.com/81
+		 * joining 메소드를 이용해 리스트를 조인의 기준으로 배치 할 수 있다. String 으로 반환.
+		 */
+		ArrayList<String> list_2 = new ArrayList<>(Arrays.asList("Apple","Banana","Melon","Grape","Strawberry"));
+		System.out.println(list_2.stream().map(s->s.toUpperCase()).collect(Collectors.joining(" "))); // APPLE BANANA MELON GRAPE STRAWBERRY
+		System.out.println(list_2.stream().map(s->s.toUpperCase()).collect(Collectors.toList())); // [APPLE, BANANA, MELON, GRAPE, STRAWBERRY]
+		System.out.println(list_2.stream().map(String::toUpperCase).collect(Collectors.toList())); // [APPLE, BANANA, MELON, GRAPE, STRAWBERRY]
+		System.out.println("--------------------");
+		
+		System.out.println(list_2.stream().filter(t->t.length()>5).collect(Collectors.joining(" "))); // Banana Strawberry
+		System.out.println(list_2.stream().filter(t->t.length()>5).collect(Collectors.toList())); // [Banana, Strawberry]
+		System.out.println(list_2.stream().map(t->t.length()>5).collect(Collectors.toList())); // [false, true, false, false, true]
 		System.out.println("--------------------");
 		
 		// 2. for in 문
