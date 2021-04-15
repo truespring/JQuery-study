@@ -2,11 +2,12 @@ package com.doosan.test.prac;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Contains {
 	public static void main(String[] args) {
 		
-		Long a = 4L;
+		Long a = 7L;
 		try {
 			boolean chkA = isAdministrator(a);
 			System.out.println(chkA);
@@ -32,8 +33,11 @@ public class Contains {
 //				break;
 //			}
 //		}
-		
-		if(adminRoles.contains(userRole)) isAdmin = true; // 위의 주석과 같은 기능
+		if(adminRoles.stream().filter(item -> item == userRole).collect(Collectors.toList()).size() > 0) {
+			isAdmin = true;
+			System.out.println(isAdmin);
+		} else if(adminRoles.contains(userRole)) isAdmin = true; // 위의 주석과 같은 기능
+		else isAdmin = false;
 		
 		return isAdmin;
 	}
