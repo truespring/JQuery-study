@@ -6,13 +6,18 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.IntSummaryStatistics;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalInt;
 import java.util.Random;
+import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
@@ -341,7 +346,99 @@ public class PracticeStream {
 				.collect(Collectors.joining(",", "<", ">"));
 		// <potatoes, orange, lemon, bread, sugar>
 		
-		// Collectors.averageingInt() 추후에 이어서 작성
+		// Collectors.averageingInt()
+		// 숫자 값의 평균을 낸다
+		Double averageAmount = 
+				productList_2.stream()
+					.collect(Collectors.averagingInt(Product::getAmount));
+		// 17.2
+		
+		// Collectors.summingInt()
+		// 숫자값의 합을 낸다.
+		Integer summingAmount = 
+				productList_2.stream()
+					.collect(Collectors.summingInt(Product::getAmount));
+		// 86
+		Integer summingAmount_2 = 
+				productList_2.stream()
+					.mapToInt(Product::getAmount)
+					.sum(); // 86
+		
+		// Collectors.summarizingInt()
+		// 합계와 평균 모두 한 번에 얻을 수 있는 방법
+		IntSummaryStatistics statistics = 
+				productList_2.stream()
+					.collect(Collectors.summarizingInt(Product::getAmount));
+		// IntSummaryStatistics {count=5, sum=86, min=13, average=17.200000, max=23}
+		// 갯수, 합계, 평균, 최소, 최대
+		
+		// Collectors.groupingBy()
+		// 특정 조건으로 요소들을 그룹지을 수 있다.
+		Map<Integer, List<Product>> collectorMapOfLists =
+				productList_2.stream()
+					.collect(Collectors.groupingBy(Product::getAmount));
+		/**
+		 *  {23=[Product{amount=23, name='potatoes'}, 
+			     Product{amount=23, name='bread'}], 
+			 13=[Product{amount=13, name='lemon'}, 
+			     Product{amount=13, name='sugar'}], 
+			 14=[Product{amount=14, name='orange'}]}
+		 */
+		
+		// Collectors.paritioningBy()
+		// 위의 groupingBy 함수형 인터페이스 Function 을 이용해서 특정 값을 기준으로 스트림 내 요소들을 묶었다면, partitioningBy 는 함수형 인터페이스 Predicate 를 받는다. Predicate 는 인자를 받아서 boolean 값을 반환한다.
+		Map<Boolean, List<Product>> mapPartitioned = 
+				productList_2.stream()
+					.collect(Collectors.partitioningBy(el -> el.getAmount() > 15));
+		/**
+		 *  {false=[Product{amount=14, name='orange'}, 
+			        Product{amount=13, name='lemon'}, 
+			        Product{amount=13, name='sugar'}], 
+			 true=[Product{amount=23, name='potatoes'}, 
+			       Product{amount=23, name='bread'}]}
+		 */
+
+		// Collectors.collectingAndThen()
+		// 특정 타입으로 결과를 collect 한 이후에 추가 작업이 필요한 경우에 사용할 수 있다. 이 메소드의 시그니쳐는 다음과 같다. finisher 는 collect 를 한 후에 실행할 작업을 의미한다.
+		// Collectors.toSet 을 이용해서 결과를 Set 으로 collect 한 후 수정불가한 Set 으로 변환하는 작업하는 코드이다.
+		Set<Product> unmodifiableSet = 
+				productList_2.stream()
+					.collect(Collectors.collectingAndThen(Collectors.toSet(), 
+														  Collections::unmodifiableSet));
+		
+		// Collector.of()
+		// collector 를 직접 만들 수도 있다.
+		Collector<Product, ?, LinkedList<Product>> toLinkedList =
+				Collector.of(LinkedList::new, 
+							 LinkedList::add, 
+							 (first, second) -> {
+								first.addAll(second);
+								return first;
+							 });
+		
+		LinkedList<Product> linkedListOfPersons = 
+				productList_2.stream()
+					.collect(toLinkedList);
+		
+		// 3.4 Matching
+		// 매칭은 조건식 람다 Predicate 를 받아서 해당 조건을 만족하는 요소가 있는지 체크한 결과를 반환한다. 다음과 같은 세 가지 메소드가 있다.
+		/**
+		 * anyMatch : 하나라도 조건을 만족하는 요소가 있는지
+		 * allMatch : 모두 조건을 만족하는지
+		 * noneMatch : 모두 조건을 만족하지 않는지
+		 */
+		List<String> names_2 = Arrays.asList("Eric", "Elena", "Java");
+		boolean anyMatch = names_2.stream()
+				.anyMatch(name -> name.contains("a"));
+		boolean allMatch = names_2.stream()
+				.allMatch(name -> name.length() > 3);
+		boolean noneMatch = names_2.stream()
+				.noneMatch(name -> name.endsWith("s"));
+		// 모두 true
+		
+		// 3.5 Iterating
+		// forEach 는 요소를 돌면서 실행되는 최종 작업이다. 보통 System.out.println 메소드를 넘겨서 결과를 출력할 때 사용한다. peek 와는 중간 작업과 최종 작업의 차이가 있다.
+		names_2.stream().forEach(System.out::println);
 		
 		
 		
