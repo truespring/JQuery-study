@@ -1,6 +1,7 @@
 package com.doosan.test.prac2;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,7 +44,7 @@ public class HighStream {
 		    return el.substring(0, 3);
 		  })
 		  .skip(2)
-		  .collect(Collectors.toList());
+		  .collect(Collectors.toList()); // 3
 		
 		System.out.println(counter);
 		
@@ -53,7 +54,7 @@ public class HighStream {
 				    wasCalled();
 				    return el.substring(0, 3);
 				  })
-				  .collect(Collectors.toList());
+				  .collect(Collectors.toList()); // 1
 		
 		// 3. 스트림 재사용
 		// 종료 작업을 하지 않는 한 하나의 인스턴스로서 계속해서 사용이 가능하다. 하지만 종료 작업을 하는 순간 스트림이 닫히기 때문에 재사용은 할 수 없다. 스트림은 저장된 데이터를 꺼내서 처리하는 용도이지 데이터를 저장하려는 목적으로 설계되지 않았기 때문이다.
@@ -73,5 +74,53 @@ public class HighStream {
 		Optional<String> firstElement_2 = names.stream().findFirst();
 		Optional<String> anyElement_2 = names.stream().findAny();
 		// 데이터를 List 에 저장하고 필요할 때마다 스트림을 생성해 사용한다.
+		
+		// 4. 지연 처리
+		// 스트림에서 최종 결과는 최종 작업이 이루어질 때 계산된다.
+		List<String> list_2 = Arrays.asList("Eric", "Elena", "Java");
+		counter = 0;
+		Stream<String> stream_2 = list_2.stream()
+										.filter(el -> {
+											wasCalled();
+											return el.contains("a");
+										});
+		System.out.println(counter); // 0
+		// 최종 작업이 실행되지 않아서 실제로 스트림의 연산이 실행되지 않았기 때문이다. 최종 작업인 collect 메소드를 호출한 결과 3이 출력된다.
+		list_2.stream().filter(el -> {
+			wasCalled();
+			return el.contains("a");
+		}).collect(Collectors.toList());
+		System.out.println(counter); // 3
+		
+		// 5. Null-safe 스트림 생성하기
+		// NullPointerException 은 개발 시 흔히 발생하는 예외이다. Optional 을 이용해서 null 에 안전한 스트림을 생선해본다.
+		List<Integer> intList = Arrays.asList(1, 2, 3);
+		List<String> strList = Arrays.asList("a", "b", "c");
+		
+		Stream<Integer> intStream = 
+				collectionToStream(intList); // [1, 2, 3]
+		Stream<String> strStream = 
+				collectionToStream(strList); // [a, b, c]
+		// null 테스트.
+		List<String> nullList = null;
+		
+		nullList.stream()
+				.filter(str -> str.contains("a"))
+				.map(String::length)
+				.forEach(System.out::println); // NPE!
+		
+		collectionToStream(nullList)
+			.filter(str -> str.contains("a"))
+			.map(String::length)
+			.forEach(System.out::println); // []
+		
+	}
+	
+	// 인자로 받은 컬렉션 객체를 이용해 옵셔널 객체를 만들고 스트림을 생성 후 반환하는 메소드이다. 만약 컬렉션이 비어있는 경우라면 빈 스트림을 반환하도록 한다.
+	public static <T> Stream<T> collectionToStream(Collection<T> collection) {
+		return Optional
+				.ofNullable(collection)
+				.map(Collection::stream)
+				.orElseGet(Stream::empty);
 	}
 }
