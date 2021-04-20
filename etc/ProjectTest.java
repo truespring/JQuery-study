@@ -47,5 +47,24 @@ public class ProjectTest {
 			e.printStackTrace();
 		}
 		
+		// 기본 자료형
+		String str_1 = "apple";
+		String str_2 = "apple";
+		// 참조형
+		String str_3 = new String("apple");
+		String str_4 = new String("apple");
+		
+		printResult(str_1 == str_2);
+		printResult(str_1.equals(str_2));
+		printResult(str_3 == str_1);
+		printResult(str_3.equalsIgnoreCase("AppLE")); // 대소문자 구분 없음
+		
+	}
+	
+	public static void printResult(boolean result) {
+		if(result)
+			System.out.println("같다");
+		else
+			System.out.println("다르다");
 	}
 }
