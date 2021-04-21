@@ -1,7 +1,5 @@
 package com.doosan.test.prac2;
 
-import java.util.List;
-
 public class EnumTest {
 	// ¸µÅ© : https://opentutorials.org/course/2517/14151
 	enum Fruit {
@@ -76,5 +74,14 @@ class EnumTest2 {
 			System.out.println(f + ", " + f.getColor());
 		}
 		Fruit[] fruitArr = Fruit.values();
+	}
+}
+
+class EnumTest3 {
+	
+	public static void main(String[] args) {
+		
+		Fruit2 type = Fruit2.Apple;
+		System.out.println(type);
 	}
 }
