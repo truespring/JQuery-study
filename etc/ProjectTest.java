@@ -59,6 +59,34 @@ public class ProjectTest {
 		printResult(str_3 == str_1);
 		printResult(str_3.equalsIgnoreCase("AppLE")); // 대소문자 구분 없음
 		
+		String msg = "ab";
+		msg += "\n" + "aa";
+		System.out.println(msg);
+		
+		for(int i = 0; i < 10; i++) {
+			System.out.println("1 : " + i);
+			if(i >= 3) {
+				System.out.println("3 : " + i);
+				continue;
+			}
+			System.out.println("2 : " + i);
+		}
+		
+		Object result = true;
+		if((Boolean) result) {
+			result = false;
+		}
+		System.out.println(result);
+		
+		System.out.println("result : " + isNull("a"));
+		
+		String chkStr = "N";
+		//chkStr = null;
+		if(chkStr != null && chkStr.equals("Y")) {
+			chkStr = "a";
+		}
+		System.out.println("chkStr : " + chkStr);
+		
 	}
 	
 	public static void printResult(boolean result) {
@@ -66,5 +94,14 @@ public class ProjectTest {
 			System.out.println("같다");
 		else
 			System.out.println("다르다");
+	}
+	
+	public static boolean isNull(Object value) {
+		if(value == null) {
+			return true;
+		} else {
+			String s = value.toString().toUpperCase();
+			return s.equals("") || s.equals("NULL");
+		}
 	}
 }
