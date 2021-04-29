@@ -12,10 +12,10 @@ public class BuilderTest {
 				.carbohydrate(27)
 				.build();
 		cocaCola.setVariable(12);
+		System.out.println(cocaCola.toString());
 	}
 }
 
-@SuppressWarnings("unused")
 class NutritionFact {
 	private final int SERVING_SIZE;
 	private final int SERVINGS;
@@ -73,6 +73,12 @@ class NutritionFact {
 			return new NutritionFact(this);
 		}
 
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("SERVING_SIZE : %s, SERVINGS : %s, CALORIES : %s, FAT : %s, SODIUM : %s, CARBOHYDRATE : %s", 
+				this.SERVING_SIZE, this.SERVINGS, this.CALORIES, this.FAT, this.SODIUM, this.CARBOHYDRATE);
 	}
 
 	private NutritionFact(Builder builder) {
