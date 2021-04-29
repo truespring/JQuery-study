@@ -24,8 +24,14 @@ public class SortTest {
 			System.out.println(a.toString());
 		}
 		System.out.println("===========");
-		voList.sort((o1, o2) -> o1.getS().compareTo(o2.getS())); // 오름차순정렬
 		
+		voList.sort((o1, o2) -> o1.getS().compareTo(o2.getS())); // 문자열 오름차순정렬
+		for(SampleVO a : voList) {
+			System.out.println(a.toString());
+		}
+		System.out.println("===========");
+		
+		voList.sort((o1, o2) -> Long.compare(o1.getNum(), o2.getNum())); // 숫자형 오름차순정렬
 		for(SampleVO a : voList) {
 			System.out.println(a.toString());
 		}
