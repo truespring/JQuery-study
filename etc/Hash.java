@@ -10,12 +10,14 @@ import java.util.function.Predicate;
 public class Hash {
 
 	public static void main(String[] args) {
-		Map<String, String> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
 		String subject = "subject";
 		String name = "gyuhwan";
 		result.put("subject", subject);
 		result.put("name", name);
+		result.put("result", true);
 		System.out.println("map : " + result);
+		System.out.println("result name : " + result.get("name"));
 		Map<String, List<Number>> mapArr = new HashMap<>();
 		List<Number> numArr = new ArrayList<Number>();
 		numArr.add(1);
