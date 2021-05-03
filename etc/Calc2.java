@@ -8,8 +8,6 @@ import java.util.function.Function;
 
 import com.doosan.test.JnaUnisteam.UniSteamCal;
 
-import java.util.function.Function;
-
 public class Calc2 {
 
 	public static void main(String[] args) {
@@ -36,7 +34,7 @@ public class Calc2 {
 		double E22 = 422.80726;
 		double E23 = 0.97995;
 		double E24 = 60.00273;
-		double E26 = 0.2782;
+		double E26 = 0.1033;
 		double E27 = 92.4729;
 		double E28 = 5.3640;
 		double E29 = 1.2638;
@@ -176,31 +174,32 @@ public class Calc2 {
 //		System.out.println(cond_cleanliness.apply(stack)); // OK
 		System.out.println();
 		// HRSG
-		double H289 = 103.181886;
-		double H290 = 24.432147;
-		double H291 = 32.848303;
-		double H293 = 15.154145;
-		double H294 = 20.365073;
-		double H295 = 156.873718;
-		double H297 = 9.281624;
-		double H298 = 24.324887;
-		double H299 = 79.570820;
-		double H302 = 33.884587;
-		double H303 = 375.911285;
-		double H305 = 86.443660;
-		double H306 = 33.835278;
-		double H307 = 319.205026;
-		double H309 = 10.605549;
-
-		double H312 = 140.490514;
-		double H313 = 585.878735;
-		double H315 = 85.987695;
-		double H317 = 31.574937;
-		double H318 = 584.844979;
-		double H320 = 97.140528;
-		double H322 = 3.764077;
-		double H323 = 261.359197;
-		double H325 = 8.490228;
+		double H270 = 182.46199088;
+//		double H289 = 103.181886;
+//		double H290 = 24.432147;
+//		double H291 = 32.848303;
+//		double H293 = 15.154145;
+//		double H294 = 20.365073;
+//		double H295 = 156.873718;
+//		double H297 = 9.281624;
+//		double H298 = 24.324887;
+//		double H299 = 79.570820;
+//		double H302 = 33.884587;
+//		double H303 = 375.911285;
+//		double H305 = 86.443660;
+//		double H306 = 33.835278;
+//		double H307 = 319.205026;
+//		double H309 = 10.605549;
+//
+//		double H312 = 140.490514;
+//		double H313 = 585.878735;
+//		double H315 = 85.987695;
+//		double H317 = 31.574937;
+//		double H318 = 584.844979;
+//		double H320 = 97.140528;
+//		double H322 = 3.764077;
+//		double H323 = 261.359197;
+//		double H325 = 8.490228;
 
 		stack.add(E3);
 		stack.add(E4);
@@ -219,6 +218,7 @@ public class Calc2 {
 		stack.add(E31);
 		stack.add(E32);
 		stack.add(E33);
+		stack.add(H270);
 //		stack.add(H289);
 //		stack.add(H290);
 //		stack.add(H291);
@@ -244,9 +244,11 @@ public class Calc2 {
 //		stack.add(H323);
 //		stack.add(H325);
 //		System.out.println("hrsg_energy_in : " + hrsg_energy_in.apply(stack));
+		System.out.println("stack size : " + stack.size()); // 18
 		System.out.println("hrsg_energy_out : " + hrsg_energy_out.apply(stack));
 //		System.out.println("hrsg_working_fluid_energy_gain : " + hrsg_working_fluid_energy_gain.apply(stack));
 //		System.out.println("hrsg_efficiency : " + hrsg_efficiency.apply(stack));
+		
 	}
 
 	private static Function<List<Object>, Object> popStack = stack -> stack.remove(stack.size() - 1);
@@ -954,7 +956,7 @@ public class Calc2 {
 
 	// 11HRSG 2번
 	private static Function<List<Object>, Double> hrsg_energy_out = stack -> {
-		Double isopentane = (Double) popStack.apply(stack);
+		Double hrsgStackTemperature = (Double) popStack.apply(stack), isopentane = (Double) popStack.apply(stack);
 		Double pentane = (Double) popStack.apply(stack), isobutane = (Double) popStack.apply(stack),
 				butane = (Double) popStack.apply(stack), propane = (Double) popStack.apply(stack),
 				ethane = (Double) popStack.apply(stack);
@@ -980,35 +982,32 @@ public class Calc2 {
 				isobutane, pentane, isopentane, reynoldsNumber, gtDensity));
 		gt11GasArr.add(gtWater(ambientT, ambientP, ambientRH, gasFlowRate, nitrogen, methane, ethane, propane, butane,
 				isobutane, pentane, isopentane, reynoldsNumber, gtDensity));
-		List<Number> airArr = new ArrayList<>();
-		airArr.add(26.9927);
-		airArr.add(23.965);
-		airArr.add(22.6741);
-		airArr.add(13.4997);
-		airArr.add(48.6042);
+		List<Double> airArr = stackEnthalpyCombProduct(hrsgStackTemperature);
 		double hrsgStackEnthalpyCombProduct = getSumArr(gt11GasArr, airArr);
+		
 		List<Double> massAirArr = new ArrayList<>();
 		massAirArr.add(mFN2(ambientT, ambientP, ambientRH));
 		massAirArr.add(mFO2(ambientT, ambientP, ambientRH));
 		massAirArr.add(mFCo2(ambientT, ambientP, ambientRH));
 		massAirArr.add(mFAr2(ambientT, ambientP, ambientRH));
 		massAirArr.add(mFH2O(ambientT, ambientP, ambientRH));
-		List<Number> balanceAirArr = new ArrayList<>();
-		balanceAirArr.add(26.9927);
-		balanceAirArr.add(23.965);
-		balanceAirArr.add(22.6741);
-		balanceAirArr.add(13.4997);
-		balanceAirArr.add(48.6042);
-		double hrsgStackEnthalpyBalanceOfAir = getSumArr(massAirArr, balanceAirArr);
+		double hrsgStackEnthalpyBalanceOfAir = getSumArr(massAirArr, airArr);
+		
 		double hrsgStackEnergy = gtMcombprod(ambientT, ambientP, ambientRH, gasFlowRate, nitrogen, methane, ethane,
 				propane, butane, isobutane, pentane, isopentane, reynoldsNumber, gtDensity)
 				* hrsgStackEnthalpyCombProduct
 				+ hrsgMassFlowOfBalanceOfAir(ambientT, ambientP, ambientRH, compTin, gtExhaustTemp, gasFlowRate,
 						gtGrossPowerTag, nitrogen, methane, ethane, propane, butane, isobutane, pentane, isopentane,
 						reynoldsNumber, gtDensity, gtFuelNitrogenMolarFlow) * hrsgStackEnthalpyBalanceOfAir;
+		System.out.println("H183 : " + gtMcombprod(ambientT, ambientP, ambientRH, gasFlowRate, nitrogen, methane, ethane,
+				propane, butane, isobutane, pentane, isopentane, reynoldsNumber, gtDensity));
+		System.out.println("H262 : " +  hrsgMassFlowOfBalanceOfAir(ambientT, ambientP, ambientRH, compTin, gtExhaustTemp, gasFlowRate,
+				gtGrossPowerTag, nitrogen, methane, ethane, propane, butane, isobutane, pentane, isopentane,
+				reynoldsNumber, gtDensity, gtFuelNitrogenMolarFlow));
 		double energyOut = hrsgStackEnergy * 1054.8 / 1000000 / 3600;
+		System.out.println("H284 : " + hrsgStackEnergy);
 		return changeRound(energyOut);
-	};
+	}; // TODO 2번 작업중 
 
 	// 11HRSG 3번
 	private static Function<List<Object>, Double> hrsg_working_fluid_energy_gain = stack -> {
@@ -1156,7 +1155,6 @@ public class Calc2 {
 	private static double gtMassFlow(double gasFlowRate, double reynoldsNumber, double gtDensity) {
 		List<Number> arr = calibrationResult().get("Re");
 		List<Number> arr2 = calibrationResult().get("Deviation");
-		System.out.println("reynoldsNumber : " + reynoldsNumber);
 		double gtFlowDeviationTestX1 = getIndex(arr, getMatch(reynoldsNumber, arr, 1));
 		double gtFlowDeviationTestX2 = getIndex(arr, getMatch(reynoldsNumber, arr, 1) + 1);
 		double gtFlowDeviationTestY1 = getIndex(arr2, getMatch(reynoldsNumber, arr, 1));
@@ -1576,27 +1574,27 @@ public class Calc2 {
 	};
 
 	private static double nitrogenMoleFraction(double ambientT, double ambientP, double ambientRH) {
-		double nitrogenMoleFraction = fractionOfDryAir(ambientT, ambientP, ambientRH) * 0.78084 * 100;
+		double nitrogenMoleFraction = fractionOfDryAir(ambientT, ambientP, ambientRH) * 0.78084;
 		return nitrogenMoleFraction;
 	};
 
 	private static double oxygenMoleFraction(double ambientT, double ambientP, double ambientRH) {
-		double oxygenMoleFraction = fractionOfDryAir(ambientT, ambientP, ambientRH) * 0.209476 * 100;
+		double oxygenMoleFraction = fractionOfDryAir(ambientT, ambientP, ambientRH) * 0.209476;
 		return oxygenMoleFraction;
 	};
 
 	private static double argonMoleFraction(double ambientT, double ambientP, double ambientRH) {
-		double argonMoleFraction = fractionOfDryAir(ambientT, ambientP, ambientRH) * 0.009365 * 100;
+		double argonMoleFraction = fractionOfDryAir(ambientT, ambientP, ambientRH) * 0.009365;
 		return argonMoleFraction;
 	};
 
 	private static double carbonMoleFraction(double ambientT, double ambientP, double ambientRH) {
-		double carbonMoleFraction = fractionOfDryAir(ambientT, ambientP, ambientRH) * 0.000319 * 100;
+		double carbonMoleFraction = fractionOfDryAir(ambientT, ambientP, ambientRH) * 0.000319;
 		return carbonMoleFraction;
 	};
 
 	private static double waterMoleFraction(double ambientT, double ambientP, double ambientRH) {
-		double waterMoleFraction = (1 - fractionOfDryAir(ambientT, ambientP, ambientRH)) * 100;
+		double waterMoleFraction = (1 - fractionOfDryAir(ambientT, ambientP, ambientRH));
 		return waterMoleFraction;
 	};
 
@@ -1653,8 +1651,8 @@ public class Calc2 {
 		double mwOfGas = molacularWeightFuel(pNitrogen, pMethane, pEthane, pPropane, pButane, pIsobutane, pPentane,
 				pIsopentane);
 		double gtFuelMolarFlow = gtFuelGasFlow(gasFlowRate, reynoldsNumber, gtDensity) / mwOfGas;
-		double gtO2MolarFlowChange = -gtFuelMolarFlow * (nitrogen * 0 + methane * 2 + ethane * 3.5 + propane * 5
-				+ isobutane * 6.5 + butane * 6.5 + isopentane * 8 + pentane * 8);
+		double gtO2MolarFlowChange = -gtFuelMolarFlow * (pNitrogen * 0 + pMethane * 2 + pEthane * 3.5 + pPropane * 5
+				+ pIsobutane * 6.5 + pButane * 6.5 + pIsopentane * 8 + pPentane * 8);
 		double H116 = gtO2MolarFlowChange;
 		double gtMAirCombDry = -H116 / 0.209476 * 28.9651159;
 		return gtMAirCombDry;
@@ -1718,7 +1716,7 @@ public class Calc2 {
 						pButane, pIsobutane, pPentane, pIsopentane, reynoldsNumber, gtDensity);
 		double gtNitrogen = gtMFcombprodN2;
 		return gtNitrogen;
-	}; // TODO 변경
+	};
 
 	private static double gtOxygen(double ambientT, double ambientP, double ambientRH, double gasFlowRate,
 			double nitrogen, double methane, double ethane, double propane, double butane, double isobutane,
@@ -1941,6 +1939,23 @@ public class Calc2 {
 				/ getGlennCoefficient().get(property).get(9) / 2.326;
 		return result;
 	};
+	
+	private static List<Double> stackEnthalpyCombProduct(double hrsgStackTemperature) {
+		double degChrsgStackTemperature = (hrsgStackTemperature - 32) * 5 / 9;
+		double gtHAInNitrogen = gtHResult(degChrsgStackTemperature, "n2");
+		double gtHAInOxygen = gtHResult(degChrsgStackTemperature, "o2");
+		double gtHAInCarbonDioxide = gtHResult(degChrsgStackTemperature, "co2");
+		double gtHAInArgon = gtHResult(degChrsgStackTemperature, "ar");
+		double gtHAInWater = gtHResult(degChrsgStackTemperature, "h2o");
+
+		List<Double> airArr = new ArrayList<>();
+		airArr.add(gtHAInNitrogen);
+		airArr.add(gtHAInOxygen);
+		airArr.add(gtHAInCarbonDioxide);
+		airArr.add(gtHAInArgon);
+		airArr.add(gtHAInWater);
+		return airArr;
+	}
 
 	private static Map<String, List<Double>> getGlennCoefficient() {
 		Map<String, List<Double>> resultMap = new HashMap<>();
@@ -1949,36 +1964,36 @@ public class Calc2 {
 		n2.add(-381.846182);
 		n2.add(6.08273836);
 		n2.add(-0.008530914);
-		n2.add(1.38E-05);
-		n2.add(-9.63E-09);
-		n2.add(2.52E-12);
-		n2.add(7.11E+02);
+		n2.add(0.0000138465);
+		n2.add(-0.00000000962579);
+		n2.add(0.00000000000251971);
+		n2.add(710.846086);
 		n2.add(0.00E+00);
-		n2.add(2.80E+01);
+		n2.add(28.0134);
 		resultMap.put("n2", n2);
 		List<Double> o2 = new ArrayList<>();
 		o2.add(-34255.6342);
 		o2.add(484.700097);
 		o2.add(1.11901096);
 		o2.add(0.004293889);
-		o2.add(-6.84E-07);
-		o2.add(-2.02E-09);
-		o2.add(1.04E-12);
-		o2.add(-3.39E+03);
+		o2.add(-0.00000068363);
+		o2.add(-0.00000000202337);
+		o2.add(0.00000000000103904);
+		o2.add(-3391.4549);
 		o2.add(0.00E+00);
-		o2.add(3.20E+01);
+		o2.add(31.9988);
 		resultMap.put("o2", o2);
 		List<Double> co2 = new ArrayList<>();
 		co2.add(49436.5054);
 		co2.add(-626.411601);
 		co2.add(5.30172524);
 		co2.add(0.002503814);
-		co2.add(-2.13E-07);
-		co2.add(-7.69E-10);
-		co2.add(2.85E-13);
-		co2.add(-4.53E+04);
-		co2.add(-3.94E+05);
-		co2.add(4.40E+01);
+		co2.add(-0.00000021273);
+		co2.add(-0.000000000768999);
+		co2.add(0.000000000000284968);
+		co2.add(-45281.9846);
+		co2.add((double)-393510);
+		co2.add(44.0095);
 		resultMap.put("co2", co2);
 		List<Double> ar = new ArrayList<>();
 		ar.add((double) 0);
@@ -1988,21 +2003,21 @@ public class Calc2 {
 		ar.add((double) 0);
 		ar.add((double) 0);
 		ar.add((double) 0);
-		ar.add(-7.45E+02);
+		ar.add(-745.375);
 		ar.add((double) 0);
-		ar.add(3.99E+01);
+		ar.add(39.948);
 		resultMap.put("ar", ar);
 		List<Double> h2o = new ArrayList<>();
 		h2o.add(-39479.6083);
 		h2o.add(575.573102);
 		h2o.add(0.931782653);
 		h2o.add(0.007222713);
-		h2o.add(-7.34E-06);
-		h2o.add(4.96E-09);
-		h2o.add(-1.34E-12);
-		h2o.add(-3.30E+04);
-		h2o.add(-2.42E+05);
-		h2o.add(1.80E+01);
+		h2o.add(-0.00000734256);
+		h2o.add(0.00000000495504);
+		h2o.add(-0.00000000000133693);
+		h2o.add(-33039.7431);
+		h2o.add((double) -241826);
+		h2o.add(18.01528);
 		resultMap.put("h2o", h2o);
 		return resultMap;
 	}
