@@ -244,7 +244,6 @@ public class Calc2 {
 //		stack.add(H323);
 //		stack.add(H325);
 //		System.out.println("hrsg_energy_in : " + hrsg_energy_in.apply(stack));
-		System.out.println("stack size : " + stack.size()); // 18
 		System.out.println("hrsg_energy_out : " + hrsg_energy_out.apply(stack));
 //		System.out.println("hrsg_working_fluid_energy_gain : " + hrsg_working_fluid_energy_gain.apply(stack));
 //		System.out.println("hrsg_efficiency : " + hrsg_efficiency.apply(stack));
@@ -2082,12 +2081,11 @@ public class Calc2 {
 	};
 	
 	private static List<Double> stackEnthalpyCombProduct(double hrsgStackTemperature) {
-		double degChrsgStackTemperature = (hrsgStackTemperature - 32) * 5 / 9;
-		double gtHAInNitrogen = gtHResult(degChrsgStackTemperature, "n2");
-		double gtHAInOxygen = gtHResult(degChrsgStackTemperature, "o2");
-		double gtHAInCarbonDioxide = gtHResult(degChrsgStackTemperature, "co2");
-		double gtHAInArgon = gtHResult(degChrsgStackTemperature, "ar");
-		double gtHAInWater = gtHResult(degChrsgStackTemperature, "h2o");
+		double gtHAInNitrogen = gtHResult(hrsgStackTemperature, "n2");
+		double gtHAInOxygen = gtHResult(hrsgStackTemperature, "o2");
+		double gtHAInCarbonDioxide = gtHResult(hrsgStackTemperature, "co2");
+		double gtHAInArgon = gtHResult(hrsgStackTemperature, "ar");
+		double gtHAInWater = gtHResult(hrsgStackTemperature, "h2o");
 
 		List<Double> airArr = new ArrayList<>();
 		airArr.add(gtHAInNitrogen);
