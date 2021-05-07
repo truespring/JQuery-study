@@ -27,7 +27,7 @@ public class ExceptionTest {
 			System.out.println(b);
 			System.out.println(c);
 		} catch(Exception e) {
-			throw new CommonException("公~具龋~");
+			throw new CommonException("公~具龋~", e);
 		}
 	}
 }
