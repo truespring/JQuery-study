@@ -1,11 +1,16 @@
 package com.doosan.test.optional;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class Main {
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
+		// 링크 : https://www.daleseo.com/java8-optional-before/
 		Order order = new Order();
 		String city = getCityOfMemberFromOrder(order); // returns null
 		System.out.println(city.length()); // throws NPE!
@@ -52,6 +57,44 @@ public class Main {
 				length = 0;
 			}
 		 */
+		
+		// null 반환
+		Map<Integer, String> cities = new HashMap<>();
+		cities.put(1, "Seoul");
+		cities.put(2, "Busan");
+		cities.put(3, "Daejeon");
+		
+		String city1 = cities.get(4); // returns null
+		int length1 = city1 == null ? 0 : city1.length(); // null check
+		System.out.println(length1);
+		
+		Optional<String> maybeCity = Optional.ofNullable(cities.get(4)); // Optional
+		int length2 = maybeCity.map(String::length).orElse(0);
+		System.out.println(length2);
+		
+		// 예외 발생
+		// null 을 반환하지 않고 예외를 던저버리는 경우
+		List<String> cities1 = Arrays.asList("Seoul", "Busan", "Daejeon");
+		
+		String city2 = null;
+		try {
+			city2 = cities1.get(3); // throws exception
+		} catch (ArrayIndexOutOfBoundsException e) {
+			// ignore
+		}
+		int length3 = city2 == null ? 0 : city2.length(); // null check
+		System.out.println(length3);
+		
+		Optional<String> maybeCity4 = getAsOptional(cities1, 3); // Optional
+		int length4 = maybeCity4.map(String::length).orElse(0); // null-safe
+		System.out.println(length4);
+		
+		// ifPresent() 메소드
+		// ifPresent(Consumer<? super T> consumer) : 이 메소드는 특정 결과를 반환하는 대신에 Optional 객체가 감싸고 있는 값이 존재할 경우에만 실행될 로직을 함수형 인자로 넘길 수 있음
+		Optional<String> maybeCity5 = getAsOptional(cities1, 3); // Optional
+		maybeCity5.ifPresent(city3 -> {
+			System.out.println("length : " + city3.length());
+		});
 	}
 	
 	/**
@@ -61,6 +104,19 @@ public class Main {
 	 */
 	public static String getCityOfMemberFromOrder(Order order) {
 		return order.getMember().getAddress().getCity();
+	}
+	
+	/**
+	 * 아래의 코드 리팩토링
+	 * @param order
+	 * @return
+	 */
+	public static String getCityOfMemberFrmOrder3(Order order) {
+		return Optional.ofNullable(order)
+				.map(Order::getMember)
+				.map(Member::getAddress)
+				.map(Address::getCity)
+				.orElse("seoul");
 	}
 	
 	// 1. 중첩 null 체크하기
@@ -98,5 +154,41 @@ public class Main {
 			return "Seoul";
 		}
 		return city;
+	}
+	
+	/**
+	 * 아래의 코드 리펙토링
+	 * @param order
+	 * @param min
+	 * @return
+	 */
+	public Optional<Member> getMemberIfOrderWithin1(Order order, int min) {
+		return Optional.ofNullable(order)
+				.filter(o -> o.getDate().getTime() > System.currentTimeMillis() - min * 1000)
+				.map(Order::getMember);
+	}
+	
+	public Member getMemberIfOrderWithin(Order order, int min) {
+		if(order != null && order.getDate().getTime() > System.currentTimeMillis() - min * 1000) {
+			return order.getMember();
+		}
+		return null;
+	}
+	
+	/**
+	 * 예외 처리부를 감싸서 정적유틸리티 메소드로 분리
+	 * Optional 클래스의정적 팩토리 메소드를 사용하여 정상처리 시와 예외 처리 시에 반화할 Optional 객체를 각각 지정함
+	 * 이 경우에는 Optional 에 담을 객체가 null 인지 아닌지 확실히 알 수 있기 때문에 2개의 정적 팩토리 메소드를 쓸 수 있음
+	 * @param <T>
+	 * @param list
+	 * @param index
+	 * @return
+	 */
+	public static <T> Optional<T> getAsOptional(List<T> list, int index) {
+		try {
+			return Optional.of(list.get(index));
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return Optional.empty();
+		}
 	}
 }
