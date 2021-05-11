@@ -119,6 +119,15 @@ public class Main {
 				.orElse("seoul");
 	}
 	
+	/**
+	 * 넘어온 값이 null 인지 아닌지 확인
+	 * @param str
+	 * @return
+	 */
+	public String nvl(String str) {
+		return Optional.ofNullable(str).orElse("");
+	}
+	
 	// 1. 중첩 null 체크하기
 	public String getCityOfMemberFromOrder1(Order order) {
 		if (order != null) {
