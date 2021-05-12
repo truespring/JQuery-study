@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.doosan.test.prac2.CommonException;
+
 public class Main {
 
 	@SuppressWarnings("unused")
@@ -126,6 +128,22 @@ public class Main {
 	 */
 	public String nvl(String str) {
 		return Optional.ofNullable(str).orElse("");
+	}
+	
+	/**
+	 * Object 타입을 Long 타입으로 형변환
+	 * @param obj
+	 * @return longObject
+	 * @throws CommonException
+	 */
+	public Long objectToLong(Object obj) throws CommonException {
+		Long longObject = null;
+		try {
+			longObject = Long.parseLong(obj.toString());
+		} catch (NumberFormatException | NullPointerException e) {
+			throw new CommonException("형변환 실패", e);
+		}
+		return longObject;
 	}
 	
 	// 1. 중첩 null 체크하기
