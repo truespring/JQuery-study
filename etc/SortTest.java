@@ -68,7 +68,7 @@ public class SortTest {
 		 */
 
 		
-		voList.sort((o1, o2) -> Long.compare(Long.parseLong(o1.getMap().get("distance").toString()), Long.parseLong(o2.getMap().get("distance").toString()))); // 숫자형 오름차순정렬
+		voList.sort((o1, o2) -> Double.compare(DataHandleUtil.objectToDouble(o1.getMap().get("distance")), DataHandleUtil.objectToDouble(o2.getMap().get("distance")))); // 숫자형 오름차순정렬
 		for(SampleVO a : voList) {
 			System.out.println(a.getMap().get("distance").toString());
 		}
