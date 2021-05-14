@@ -122,15 +122,6 @@ public class Main {
 	}
 	
 	/**
-	 * 넘어온 값이 null 인지 아닌지 확인
-	 * @param str
-	 * @return
-	 */
-	public String nvl(String str) {
-		return Optional.ofNullable(str).orElse("");
-	}
-	
-	/**
 	 * Object 타입을 Long 타입으로 형변환
 	 * @param obj
 	 * @return longObject
