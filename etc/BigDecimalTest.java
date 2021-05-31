@@ -21,20 +21,30 @@ public class BigDecimalTest {
 		}
 		
 		if ((c - d) == 90.000000000001f) {
-			System.out.println("float 요기요"); // float 은 double 과 다르게 소수점 계산이 잘 됨
+			System.out.println("float 요기요"); // float 은 double 과 다르게 소수점 계산이 잘 됨(90.000000000001f)
 		} else {
 			System.out.println("float : " + (c - d));
 		}
 		
-		BigDecimal val = new BigDecimal("123.45");
+		BigDecimal val = new BigDecimal("123.45"); // 값을 표현
+		BigDecimal val2 = new BigDecimal(123.45); // 자리수가 123이고 그중 45는 소수점을 나타냄
+		BigDecimal val3 = BigDecimal.valueOf(123.45); // val 과 동일
 		System.out.println(val.unscaledValue()); // 12345
 		System.out.println(val.scale()); // 2
 		System.out.println(val.precision()); // 5
 
-		if (BigDecimal.valueOf(123.45).equals(val)) {
+		if (val3.equals(val)) {
 			System.out.println("요기요");
 		} else {
 			System.out.println("다름");
+		}
+		
+		Double d1 = 123.45;
+		BigDecimal bd1 = BigDecimal.valueOf(d1);
+		if (bd1.doubleValue() == d1) { // BigDecimal To Double
+			System.out.println("같다");
+		} else {
+			System.out.println("다르다");
 		}
 	}
 }
