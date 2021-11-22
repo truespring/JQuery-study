@@ -3,7 +3,7 @@ class MultiThread extends Thread {
     String name;
     int id;
 
-    MultiThreadSelectInsert(String name, int id){
+    MultiThread(String name, int id){
         this.name = name;
         this.id = id;
     }
